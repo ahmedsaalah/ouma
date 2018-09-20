@@ -1,9 +1,29 @@
-from flask import (Flask, render_template, request, redirect,
-jsonify, url_for, flash, make_response, session as login_session)
-
-
+from products import *
 app = Flask(__name__)
 
+
+
+
+
+# product1 = product( name="shtna1", price =200, oldPrice=200, picture="admin", category="0",rate=3)
+
+# db.session.add(product1)
+# db.session.commit()
+
+# product1 = product( name="shnta2", price =150, oldPrice=500, picture="admin", category="0",rate=10)
+
+# db.session.add(product1)
+# db.session.commit()
+
+
+# product2 = product( name="shnta3", price =300, oldPrice=300, picture="admin", category="0",rate=5)
+
+# db.session.add(product2)
+# db.session.commit()
+
+
+
+# db.create_all()
 
 @app.route('/')
 
@@ -19,9 +39,9 @@ def Shop():
     """ returns index page """
     return render_template('product.html')
 
-@app.route('/Features')
+@app.route('/Cart')
 
-def Features():
+def Cart():
     """ returns index page """
     return render_template('cart.html')
 
