@@ -1,0 +1,979 @@
+﻿
+
+
+<!DOCTYPE html>
+
+<html lang="ar">
+    
+    <head>
+        <meta charset="utf-8" />
+        <title>Camel Corners</title>
+        <link rel="icon" type="image/ico" href="/static/favicon.ico">
+
+        <link type="text/css" href="/static/assets/css/bootstrap.min.css" rel="stylesheet">
+        <link type="text/css" href="/static/assets/css/bootstrap-theme.min.css" rel="stylesheet">
+        <link type="text/css" href="/static/assets/css/BoxComponant.css" rel="stylesheet">
+        <link type="text/css" href="/static/assets/css/component.css" rel="stylesheet">
+        <link type="text/css" href="/static/assets/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="/static/assets/css/jquery.mCustomScrollbar.css" />
+        <link type="text/css" href="/static/assets/css/SiteStyles.css" rel="stylesheet">
+        <link type="text/css" href="/static/assets/css/jquery-ui.min.css" rel="stylesheet">
+        <link type="text/css" href="/static/assets/css/jquery-ui.structure.min.css" rel="stylesheet">
+        <link type="text/css" href="/static/assets/css/jquery-ui.theme.min.css" rel="stylesheet">
+        <link type="text/css" href="/static/assets/css/bootstrap-datepicker.min.css" rel="stylesheet">
+
+         <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+    </head>
+    <body> 
+        
+            <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right " id="cbp-spmenu-s2">  
+     <div class="SidebarHeader">
+          <div class="ProfileHeaderAnchor">
+            
+          </div>
+          
+     </div>
+ <div class="SidebarContent" id="SidebarContentId">
+
+
+
+        <div class="SideTree">
+              
+           
+                  
+                <ul >
+                    
+          
+                    <li><a href="{{url_for('HomePage')}}"><h4 class="SidebarContentText">الشركات</h4><h4 class="SidebarContentIcon" data-toggle="tooltip" data-placement="left" title="الشركات"><span class="fa fa-sitemap "></span></h4></a></li>
+                    <li><a href="{{url_for('transactions')}}"><h4 class="SidebarContentText"></h4>الحسابات</h4><h4 class="SidebarContentIcon" data-toggle="tooltip" data-placement="left" title="الحسابات"><span class="fa fa-user"></span></h4></a></li>  
+                </ul>  
+            
+      
+          </div>
+        
+  
+           
+    </div>
+</nav> 
+
+        
+        <section class="cbp-spmenu-push" id="DataSection">
+   
+          
+
+    <div class="DataDiv">
+   
+     <div class="PageHaeder">
+          <h2>الشركات</h2>
+     </div>
+
+     <div class="box-wider-text">
+         
+          <div class="box-header">
+               <div class="row CustomRow">
+                    <div class="HeaderLeft"> 
+                          <button class="btn btn-sucess"  onClick="ShowLeftSideBar('AddEmployeeSideBar')">  أضافة شركه </button>         
+                     </div>
+                     <div class="HeaderRight"> 
+                          <form action="{{url_for('HomePage')}}" method="post" class="SubHeader">
+                               
+    
+                               <div class="form-group">
+                              
+                                    <input type="text" id="searchh" name="search" class="form-control"   placeholder="بحث" />
+                                    <a href="#" type="submit" role="button"><span class="fa fa-search"></span></a>
+                                </div>
+                          </form>
+                     </div>
+                </div>
+          </div>
+          <div class="box-body">
+               <div class="table-responsive" id="UserTable">
+              <table id='emptable' name='emptable' class='table table-striped table-bordered table-hover table-condensed'>
+              		             <thead>
+                                    <tr>
+                                  
+                                        <th>إسم الشركه</th>
+                                      
+                                        <th>التليفون</th>
+
+                                        <th>عنوان</th>
+                                        <th>سعر1</th>
+                                        <th>سعر2</th>
+
+                                   
+                           
+                                           <th> تفاصيل </th>
+                                        <th>أضافه طلبيه </th>
+                                               
+
+                                       <th>حذف </th>
+                                         <th> تعديل </th>
+
+                                    </tr></thead>
+                {% if companies %} {% for company in companies %}
+            <tr>
+                   
+                      <td>{{company.name}}</td>
+                         <td>{{company.telephone}}</td>
+                           <td>{{company.address}}</td>
+                         <td>{{company.price1}}</td>
+                         <td>{{company.price2}}</td>
+                      
+
+              
+
+                         
+                  
+                         
+ 
+
+
+
+
+                    <td class='check-col '><a href='#'data-id='{{company.id}}' data-name='{{company.name}}'class='EditappEmpBt'data-toggle='modal'>
+                                                <span class='fa fa-cogs tableSpane'></span></a></td>
+
+                    <td class='check-col '><a href='#'data-id='{{company.id}}'data-name='{{company.name}}'class='EditappEmpBtn'data-toggle='modal'>
+                                                <span class='fa fa-cogs tableSpane'></span></a></td>
+
+             <td class='check-col'>
+                             <a href='#' class='DeleteBtn' data-target='#DeleteEmployeeModal' data-id='{{company.id}}' data-toggle='modal' data-placement='right' 
+                                    
+                                 ><span class='fa fa-trash tableSpane'></span></a></td>
+           
+
+        
+                              <td class='check-col '><a href='#' data-id='{{company.id}}' data-name='{{company.name}}'data-mobile='{{company.telephone}}'data-address='{{company.address}}'data-price1='{{company.price1}}'data-price2='{{company.price2}}' class='EditEmpBtn'data-toggle='modal' title='edit' >
+                            <span class='fa fa-cogs tableSpane'></span></a></td>
+
+
+            </tr>
+            {% endfor %} {% endif %}
+
+                           </table>
+                          
+                          
+                </div>
+          </div>
+          <div class="box-footer">
+               <div class="row CustomRow">
+                   <nav>
+                      <ul class="pagination">
+                           <li><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                           <li><a href="#">1</a></li>
+                           <li><a href="#">2</a></li>
+                           <li><a href="#">3</a></li>
+                           <li><a href="#">4</a></li>
+                           <li><a href="#">5</a></li>
+                           <li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+                       </ul>
+                    </nav>
+               </div>
+          </div>
+     </div>
+</div>
+
+
+ <div class="modal fade CustomModal" id="DeleteEmployeeModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button> 
+            <h3><strong>حذف بيانات</strong></h3> 
+        </div>
+        <form action="{{url_for('DeleteCompany')}}" method="post" id="DeleteUserForm">
+          <div class="modal-body">
+            <div class="form-group formLayout" id="formlayout">   
+                <label for="nameInput" class="control-label ">هل أنت متأكد من حذف البيانات</label>
+            </div>
+                          <div class="form-group formLayout" id="formlayout">     
+                              <input type="text" name="id" id="id" class="form-control HiddenInput " readonly="true"/>
+                          </div>
+          </div>
+          <div class="modal-footer mf">
+            <button class="btn btn-info btn-sm " type="submit" onClick="closeModal('DeleteEmployeeModal');">حذف</button>
+          </div>
+        </form>
+      </div>
+    </div>
+   </div> 
+
+
+<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left SideBarLight" id="AddEmployeeSideBar">
+  <div class="SidebarContent">
+      <div class="LeftSideBarHeader">
+          <h2>إضافة شركه</h2>
+          <span onClick="ShowLeftSideBar('AddEmployeeSideBar')" class="fa fa-close ExitBtn"></span>
+      </div>
+      <form action="{{url_for('AddCompany')}}" method="post" class="SideBarForm" id="AddEmployeeForm">
+          <h4>بيانات الشركه</h4>
+          <div class="form-group">
+               <label for="name"></label> 
+              <input type="text" class="form-control" id="name" name="name" placeholder="الاسم">
+          </div>
+          <div class="form-group">
+               <label for="address"></label>
+              <input type="text" class="form-control" id="address" name="address" placeholder="العنوان">
+          </div>
+
+
+
+
+
+<div class="form-group">
+       <label for="email"></label>
+        <input type="text" class="form-control" id="mobile" name="mobile" placeholder="التليفون">
+      </div>  
+
+      <div class="form-group">
+        <label for="price"></label>
+         <input type="text" class="form-control" id="price1" name="price1" placeholder="سعر">
+       </div>  
+
+       <div class="form-group">
+        <label for="price"></label>
+         <input type="text" class="form-control" id="price2" name="price2" placeholder="سعر">
+       </div>  
+
+          <button type="submit" class="btn btn-primary"  >إضافة</button>
+      </form>
+  </div>
+  <span class="fa fa-user-secret BGSpan"></span> 
+</nav>
+<!----------------------------------------------------------------------------------------->
+
+<!------------EditEmployeesOverlayForm---------------------------------------->
+<div class="OverLayForm closed" id="EditEmployeesOverlayForm">
+   <div class="container-fluid OverLayFormHeader">
+        <div class="row CustomRow">
+             <div class="OverLayFormHeaderLeft">
+                  <span class="fa fa-close ExitBtn"></span>
+             </div>
+             <div class="OverLayFormHeaderRight">
+                 <h2>تعديل بيانات الشركه</h2>
+             </div>
+        </div>
+   </div>
+    <form action="{{url_for('EditCompany')}}" method="post" class="SideBarForm" id="editEmployeeForm">
+          <h4>بيانات  الشركه</h4>
+
+
+<div class="form-group formLayout" id="formlayout"> 
+   
+  <input type="hidden" name="id" id="eid"  readonly="true"/>
+    </div>
+
+      <div class="form-group">
+        <label for="ename"></label> 
+        <p>الأسم</p>
+        <input type="text" class="form-control" id="ename" name="name" placeholder="الاسم">
+      </div>
+      <div class="form-group">
+       <label for="eaddress"></label>
+          <p>العنوان</p>
+        <input type="text" class="form-control" id="eaddress" name="address" placeholder="العنوان">
+      </div>
+      <div class="form-group">
+       <label for="ephone"></label>
+        <p>التليفون</p>
+       <input type="text" class="form-control" id="emobile" name="mobile" placeholder="التليفون">
+      </div>
+
+      <div class="form-group">
+        <label for="ephone"></label>
+         <p>سعر1</p>
+        <input type="text" class="form-control" id="eprice1" name="price1" placeholder="سعر1">
+       </div>
+
+       <div class="form-group">
+        <label for="ephone"></label>
+         <p>سعر2</p>
+        <input type="text" class="form-control" id="eprice2" name="price2" placeholder="سعر1">
+       </div>
+ 
+
+  
+
+
+      <button type="submit" class="btn btn-primary " onclick="CloseOverLay('EditEmployeesOverlayForm');
+      " >تعديل</button>
+    </form>
+</div>
+
+
+
+<!------------EditEmployeesOverlayForm---------------------------------------->
+<div class="OverLayForm closed" id="EditEmployeesappointment">
+   <div class="container-fluid OverLayFormHeader">
+        <div class="row CustomRow">
+             <div class="OverLayFormHeaderLeft">
+                  <span class="fa fa-close ExitBtn"></span>
+             </div>
+             <div class="OverLayFormHeaderRight">
+                 <h2>أضافه طلبيه</h2>
+
+             </div>
+        </div>
+   </div>
+    <form action="{{url_for('AddOrder')}}" method="post" class="SideBarForm" id="editEmployeeForm1">
+         
+
+
+<div class="form-group formLayout" id="formlayout"> 
+  <p>رقم الشركه</p>    
+  <input type="text" name="id" id="eid1"  readonly="true"/>
+    </div>
+
+      <div class="form-group">
+        <label for="ename"></label> 
+        <p>الأسم</p>
+        <input type="text" class="form-control" id="ename1" name="name" readonly="true"/>
+      </div>
+
+  
+
+          <div class="form-group">
+        <label for="ename"></label> 
+        <p> الكميه من الحجم الاول</p>
+        <input type="text" class="form-control"  name="quantity1" />
+      </div>
+
+
+      <div class="form-group">
+        <label for="ename"></label> 
+        <p>الكميه من الحجم الثاني</p>
+        <input type="text" class="form-control" name="quantity2" />
+      </div>
+
+
+
+              <div class="form-group">
+        <label for="ename"></label> 
+
+    </div>
+
+    <div class="form-group">
+        <label for="ename"></label> 
+        <p> معاد التحصيل</p>
+        <input type="text" class="form-control"  name="paymentDay" />
+      </div>
+
+
+        <p>ضريبه المضافه</p>
+
+
+        <input type="radio" id="contactChoice1"
+        name="taxes" value="0.14">
+       <label for="contactChoice1">يوجد</label>
+   
+       <input type="radio" id="contactChoice2"
+        name="taxes" value="0">
+       <label for="contactChoice2">لا يوجد</label>
+
+       
+
+
+
+
+   
+          <p>خصم</p>
+
+          <input type="radio" id="contactChoice1"
+          name="discount" value="0.005">
+         <label for="contactChoice1">يوجد</label>
+     
+         <input type="radio" id="contactChoice2"
+          name="discount" value="0">
+         <label for="contactChoice2">لا يوجد</label>
+
+        
+        
+
+      <button type="submit" class="btn btn-primary " onclick="CloseOverLay('EditEmployeesappointment');
+      " >اضافه طلبيه</button>
+    </form>
+</div>
+<div class="OverLayForm closed" id="EditEmployeesappointmen">
+   <div class="container-fluid OverLayFormHeader">
+        <div class="row CustomRow">
+             <div class="OverLayFormHeaderLeft">
+                  <span class="fa fa-close ExitBtn"></span>
+             </div>
+             <div class="OverLayFormHeaderRight" id="companyID">
+                
+             </div>
+        </div>
+   </div>
+
+
+     <div class="box-body">
+             <div class="table-responsive" id="UserTable1">
+
+             </div>
+             </div>
+</div>
+
+
+<!-------------------------------------------------------------------->
+<script src="/static/assets/js/jquery-1.12.1.min.js"></script>
+<script src="/static/assets/js/bootstrap.min.js"></script> 
+<script src="/static/assets/js/classie.js"></script>     
+<script src="/static/assets/js/modernizr.custom.js"></script> 
+<script src="/static/assets/js/perfect-scrollbar.min.js"></script>
+<script src="/static/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>       
+<script src="/static/assets/js/bootstrap-datepicker.min.js"></script>
+<script src="/static/assets/js/jquery.validate.min.js"></script>
+<script src="/static/assets/js/SiteScripts.js"></script>
+
+
+<script type="text/javascript">
+$(document).on("click",".DeleteBtn",function () {
+//alert('ok');
+var id=$(this).data('id');
+  $("#id").val(id);
+
+});
+
+$(document).on("click",".EditappEmpBtn",function () {
+
+var sidebaride = "EditEmployeesappointment";
+ShowOverLay(sidebaride);
+
+var id=$(this).data('id');
+var name=$(this).data('name');
+
+
+
+
+$("#eid1").val(id);
+$("#ename1").val(name);
+
+
+
+});
+
+
+
+
+
+
+
+$(document).on("click",".EditEmpBtn",function () {
+
+
+
+var id=$(this).data('id');
+var name=$(this).data('name');
+var mobile=$(this).data('mobile');
+
+var address=$(this).data('address');
+var price1=$(this).data('price1');
+var price2=$(this).data('price2');
+
+
+
+$("#eid").val(id);
+$("#ename").val(name);
+
+
+$("#emobile").val(mobile);
+$("#eaddress").val(address);
+$("#eprice1").val(price1);
+$("#eprice2").val(price2);
+
+var sidebaride = "EditEmployeesOverlayForm";
+ShowOverLay(sidebaride);
+
+});
+
+</script>
+
+
+
+<script>
+  $('.SideBarLight').ready(function () {
+      $(".SideBarLight .SidebarContent").mCustomScrollbar({
+          axis: "y",
+          theme: "dark-3"
+      });
+  });
+</script>
+<script>
+
+
+
+
+
+
+$(document).on("click",".EditappEmpBt",function () {
+
+var sidebaride = "EditEmployeesappointmen";
+ShowOverLay(sidebaride);
+
+
+var name=$(this).data('name');
+var id=$(this).data('id');
+
+ data = {
+    id : id
+  };
+
+
+
+
+
+
+$("#companyID").html("<h2> تفاصيل الطلبيات "+name+"<h2>");
+  $.post("{{url_for('GetOrders')}}",data,function(data){
+     $("#UserTable1").html(data);
+    
+});
+
+
+
+});
+
+
+
+
+
+
+
+$(document).ready(function(){
+  
+
+  //------------------------edit---------------------------		
+      var validator2 = $("#AddEmployeeForm").validate({
+  
+                  errorPlacement: function (error, element)
+                  {
+                      // Append error within linked label
+                      $( element ).closest( "div" ).find( "label[for='" + element.attr( "name" ) + "']" ).append( error );},
+                  errorElement: "span",
+                 rules :
+                  {
+                      name:"required",
+                      address:"required",
+                      phone:{
+                          required:true,
+                          number:true
+                      },
+                      email: {
+                          email:true
+                      },
+                      position:"required",
+                      department:"required",
+                      branch:"required",
+                      username:"required",
+                      pass:"required"
+                  },
+                  messages: 
+                  {
+                      name:"أضف الاسم",
+                      address:"أضف العنوان",
+                      phone:{
+                          required:"من فضلك أدخل التليفون",
+                          number:"أدخل رقم صحيح"
+                      },
+                      email: {
+                          email:"أدخل صيغة الايميل صحيحة"
+                      },
+                      position:"اختر مسمي وظيفي",
+                      department:"اختر القسم",
+                      branch:"اختر الفرع",
+                      username:"ادخل إسم المستخدم",
+                      pass:"ادخل كلمة المرور"
+                  }
+              });
+
+});
+
+</script>
+
+
+        <!--link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script-->
+<script>
+$( function() {
+  $( "#datepicker" ).datepicker();
+} );
+
+
+
+
+
+$(document).ready(function(){
+        $(document).on("change","#datepicker",function(){
+        var data={
+        date : $(this).val()
+
+
+
+
+      };
+   
+
+});
+
+});
+
+function printfunction() 
+{
+window.print();
+}
+function printDiv() 
+{
+
+
+var divToPrint=document.getElementById('tableprint');
+
+
+
+
+
+
+
+var data ='<table><tr> <th>Company</th><th>Contact</th><th>Country</th></tr></table>';
+
+
+var mywindow =window.open('','Print-Window');
+  mywindow.document.write('<html><head><title></title>');
+  mywindow.document.write('<link rel="stylesheet" href="http://www.test.com/style.css" type="text/css" />');  
+  mywindow.document.write('<style type="text/css">.test { color:red; } </style></head><body><table>');
+  mywindow.document.write(divToPrint.innerHTML);
+
+  mywindow.document.write('</table></body></html>');
+  mywindow.document.close();
+  mywindow.document.print();   
+
+setTimeout(function(){mywindow.close();},10);
+
+}
+
+</script>
+
+</section>
+
+
+        <!---- /Header --------------------------------------->
+            <div class="alert alert-success" role="alert" id="AddDone" >تم إضافة البيانات بنجاح</div>
+            <div class="alert alert-success" role="alert" id="EditDone" >تم تعديل البيانات بنجاح</div>
+            <div class="alert alert-danger" role="alert" id="DeleteDone">تم إزالة البيانات بنجاح</div>
+            <div class="DataContent">
+                <div class="DataDiv">
+				    
+                </div>
+            </div>
+    
+        
+		<!---- OverLayes --------------------------------------->
+
+	    <!---- /OverLayes -------------------------------------->
+
+        <!---- Modals --------------------------------------->
+		    
+	    <!---- /Modals -------------------------------------->
+
+		<!-----scripts---------------------------------->
+
+        <script>
+            $(document).on("click", ".ExitBtn", function ()
+            {
+                $(this).closest(".OverLayForm").removeClass("show");
+                $(this).closest(".OverLayForm").addClass("closed");
+            });
+            $(document).on("click", ".OverLayFormBtn", function ()
+            {
+                $(this).closest(".OverLayForm").removeClass("show");
+                $(this).closest(".OverLayForm").addClass("closed");
+            });
+            //---------------------------ShowOverLay----------
+            function ShowOverLay(OverLayId){ 
+                $("#"+OverLayId).removeClass("closed");
+                $("#"+OverLayId).addClass("show");
+                var x = $("#cbp-spmenu-s2").hasClass("cbp-spmenu-open");
+             if(x){
+                ShowPushRightSideBar('cbp-spmenu-s2','DataSection');
+               }
+            }//ShowOverLay
+            //---------------------------CloseOverLay----------
+            function CloseOverLay(OverLayId){ 
+                $("#"+OverLayId).removeClass("show");
+                $("#"+OverLayId).addClass("closed");
+            }//ShowOverLay
+            //---------------------------ShowLeftSideBar----------
+            function ShowLeftSideBar(SideBarId){
+                alert("a7aaaaa")
+                var menuLeft = document.getElementById(SideBarId);
+                classie.toggle(menuLeft, 'cbp-spmenu-open');
+            }//ShowLeftSideBar
+            //---------------------------ShowPushRightSideBar----------
+            function ShowPushRightSideBar(SideBarId , ContentId){
+                var menuRight = document.getElementById( SideBarId ),
+				    body = document.getElementById( ContentId );
+
+                  classie.toggle(body, 'cbp-spmenu-push-toleft');
+                  classie.toggle(menuRight, 'cbp-spmenu-open');
+                  var x = $("#cbp-spmenu-s2").hasClass("cbp-spmenu-open");
+                  if (x) {
+                    $("#DataSection").css("width", "85%");
+                    $(".DataContent").css("width", "85%");
+                  }
+                  else {
+                    $("#DataSection").css("width", "95.9%");
+                    $(".DataContent").css("width", "95.9%");
+                  }
+            }//ShowRightSideBar
+
+
+            //---------------------------getPage----------
+            function getPage(name,controller,flag) {
+                if(flag == 1){
+                    $('.DataContent').html('<img class="LoadingImg" src="/static/assets/images/Loading.gif" />');
+	                jQuery.ajax({
+	                    url: "http://localhost:5000/" + controller + "/"+ name,
+		                type: "POST",
+		                success:function(data){$('.DataContent').html(data);}
+	                });
+                }else if(flag == 2){
+                    $('.SideBarContent').html('<img class="LoadingImg" src="/static/assets/images/Loading.gif" />');
+                    jQuery.ajax({
+		                url: "http://localhost:5000/" + controller + "/"+ name,
+		                type: "POST",
+		                success:function(data){$('.SideBarContent').html(data);}
+	                });
+                }
+            }//getPage
+            //---------------------------Search----------
+            function showHint(str , controller , fname , DivID) {
+                if (window.XMLHttpRequest) {
+                    // code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp = new XMLHttpRequest();
+                }else {
+                    // code for IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange = function() {
+                    if (true) {
+                        document.getElementById(DivID).innerHTML = xmlhttp.responseText;
+                    }
+                }
+                xmlhttp.open("GET","http://localhost:5000/" + controller + "/" + fname + "?q=" + str ,true);
+                xmlhttp.send();
+            }//showHint
+            //-------------------------- SubmitForm using AJAX ----------
+
+            function SubmitForm(FormID,  FunctionName, ResultDivId ,Message) {
+
+               $("#"+FormID).unbind('submit').submit(function (event) {
+
+                   var formData = $( this ).serialize();
+
+                   $.ajax({
+                            type: 'POST', 
+                            url: "http://localhost:5000/" +  FunctionName,
+                            data: formData
+                        })
+                        .done(function (data) {
+                            $("#"+ ResultDivId).html(data);
+                            if(Message != "none")
+                            {
+                              $('#'+Message).fadeIn().delay(1000).fadeOut();
+                            }
+                        });
+                        event.preventDefault();
+                        
+                        $("#"+FormID)[0].reset();
+                    });
+
+            }
+
+
+$(document).ready(function(){
+          $(document).on("change","#datepicker1",function(){
+          var data=
+          {
+          date : $(this).val()
+        
+
+        };
+      
+
+  $.post("http://localhost:5000/employee/whoInThatDate",data,function(data){
+     $('#DivisionsTableDiv').html(data);
+
+
+
+  });
+});
+
+});
+
+
+
+
+            function changePage (FormID, Controller, FunctionName, ResultDivId ,Message,page) {
+           // console.log('hiii');
+           //  console.log(controller);
+           //  console.log(FunctionName);
+
+               $("#"+FormID).unbind('submit').submit(function (event) {
+
+                   var formData = $( this ).serialize();
+
+                   $.ajax({
+                            type: 'GET', 
+                            url: "http://localhost:5000/" + Controller + "/"+ FunctionName+"?page="+page,
+                       
+                        })
+                        .done(function (data) {
+                            $("#"+ ResultDivId).html(data);
+                            if(Message != "none")
+                            {
+                              $('#'+Message).fadeIn().delay(1000).fadeOut();
+                            }
+                        });
+                        event.preventDefault();
+                        
+                        $("#"+FormID)[0].reset();
+                    });
+
+            }
+            //-------------------------- Close Modal ----------
+            function closeModal(ModalID) { 
+                $('#'+ ModalID).modal('toggle');
+            }
+            //-------------------------- Change Value : Get Result Depend on input Change Value ----------
+            function ChangeValue(inputsValues, Controller, FunctionName, ResultDivId){
+                
+                var inputData = inputsValues;
+                var dataSend = JSON.stringify(inputData);
+                $.ajax({
+                         type: 'POST', 
+                         url: "http://localhost:5000/" + Controller + "/"+ FunctionName,
+                         data: {data : dataSend}
+                      })
+                      .done(function (data) {
+                          $("#"+ ResultDivId).html(data);
+                     
+                     });  
+            }
+            //-------------------------- ValueNewPage : Get Result Depend on input Change Value ----------
+            function ValueNewPage (inputsValues, Controller, FunctionName){
+            // alert('ok');
+                var inputData = inputsValues;
+                var dataSend = JSON.stringify(inputData);
+                $.ajax({
+                         type: 'POST', 
+                         url: "http://localhost:5000/" + Controller + "/"+ FunctionName,
+                         data: {data : dataSend}
+                      })
+                      .done(function (data) {
+                               
+                     });  
+            }
+            //-------------------------- PrintPage : Print Window Data----------
+            function PrintPage(){
+                window.print();
+            }
+            function SubmitFormprivilege(FormID, Controller, FunctionName, ResultDivId ,Message) {
+            
+               $("#"+FormID).unbind('submit').submit(function (event) {
+                   
+                   var formData = $( this ).serialize();
+                   $.ajax({
+                            type: 'POST', 
+                            url: "http://localhost:5000/" + Controller + "/"+ FunctionName,
+                            data: formData
+                        })
+                        .done(function (data) {
+                            $("#"+ ResultDivId).html(data);
+                            if(Message != "none")
+                            {
+                              $('#'+Message).fadeIn().delay(1000).fadeOut();
+                            }
+                        });
+                        event.preventDefault();
+                        
+                    });
+                
+            }
+        </script>
+
+
+
+
+
+
+
+
+
+
+<script>
+function myFunction() {
+    var elem = document.getElementById("searchh").value;
+  console.log(elem.length);
+    if(elem.length > 0 )
+    {
+      if(elem.length > 1 ||!isNaN(elem) )
+{
+     var data={
+          name : elem
+        };
+    
+
+
+    $.post("http://localhost:5000/employee/printemppsearch",data,function(data){
+     
+  $("#UserTable").html(data);
+  });
+  }
+  }
+else 
+{
+   var data={
+          name : elem
+        };
+    
+
+    $.post("http://localhost:5000/employee/printemppsearchall",data,function(data){
+     console.log(data);
+
+  $("#UserTable").html(data);
+  });
+  
+ 
+}      
+}
+</script>
+
+<script>
+
+   
+    $("#search1").keyup(function(){
+     
+     var data={
+          name : $(this).val()
+        };
+    $.post("http://localhost:5000/employee/printemppsearch",data,function(data){
+      
+
+  $("#usetable").html(data);
+  });
+        
+ });
+
+
+
+
+
+
+
+</script>
+
+        <!-----scripts-------------------------------->
+    </body>
+</html>

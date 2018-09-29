@@ -1,29 +1,28 @@
 from products import *
-app = Flask(__name__)
+
+import os
+from werkzeug.utils import secure_filename
+UPLOAD_FOLDER = 'static/uploads'
+ALLOWED_EXTENSIONS = set([ 'png', 'jpg', 'jpeg'])
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
+# db.create_all()
 
-
-
-# product1 = product( name="shtna1", price =200, oldPrice=200, picture="admin", category="0",rate=3)
-
-# db.session.add(product1)
-# db.session.commit()
+# product3 = product( name="shtna1", price =200, oldPrice=200, picture="admin", category="0",rate=3)
 
 # product1 = product( name="shnta2", price =150, oldPrice=500, picture="admin", category="0",rate=10)
 
-# db.session.add(product1)
-# db.session.commit()
-
 
 # product2 = product( name="shnta3", price =300, oldPrice=300, picture="admin", category="0",rate=5)
-
+# db.session.add(product3)
+# db.session.add(product1)
 # db.session.add(product2)
 # db.session.commit()
 
 
 
-# db.create_all()
+
 
 @app.route('/')
 
@@ -32,6 +31,41 @@ def HomePage():
     return render_template('index.html')
 
 
+
+@app.route('/adminProducts')
+
+def adminProducts():
+    """ returns index page """
+    return render_template('adminProducts.html')
+
+
+
+
+@app.route('/addProduct', methods=['POST','GET'])
+def addProduct():
+
+    if request.method == 'POST' :
+                
+        name =request.form["name"]
+        price =request.form["price"]
+        cat =request.form["cat"]
+
+        if 'fileToUpload' in request.files:
+            file = request.files['fileToUpload']
+            
+        
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            productx = product( name=name, price =price, oldPrice=price, picture=filename, category=" "+cat,rate=0)
+            db.session.add(productx)
+            db.session.commit()            
+                
+                        
+                        
+
+    
+    """ returns index page """
+    return render_template('addProduct.html')
 
 @app.route('/Shop')
 
