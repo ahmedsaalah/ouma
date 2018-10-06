@@ -236,7 +236,7 @@
       .daterangepicker.ltr .ranges, .daterangepicker.ltr .calendar {
         float: left; }
     .daterangepicker.rtl {
-      direction: rtl;
+     /* direction: rtl;  */
       text-align: right; }
       .daterangepicker.rtl .calendar.left {
         clear: right;

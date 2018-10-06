@@ -1,5 +1,5 @@
 from products import *
-
+from users import user
 import os
 from werkzeug.utils import secure_filename
 UPLOAD_FOLDER = 'static/uploads'
@@ -20,7 +20,10 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # db.session.add(product2)
 # db.session.commit()
 
+admin = user( username="oumaAdmin", password="ouma111")
 
+db.session.add(admin)
+db.session.commit()
 
 
 
@@ -35,10 +38,85 @@ def HomePage():
 @app.route('/adminProducts')
 
 def adminProducts():
-    """ returns index page """
-    return render_template('adminProducts.html')
+    if 'id' in login_session :
+
+        products = product.query.filter().all()
+
+        return render_template('adminProducts.html',products=products)
+    else :
+        return redirect(url_for('HomePage'))
 
 
+
+@app.route('/DeleteProduct', methods=['POST','GET'])
+
+def DeleteProduct():
+    
+
+
+    if 'id' in login_session :
+  
+        id =request.form["productId"]
+        theProduct = product.query.filter_by(id=id).first()
+        db.session.delete(theProduct)
+        db.session.commit()
+
+        return render_template('adminProducts.html',products=products)
+    else :
+        return redirect(url_for('HomePage'))
+
+
+
+
+
+
+
+
+
+
+@app.route('/login', methods=['POST','GET'])
+
+def login():
+        username =request.form["username"]
+        password =request.form["password"]
+        
+        TheUser = user.query.filter_by(username=username , password=password).first()
+        if TheUser not None:
+
+            login_session['id'] = TheUser.id
+            login_session['username'] = TheUser.username
+
+            return redirect(url_for('HomePage'))
+        else :
+            return redirect(url_for('HomePage'))
+
+
+
+
+
+
+@app.route('/editProduct', methods=['POST','GET'])
+
+def editProduct():
+    if 'id' in login_session :
+        id =request.form["productId"]
+        price =request.form["price"]
+
+        cat =request.form["category"]
+        oldPrice =request.form["oldPrice"]
+
+
+        theProduct = product.query.filter_by(id=id).first()
+        theProduct.price = price
+        theProduct.oldPrice = oldPrice
+        theProduct.category = cat
+        db.session.commit()
+        
+        return redirect(url_for('adminProducts'))
+    else :
+        return redirect(url_for('HomePage'))
+
+    
 
 
 @app.route('/addProduct', methods=['POST','GET'])

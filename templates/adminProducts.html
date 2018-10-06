@@ -1,891 +1,291 @@
-{% extends "base.html" %} {% block content %}
-<body> 
-        
-    <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right " id="cbp-spmenu-s2">  
-<div class="SidebarHeader">
-  <div class="ProfileHeaderAnchor">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bootstrap Table with Add and Delete Row Feature</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+
+
+
+
+
+
+</head>
+
+<style type="text/css">
+    body {
+        color: #404E67;
+        background: #F5F7FA;
+		font-family: 'Open Sans', sans-serif;
+	}
+	.table-wrapper {
+		width: 700px;
+		margin: 30px auto;
+        background: #fff;
+        padding: 20px;	
+        box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    }
+    .table-title {
+        padding-bottom: 10px;
+        margin: 0 0 10px;
+    }
+    .table-title h2 {
+        margin: 6px 0 0;
+        font-size: 22px;
+    }
+    .table-title .add-new {
+        float: right;
+		height: 30px;
+		font-weight: bold;
+		font-size: 12px;
+		text-shadow: none;
+		min-width: 100px;
+		border-radius: 50px;
+		line-height: 13px;
+    }
+	.table-title .add-new i {
+		margin-right: 4px;
+	}
+    table.table {
+        table-layout: fixed;
+    }
+    table.table tr th, table.table tr td {
+        border-color: #e9e9e9;
+    }
+    table.table th i {
+        font-size: 13px;
+        margin: 0 5px;
+        cursor: pointer;
+    }
+    table.table th:last-child {
+        width: 100px;
+    }
+    table.table td a {
+		cursor: pointer;
+        display: inline-block;
+        margin: 0 5px;
+		min-width: 24px;
+    }    
+	table.table td a.add {
+        color: #27C46B;
+    }
+    table.table td a.edit {
+        color: #FFC107;
+    }
+    table.table td a.delete {
+        color: #E34724;
+    }
+    table.table td i {
+        font-size: 19px;
+    }
+	table.table td a.add i {
+        font-size: 24px;
+    	margin-right: -1px;
+        position: relative;
+        top: 3px;
+    }    
+    table.table .form-control {
+        height: 32px;
+        line-height: 32px;
+        box-shadow: none;
+        border-radius: 2px;
+    }
+	table.table .form-control.error {
+		border-color: #f50000;
+	}
+	table.table td .add {
+		display: none;
+    }
     
-  </div>
-  
-</div>
-<div class="SidebarContent" id="SidebarContentId">
+    
+</style>
 
 
-
-<div class="SideTree">
-      
-      <ul >
-          
-          <li><a href="{{url_for('HomePage')}}"><h4 class="SidebarContentText">الشركات</h4><h4 class="SidebarContentIcon" data-toggle="tooltip" data-placement="left" title="الشركات"><span class="fa fa-sitemap "></span></h4></a></li>
-          <li><a href="{{url_for('adminProducts')}}"><h4 class="SidebarContentText">المدفوعات</h4><h4 class="SidebarContentIcon" data-toggle="tooltip" data-placement="left" title="الحسابات"><span class="fa fa-user"></span></h4></a></li>  
-      </ul>  
-  </div>
-
-
-   
-</div>
-</nav> 
-
-
-<section class="cbp-spmenu-push" id="DataSection">
-
-  
-
-<div class="DataDiv">
-
-<div class="PageHaeder">
-  <h2>الحسابات</h2>
-</div>
-
-<div class="box-wider-text">
- 
-  <div class="box-header">
-       <div class="row CustomRow">
-            <div class="HeaderLeft"> 
-                  <button class="btn btn-sucess"  onClick="ShowLeftSideBar('AddEmployeeSideBar')">  أضافة عملية تجارية </button>         
-             </div>
-             <div class="HeaderRight"> 
-                  <form action="{{url_for('adminProducts')}}" method="post" class="SubHeader">
-                       
-
-                       <div class="form-group">
-                      
-                            <input type="text" id="searchh" name="search" class="form-control"   placeholder="الاسم" />
-
-                        </div>
-                        <div class="form-group">
-                        </div>
-                        <input class="datepicker" name="beg" data-date-format="yyyy-mm-dd" placeholder="من تاريخ">
-                        <div class="form-group">
-                            
-                        <input class="datepicker" name="end" data-date-format="yyyy-mm-dd" placeholder="الي تاريخ">
-                    </div>
-                        <a href="#" type="submit" role="button"><span class="fa fa-search"></span></a>
-                        <button type="submit"  value="Submit">بحث</button>
-                  </form>
-             </div>
-        </div>
-  </div>
-  <div class="box-body">
-       <div class="table-responsive" id="UserTable" style ="font-size: 40px;" >
-      <table id='emptable' name='emptable' class='table table-striped table-bordered table-hover table-condensed'>
-                           <thead>
-                            <tr>
-                                <th>الاسم</th>
-                                <th>بيان</th>
-                                <th>مدفوع</th>
-                              
-                                <th>متبقي</th>
-                                <th>التوقيت </th>
-
-           
-                               <th>حذف </th>
-                                 <th> تعديل </th>
-
-                            </tr></thead>
-        {% if transactions %} {% for transaction in transactions %}
-    <tr>
-             <td>{{transaction.name}}</td>
-             <td>{{transaction.details}}</td>
-              <td>{{transaction.paid }}</td>
-                 <td>{{transaction.left }}</td>
-                 <td>{{transaction.time}}</td>
-         
-
-      
-
-                 
-          
-                 
-
-
-
-
-
-<td>
-                     <a href='#' class='DeleteBtn' data-target='#DeleteEmployeeModal' data-id='{{transaction.id}}' data-toggle='modal' data-placement='right' 
-                            
-                         ><span class='fa fa-trash tableSpane'></span></a></td>
-   
-
-
-                      <td class='check-col '><a href='#' data-id='{{transaction.id}}' data-details='{{transaction.details}}'data-paid='{{transaction.paid}}'data-name='{{transaction.name}}'data-left='{{transaction.left}}'data-details='{{transaction.details}}' class='EditEmpBtn'data-toggle='modal' title='edit' >
-                    <span class='fa fa-cogs tableSpane'></span></a></td>
-
-
-    </tr>
-    {% endfor %} {% endif %}
-
-                   </table>
-                  
-                  
-        </div>
-
-
-        <div class="table-responsive" id="UserTable">
-            <table id='emptable' name='emptable' class='table table-striped table-bordered table-hover table-condensed'>
-                                 <thead>
-                                  <tr>
-                                     
-                          
-                                    
-                                      <th>اجمالي المدفوع</th>
-                                      <th>اجمالي المتبقي </th>
-
-                 
-                                  
-
-                                  </tr></thead>
-             
+<div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
         
-      
-
-                         </table>
-                        
-                        
-              </div>
-  </div>
-  <div class="box-footer">
-       <div class="row CustomRow">
-           <nav>
-              <ul class="pagination">
-                   <li><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-                   <li><a href="#">1</a></li>
-                   <li><a href="#">2</a></li>
-                   <li><a href="#">3</a></li>
-                   <li><a href="#">4</a></li>
-                   <li><a href="#">5</a></li>
-                   <li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
-               </ul>
-            </nav>
-       </div>
-  </div>
-</div>
-</div>
-
-
-<div class="modal fade CustomModal" id="DeleteEmployeeModal">
-<div class="modal-dialog">
-<div class="modal-content">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button> 
-    <h3><strong>حذف بيانات</strong></h3> 
-</div>
-<form action="{{url_for('adminProducts')}}" method="post" id="DeleteUserForm">
-  <div class="modal-body">
-    <div class="form-group formLayout" id="formlayout">   
-        <label for="nameInput" class="control-label ">هل أنت متأكد من حذف البيانات</label>
-    </div>
-                  <div class="form-group formLayout" id="formlayout">     
-                      <input type="text" name="id" id="id" class="form-control HiddenInput " readonly="true"/>
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Edit product</h4>
+            </div>
+            <form action="{{url_for('editProduct')}}" method="post" >
+                  
+                  
+                  <div class="form-group formLayout" id="formlayout"> 
+                  
+                  <input type="hidden" name="productId" id="eid"  readonly="true"/>
                   </div>
-  </div>
-  <div class="modal-footer mf">
-    <button class="btn btn-info btn-sm " type="submit" onClick="closeModal('DeleteEmployeeModal');">حذف</button>
-  </div>
-</form>
-</div>
-</div>
-</div> 
-
-
-<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left SideBarLight" id="AddEmployeeSideBar">
-<div class="SidebarContent">
-<div class="LeftSideBarHeader">
-  <h2>إضافة عملية تجارية</h2>
-  <span onClick="ShowLeftSideBar('AddEmployeeSideBar')" class="fa fa-close ExitBtn"></span>
-</div>
-<form action="{{url_for('adminProducts')}}" method="post" class="SideBarForm" id="AddEmployeeForm">
-  <h4>بيانات العملية تجارية</h4>
-  <div class="form-group">
-        <label for="name"></label> 
-       <input type="text" class="form-control" id="name" name="details" placeholder="سبب الدفع">
-   </div>
-
-  <div class="form-group">
-       <label for="name"></label> 
-      <input type="text" class="form-control" id="name" name="paid" placeholder="مدفوع">
-  </div>
-  <div class="form-group">
-       <label for="address"></label>
-      <input type="text" class="form-control" id="address" name="left" placeholder="متبقي">
-  </div>
-
-
-
-
-
-
-  <button type="submit" class="btn btn-primary"  >إضافة</button>
-</form>
-</div>
-<span class="fa fa-user-secret BGSpan"></span> 
-</nav>
-<!----------------------------------------------------------------------------------------->
-
-<!------------EditEmployeesOverlayForm---------------------------------------->
-<div class="OverLayForm closed" id="EditEmployeesOverlayForm">
-<div class="container-fluid OverLayFormHeader">
-<div class="row CustomRow">
-     <div class="OverLayFormHeaderLeft">
-          <span class="fa fa-close ExitBtn"></span>
-     </div>
-     <div class="OverLayFormHeaderRight">
-         <h2>تعديل بيانات الشركه</h2>
-     </div>
-</div>
-</div>
-<form action="{{url_for('adminProducts')}}" method="post" class="SideBarForm" id="editEmployeeForm">
-  <h4>بيانات  الشركه</h4>
-
-
-<div class="form-group formLayout" id="formlayout"> 
-
-<input type="hidden" name="id" id="eid"  readonly="true"/>
-</div>
-<div class="form-group">
-<label for="eaddress"></label>
-   <p>الاسم</p>
- <input type="text" class="form-control" id="ename" name="name" placeholder="العنوان">
-</div>
-
-
-<div class="form-group">
-<label for="ename"></label> 
-<p>مدفوع</p>
-<input type="text" class="form-control" id="epaid" name="paid" placeholder="الاسم">
-</div>
-<div class="form-group">
-<label for="eaddress"></label>
-  <p>متبقي</p>
-<input type="text" class="form-control" id="eleft" name="left" placeholder="العنوان">
-</div>
-
-<div class="form-group">
-    <label for="eaddress"></label>
-       <p>سبب الدفع</p>
-     <input type="text" class="form-control" id="edetails" name="details" placeholder="العنوان">
-   </div>
-   
-
-
-
-<button type="submit" class="btn btn-primary " onclick="CloseOverLay('EditEmployeesOverlayForm');
-" >تعديل</button>
-</form>
-</div>
-
-
-
-
-
-<!-------------------------------------------------------------------->
-<script src="/static/assets/js/jquery-1.12.1.min.js"></script>
-<script src="/static/assets/js/bootstrap.min.js"></script> 
-<script src="/static/assets/js/classie.js"></script>     
-<script src="/static/assets/js/modernizr.custom.js"></script> 
-<script src="/static/assets/js/perfect-scrollbar.min.js"></script>
-<script src="/static/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>       
-<script src="/static/assets/js/bootstrap-datepicker.min.js"></script>
-<script src="/static/assets/js/jquery.validate.min.js"></script>
-<script src="/static/assets/js/SiteScripts.js"></script>
-
-
-<script type="text/javascript">
-$(document).on("click",".DeleteBtn",function () {
-//alert('ok');
-var id=$(this).data('id');
-$("#id").val(id);
-
-});
-
-$(document).on("click",".EditappEmpBtn",function () {
-
-var sidebaride = "EditEmployeesappointment";
-ShowOverLay(sidebaride);
-
-var id=$(this).data('id');
-var name=$(this).data('name');
-
-
-
-
-$("#eid1").val(id);
-$("#ename1").val(name);
-
-
-
-});
-
-
-
-
-
-
-
-$(document).on("click",".EditEmpBtn",function () {
-
-
-
-var id=$(this).data('id');
-var paid=$(this).data('paid');
-var left=$(this).data('left');
-
-var details=$(this).data('details');
-var name=$(this).data('name');
-
-
-
-
-
-$("#eid").val(id);
-$("#epaid").val(paid);
-
-
-$("#eleft").val(left);
-$("#edetails").val(details);
-$("#ename").val(name);
-
-
-var sidebaride = "EditEmployeesOverlayForm";
-ShowOverLay(sidebaride);
-
-});
-
-</script>
-
-
-
-<script>
-$('.SideBarLight').ready(function () {
-$(".SideBarLight .SidebarContent").mCustomScrollbar({
-  axis: "y",
-  theme: "dark-3"
-});
-});
-</script>
-<script>
-
-
-
-
-
-
-$(document).on("click",".EditappEmpBt",function () {
-
-var sidebaride = "EditEmployeesappointmen";
-ShowOverLay(sidebaride);
-
-
-var name=$(this).data('name');
-var id=$(this).data('id');
-
-data = {
-id : id
-};
-
-
-
-
-
-
-$("#companyID").html("<h2> تفاصيل الطلبيات "+name+"<h2>");
-$.post("{{url_for('adminProducts')}}",data,function(data){
-$("#UserTable1").html(data);
-
-});
-
-
-
-});
-
-
-
-
-
-
-
-$(document).ready(function(){
-
-
-//------------------------edit---------------------------		
-var validator2 = $("#AddEmployeeForm").validate({
-
-          errorPlacement: function (error, element)
-          {
-              // Append error within linked label
-              $( element ).closest( "div" ).find( "label[for='" + element.attr( "name" ) + "']" ).append( error );},
-          errorElement: "span",
-         rules :
-          {
-              name:"required",
-              address:"required",
-              phone:{
-                  required:true,
-                  number:true
-              },
-              email: {
-                  email:true
-              },
-              position:"required",
-              department:"required",
-              branch:"required",
-              username:"required",
-              pass:"required"
-          },
-          messages: 
-          {
-              name:"أضف الاسم",
-              address:"أضف العنوان",
-              phone:{
-                  required:"من فضلك أدخل التليفون",
-                  number:"أدخل رقم صحيح"
-              },
-              email: {
-                  email:"أدخل صيغة الايميل صحيحة"
-              },
-              position:"اختر مسمي وظيفي",
-              department:"اختر القسم",
-              branch:"اختر الفرع",
-              username:"ادخل إسم المستخدم",
-              pass:"ادخل كلمة المرور"
-          }
-      });
-
-});
-
-</script>
-
-
-<!--link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/resources/demos/style.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script-->
-<script>
-$( function() {$('.datepicker').datepicker();
-
-//   $( "#datepicker" ).datepicker();
-} );
-
-
-
-
-
-$(document).ready(function(){
-$(document).on("change","#datepicker",function(){
-var data={
-date : $(this).val()
-
-
-
-
-};
-
-
-});
-
-});
-
-function printfunction() 
-{
-window.print();
-}
-function printDiv() 
-{
-
-
-var divToPrint=document.getElementById('tableprint');
-
-
-
-
-
-
-
-var data ='<table><tr> <th>Company</th><th>Contact</th><th>Country</th></tr></table>';
-
-
-var mywindow =window.open('','Print-Window');
-mywindow.document.write('<html><head><title></title>');
-mywindow.document.write('<link rel="stylesheet" href="http://www.test.com/style.css" type="text/css" />');  
-mywindow.document.write('<style type="text/css">.test { color:red; } </style></head><body><table>');
-mywindow.document.write(divToPrint.innerHTML);
-
-mywindow.document.write('</table></body></html>');
-mywindow.document.close();
-mywindow.document.print();   
-
-setTimeout(function(){mywindow.close();},10);
-
-}
-
-</script>
-
-</section>
-
-
-<!---- /Header --------------------------------------->
-    <div class="alert alert-success" role="alert" id="AddDone" >تم إضافة البيانات بنجاح</div>
-    <div class="alert alert-success" role="alert" id="EditDone" >تم تعديل البيانات بنجاح</div>
-    <div class="alert alert-danger" role="alert" id="DeleteDone">تم إزالة البيانات بنجاح</div>
-    <div class="DataContent">
-        <div class="DataDiv">
-            
-        </div>
-    </div>
-
-
-<!---- OverLayes --------------------------------------->
-
-<!---- /OverLayes -------------------------------------->
-
-<!---- Modals --------------------------------------->
-    
-<!---- /Modals -------------------------------------->
-
-<!-----scripts---------------------------------->
-
-<script>
-    $(document).on("click", ".ExitBtn", function ()
-    {
-        $(this).closest(".OverLayForm").removeClass("show");
-        $(this).closest(".OverLayForm").addClass("closed");
-    });
-    $(document).on("click", ".OverLayFormBtn", function ()
-    {
-        $(this).closest(".OverLayForm").removeClass("show");
-        $(this).closest(".OverLayForm").addClass("closed");
-    });
-    //---------------------------ShowOverLay----------
-    function ShowOverLay(OverLayId){ 
-        $("#"+OverLayId).removeClass("closed");
-        $("#"+OverLayId).addClass("show");
-        var x = $("#cbp-spmenu-s2").hasClass("cbp-spmenu-open");
-     if(x){
-        ShowPushRightSideBar('cbp-spmenu-s2','DataSection');
-       }
-    }//ShowOverLay
-    //---------------------------CloseOverLay----------
-    function CloseOverLay(OverLayId){ 
-        $("#"+OverLayId).removeClass("show");
-        $("#"+OverLayId).addClass("closed");
-    }//ShowOverLay
-    //---------------------------ShowLeftSideBar----------
-    function ShowLeftSideBar(SideBarId){
-      
-        var menuLeft = document.getElementById(SideBarId);
-        classie.toggle(menuLeft, 'cbp-spmenu-open');
-    }//ShowLeftSideBar
-    //---------------------------ShowPushRightSideBar----------
-    function ShowPushRightSideBar(SideBarId , ContentId){
-        var menuRight = document.getElementById( SideBarId ),
-            body = document.getElementById( ContentId );
-
-          classie.toggle(body, 'cbp-spmenu-push-toleft');
-          classie.toggle(menuRight, 'cbp-spmenu-open');
-          var x = $("#cbp-spmenu-s2").hasClass("cbp-spmenu-open");
-          if (x) {
-            $("#DataSection").css("width", "85%");
-            $(".DataContent").css("width", "85%");
-          }
-          else {
-            $("#DataSection").css("width", "95.9%");
-            $(".DataContent").css("width", "95.9%");
-          }
-    }//ShowRightSideBar
-
-
-    //---------------------------getPage----------
-    function getPage(name,controller,flag) {
-        if(flag == 1){
-            $('.DataContent').html('<img class="LoadingImg" src="/static/assets/images/Loading.gif" />');
-            jQuery.ajax({
-                url: "http://localhost:5000/" + controller + "/"+ name,
-                type: "POST",
-                success:function(data){$('.DataContent').html(data);}
-            });
-        }else if(flag == 2){
-            $('.SideBarContent').html('<img class="LoadingImg" src="/static/assets/images/Loading.gif" />');
-            jQuery.ajax({
-                url: "http://localhost:5000/" + controller + "/"+ name,
-                type: "POST",
-                success:function(data){$('.SideBarContent').html(data);}
-            });
-        }
-    }//getPage
-    //---------------------------Search----------
-    function showHint(str , controller , fname , DivID) {
-        if (window.XMLHttpRequest) {
-            // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp = new XMLHttpRequest();
-        }else {
-            // code for IE6, IE5
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        xmlhttp.onreadystatechange = function() {
-            if (true) {
-                document.getElementById(DivID).innerHTML = xmlhttp.responseText;
-            }
-        }
-        xmlhttp.open("GET","http://localhost:5000/" + controller + "/" + fname + "?q=" + str ,true);
-        xmlhttp.send();
-    }//showHint
-    //-------------------------- SubmitForm using AJAX ----------
-
-    function SubmitForm(FormID,  FunctionName, ResultDivId ,Message) {
-
-       $("#"+FormID).unbind('submit').submit(function (event) {
-
-           var formData = $( this ).serialize();
-
-           $.ajax({
-                    type: 'POST', 
-                    url: "http://localhost:5000/" +  FunctionName,
-                    data: formData
-                })
-                .done(function (data) {
-                    $("#"+ ResultDivId).html(data);
-                    if(Message != "none")
-                    {
-                      $('#'+Message).fadeIn().delay(1000).fadeOut();
-                    }
-                });
-                event.preventDefault();
-                
-                $("#"+FormID)[0].reset();
-            });
-
-    }
-
-
-$(document).ready(function(){
-  $(document).on("change","#datepicker1",function(){
-  var data=
-  {
-  date : $(this).val()
-
-
-};
-
-
-$.post("http://localhost:5000/employee/whoInThatDate",data,function(data){
-$('#DivisionsTableDiv').html(data);
-
-
-
-});
-});
-
-});
-
-
-
-
-    function changePage (FormID, Controller, FunctionName, ResultDivId ,Message,page) {
-   // console.log('hiii');
-   //  console.log(controller);
-   //  console.log(FunctionName);
-
-       $("#"+FormID).unbind('submit').submit(function (event) {
-
-           var formData = $( this ).serialize();
-
-           $.ajax({
-                    type: 'GET', 
-                    url: "http://localhost:5000/" + Controller + "/"+ FunctionName+"?page="+page,
-               
-                })
-                .done(function (data) {
-                    $("#"+ ResultDivId).html(data);
-                    if(Message != "none")
-                    {
-                      $('#'+Message).fadeIn().delay(1000).fadeOut();
-                    }
-                });
-                event.preventDefault();
-                
-                $("#"+FormID)[0].reset();
-            });
-
-    }
-    //-------------------------- Close Modal ----------
-    function closeModal(ModalID) { 
-        $('#'+ ModalID).modal('toggle');
-    }
-    //-------------------------- Change Value : Get Result Depend on input Change Value ----------
-    function ChangeValue(inputsValues, Controller, FunctionName, ResultDivId){
-        
-        var inputData = inputsValues;
-        var dataSend = JSON.stringify(inputData);
-        $.ajax({
-                 type: 'POST', 
-                 url: "http://localhost:5000/" + Controller + "/"+ FunctionName,
-                 data: {data : dataSend}
-              })
-              .done(function (data) {
-                  $("#"+ ResultDivId).html(data);
+                  <div class="form-group">
+                  <label for="eaddress"></label>
+                     <p>price</p>
+                   <input type="text" class="form-control" id="eprice" name="price" placeholder="">
+                  </div>
+                  
+                  
+                  <div class="form-group">
+                  <label for="ename"></label> 
+                  <p>old Price</p>
+                  <input type="text" class="form-control" id="eoprice" name="oldPrice" placeholder="">
+                  </div>
+
+
+                  
+                  <div class="form-group">
+                  <label for="eaddress"></label>
+                    <p>category</p>
+
+                    
+                    <select  id="mymultiselect" id="ecategory" name="category">         
+                            <option value="1">Leather</option>       
+                            <option value="2">Belt Bags</option>       
+                            <option value="3">Crossbody</option>
+                            <option value="4">Large Bags</option>
+                            <option value="5">Handbags</option>
+                            <option value="6">min bags</option>
+                    </select>
+
+
+
+
+                  </div>
+
+
+
+                  
+                  <div class="form-group">
+                      <label for="eaddress"></label>
+                         <p>rate</p>
+                       <input type="text" class="form-control" id="erate" name="rate" placeholder="">
+                    </div>
+                     
+                  
+                  
+                     <button type="submit" class="btn btn-default" >Done</button>
              
-             });  
-    }
-    //-------------------------- ValueNewPage : Get Result Depend on input Change Value ----------
-    function ValueNewPage (inputsValues, Controller, FunctionName){
-    // alert('ok');
-        var inputData = inputsValues;
-        var dataSend = JSON.stringify(inputData);
-        $.ajax({
-                 type: 'POST', 
-                 url: "http://localhost:5000/" + Controller + "/"+ FunctionName,
-                 data: {data : dataSend}
-              })
-              .done(function (data) {
-                       
-             });  
-    }
-    //-------------------------- PrintPage : Print Window Data----------
-    function PrintPage(){
-        window.print();
-    }
-    function SubmitFormprivilege(FormID, Controller, FunctionName, ResultDivId ,Message) {
-    
-       $("#"+FormID).unbind('submit').submit(function (event) {
-           
-           var formData = $( this ).serialize();
-           $.ajax({
-                    type: 'POST', 
-                    url: "http://localhost:5000/" + Controller + "/"+ FunctionName,
-                    data: formData
-                })
-                .done(function (data) {
-                    $("#"+ ResultDivId).html(data);
-                    if(Message != "none")
-                    {
-                      $('#'+Message).fadeIn().delay(1000).fadeOut();
-                    }
-                });
-                event.preventDefault();
-                
-            });
-        
-    }
-</script>
-
-
-
-
-
-
-
-
-
-
-<script>
-function myFunction() {
-var elem = document.getElementById("searchh").value;
-console.log(elem.length);
-if(elem.length > 0 )
-{
-if(elem.length > 1 ||!isNaN(elem) )
-{
-var data={
-  name : elem
-};
-
-
-
-$.post("http://localhost:5000/employee/printemppsearch",data,function(data){
-
-$("#UserTable").html(data);
-});
-}
-}
-else 
-{
-var data={
-  name : elem
-};
-
-
-$.post("http://localhost:5000/employee/printemppsearchall",data,function(data){
-console.log(data);
-
-$("#UserTable").html(data);
-});
-
-
-}      
-}
-</script>
-
-<script>
-
-
-$("#search1").keyup(function(){
-
-var data={
-  name : $(this).val()
-};
-$.post("http://localhost:5000/employee/printemppsearch",data,function(data){
-
-
-$("#usetable").html(data);
-});
-
-});
-
-
-
-	<!-- Footer -->
-	
-	{% endblock %}
-
-
-
-
-
-
+              
+                  </form>
 
  
-    {% block footer %}
+          </div>
+          </div>
+    </div>
+<script type="text/javascript">
 
-	<!-- Back to top -->
-	<div class="btn-back-to-top bg0-hov" id="myBtn">
-		<span class="symbol-btn-back-to-top">
-			<i class="fa fa-angle-double-up" aria-hidden="true"></i>
-		</span>
-	</div>
-
-	<!-- Container Selection -->
-	<div id="dropDownSelect1"></div>
-	<div id="dropDownSelect2"></div>
+	$(document).on("click", ".delete", function(){
+        $(this).parents("tr").remove();
+		$(".add-new").removeAttr("disabled");
+    });
 
 
+function DeleteFunction(productId)
+{
+    $.ajax({
+                     type: 'POST', 
+                     url: "url_for('DeleteProduct')",
+                     data: {productId : productId}
+                  });
+}
 
-<!--===============================================================================================-->
-	<script type="text/javascript" src="static/vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-	<script type="text/javascript" src="static/vendor/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
-	<script type="text/javascript" src="static/vendor/bootstrap/js/popper.js"></script>
-	<script type="text/javascript" src="static/vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-	<script type="text/javascript" src="static/vendor/select2/select2.min.js"></script>
-	<script type="text/javascript">
-		$(".selection-1").select2({
-			minimumResultsForSearch: 20,
-			dropdownParent: $('#dropDownSelect1')
-		});
 
-		$(".selection-2").select2({
-			minimumResultsForSearch: 20,
-			dropdownParent: $('#dropDownSelect2')
-		});
-	</script>
-<!--===============================================================================================-->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKFWBqlKAGCeS1rMVoaNlwyayu0e0YRes"></script>
-	<script src="static/js/map-custom.js"></script>
-<!--===============================================================================================-->
-	<script src="static/js/main.js"></script>
+
+    
+    $(document).on("click",".EditEmpBtn",function () {
+    
+  
+    var id=$(this).data('id');
+    var price=$(this).data('price');
+    var oldPrice=$(this).data('oprice');
+
+    var category=$(this).data('category');
+    var rate=$(this).data('rate');
+    
+    
+    
+    
+    
+    $("#eid").val(id);
+    $("#eprice").val(price);
+
+    $("#eoprice").val(oldPrice);
+    $("#ecategory").val(category);
+    $("#erate").val(rate);
+    
+ 
+    $("#myModal").modal()
+    
+    });
+
+</script>
+</head>
+<body>
+    <div class="container">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-8"><h2>Product <b>Details</b></h2></div>
+                    <a href="{{url_for('addProduct')}}">  <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button></a>
+                </div>
+            </div>
+            <table class="table table-bordered">
+                <thead>
+
+
+                    
+                    <tr>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Old Price</th>
+                        <th>Picture</th>
+                        <th>category</th>
+                        <th>Rate</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+
+                        {% if products %} {% for product in products %}
+                        <tr>
+                                 <td>{{product.name}}</td>
+                                 <td>{{product.price}}</td>
+                                  <td>{{product.oldPrice }}</td>
+                                  <td><img src="/static/uploads/{{product.picture}}" alt="" border=3 height=50 width=50></img></th>
+                                 
+                                     <td>{{product.category}}</td>
+                                     <td>{{product.rate}}</td>
+                                     <td>
+                                            <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+                                            <!-- <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a> -->
+                                          <a href='#' data-id='{{product.id}}' data-price='{{product.price}}' data-oprice='{{product.oldPrice}}' 
+                                          data-category='{{product.category}}'data-rate='{{product.rate}}' class='EditEmpBtn'data-toggle='modal' title='edit' >
+                                          <i class="material-icons">&#xE254;</i></a>
+                                                  
+                                            <a class="delete" title="Delete" onClick='DeleteFunction({{ product.id}})' data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                                        </td>
+
+                                     
+                        </tr>
+                        {% endfor %} {% endif %}
+                       
+                </tbody>
+            </table>
+        </div>
+    </div>     
 
 </body>
-</html>
-{% endblock  %}
+
+
+        
+</html>                            

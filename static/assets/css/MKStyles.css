@@ -1,0 +1,109 @@
+.ContentSection{
+    width: 85%;
+    display: inline-block;
+    float: left;
+}
+.container-fluid {
+    padding: 0px;
+}
+.CS {
+    margin: 0px !important;
+    padding: 0px !important;
+}
+.sidebar-menu {
+    width: 15%;
+    display: inline-block;
+    float: right;
+    box-shadow: none !important;
+}
+.signOut {
+        position: fixed;
+        right: 10px;
+        top: 10px;
+        font-size: 18px;
+        z-index: 50000;
+    }
+.signOut a{
+       color: #fff;
+    }
+.ItemRight {
+    margin-right: 50px;
+    margin-top: 20px;
+}
+
+.ItemRight a {
+   margin-top: 10px;
+    color: #102b44;
+    font-size: 20px !important;
+}
+.ItemLeft {
+    margin-left: 30px;
+}
+.ItemLeft img {
+    width: 130px;
+    padding: 5px;
+}
+.notifications {
+    background: #ff5400;
+    color: #fff;
+    border-radius: 20px;
+    width: 20px;
+    text-align: center;
+    top: 15px;
+    right: 25px;
+    position: absolute;
+}
+.ContentDiv {
+    padding-right: 25px;
+    padding-left: 25px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.ContentDiv h3{
+    font-family:Conv_stc_1;
+}
+table.pure-table.table-responsive.tabdetails {
+    margin-top: 25px !important;
+    width: 100%;
+}
+img.menuprofile {
+    width: 125px !important;
+}
+.sidebar-menu header{
+    background: #FF542A;
+}
+.MenuItemLabel {
+    display: inline-block; 
+    margin-bottom: 0px; 
+    margin-top: 0px;
+    margin-left: 5px;
+        float: right;
+}
+.MenuItemCount {
+    display: inline-block;
+    position: unset !important;
+    float: left;
+    background: #ff5400;
+    color: #fff;
+    width: 20px;
+    text-align: center;
+    border-radius: 500px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 100;
+    font-size: 14px;
+}
+#menu li ul {
+    min-width: 230px;
+}
+.TableDataDiv li {
+    list-style: none;
+ }
+.ContentSection .nav-tabs {
+    margin-top: 0px !important;
+}
+.nav-tabs > li > a {
+    color: #ff5400;
+}
+#menu li a {
+    min-height:50px;
+}
