@@ -20,10 +20,10 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # db.session.add(product2)
 # db.session.commit()
 
-admin = user( username="oumaAdmin", password="ouma111")
+# admin = user( username="oumaAdmin", password="ouma111")
 
-db.session.add(admin)
-db.session.commit()
+# db.session.add(admin)
+# db.session.commit()
 
 
 
@@ -81,7 +81,7 @@ def login():
         password =request.form["password"]
         
         TheUser = user.query.filter_by(username=username , password=password).first()
-        if TheUser not None:
+        if TheUser is not None:
 
             login_session['id'] = TheUser.id
             login_session['username'] = TheUser.username
@@ -145,11 +145,32 @@ def addProduct():
     """ returns index page """
     return render_template('addProduct.html')
 
-@app.route('/Shop')
+@app.route('/Shop/<string:category>',)
 
-def Shop():
+def Shop(category="ALL"):
     """ returns index page """
-    return render_template('product.html')
+    product3 = product( name="Leather", price =200, oldPrice=200, picture="1.jpg", category="1",rate=3)
+
+    product1 = product( name="Belt Bags", price =150, oldPrice=500, picture="2.jpg", category="2",rate=10)
+
+
+    product2 = product( name="Crossbody", price =300, oldPrice=300, picture="3.jpg", category="3",rate=5)
+    
+    product4 = product( name="Large Bags", price =150, oldPrice=500, picture="4.jpg", category="4",rate=10)
+
+
+    product5 = product( name="Handbags", price =300, oldPrice=300, picture="5.jpg", category="5",rate=5)
+    product6 = product( name="mini bags", price =200, oldPrice=200, picture="6.jpg", category="6",rate=5)
+    
+    
+    products = []
+    products.append(product1)
+    products.append(product3)
+    products.append(product2)
+    products.append(product4)
+    products.append(product5)
+    products.append(product6)    
+    return render_template('product.html',products=products)
 
 @app.route('/Cart')
 
