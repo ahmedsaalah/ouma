@@ -1,23 +1,33 @@
 from products import *
 from users import user
+from datetime import timedelta
 import os
 from werkzeug.utils import secure_filename
 UPLOAD_FOLDER = 'static/uploads'
 ALLOWED_EXTENSIONS = set([ 'png', 'jpg', 'jpeg'])
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+import datetime
 
 
 # db.create_all()
+# product3 = product( name="Leather", price =200, oldPrice=200, picture="1.jpg", category="1",rate=3)
 
-# product3 = product( name="shtna1", price =200, oldPrice=200, picture="admin", category="0",rate=3)
-
-# product1 = product( name="shnta2", price =150, oldPrice=500, picture="admin", category="0",rate=10)
+# product1 = product( name="Belt Bags", price =150, oldPrice=500, picture="2.jpg", category="2",rate=10)
 
 
-# product2 = product( name="shnta3", price =300, oldPrice=300, picture="admin", category="0",rate=5)
+# product2 = product( name="Crossbody", price =300, oldPrice=300, picture="3.jpg", category="3",rate=5)
+
+# product4 = product( name="Large Bags", price =150, oldPrice=500, picture="4.jpg", category="4",rate=10)
+
+
+# product5 = product( name="Handbags", price =300, oldPrice=300, picture="5.jpg", category="5",rate=5)
+# product6 = product( name="mini bags", price =200, oldPrice=200, picture="6.jpg", category="6",rate=5)
 # db.session.add(product3)
 # db.session.add(product1)
 # db.session.add(product2)
+# db.session.add(product4)
+# db.session.add(product5)
+# db.session.add(product6)
 # db.session.commit()
 
 # admin = user( username="oumaAdmin", password="ouma111")
@@ -67,6 +77,23 @@ def DeleteProduct():
 
 
 
+@app.route('/addToCart', methods=['POST','GET'])
+
+def addToCart():
+
+    id =request.form["pid"]
+    if 'productid' in login_session :
+
+        arrayPid = login_session["productid"]
+        arrayPid.append(id)
+    else :
+        arrayPid = []
+        arrayPid.append(id)
+    
+    login_session["productid"] = arrayPid
+
+    print(login_session)
+    return "success"
 
 
 
@@ -146,30 +173,17 @@ def addProduct():
     return render_template('addProduct.html')
 
 @app.route('/Shop/<string:category>',)
+@app.route('/Shop',)
 
-def Shop(category="ALL"):
+def Shop(category=0):
     """ returns index page """
-    product3 = product( name="Leather", price =200, oldPrice=200, picture="1.jpg", category="1",rate=3)
+    print(category)
+    if category == 0 :
+        products = product.query.filter().all()
+    else:
+        print(category)
+        products = product.query.filter_by(category=category).all()
 
-    product1 = product( name="Belt Bags", price =150, oldPrice=500, picture="2.jpg", category="2",rate=10)
-
-
-    product2 = product( name="Crossbody", price =300, oldPrice=300, picture="3.jpg", category="3",rate=5)
-    
-    product4 = product( name="Large Bags", price =150, oldPrice=500, picture="4.jpg", category="4",rate=10)
-
-
-    product5 = product( name="Handbags", price =300, oldPrice=300, picture="5.jpg", category="5",rate=5)
-    product6 = product( name="mini bags", price =200, oldPrice=200, picture="6.jpg", category="6",rate=5)
-    
-    
-    products = []
-    products.append(product1)
-    products.append(product3)
-    products.append(product2)
-    products.append(product4)
-    products.append(product5)
-    products.append(product6)    
     return render_template('product.html',products=products)
 
 @app.route('/Cart')
@@ -199,5 +213,6 @@ def Contact():
 if __name__ == '__main__':
     app.secret_key = 'A0Zr98j/3yX R~XHH!jJHDmN]LWX/,?RT'
     app.debug = True
+    app.permanent_session_lifetime = timedelta(minutes=30)
     app.run(host='0.0.0.0', threaded = True)
             

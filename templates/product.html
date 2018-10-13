@@ -1,6 +1,6 @@
 {% extends "base.html" %} {% block content %}
 	<!-- Title Page -->
-	<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(static/images/heading-pages-02.jpg);">
+	<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url({{ url_for('static',filename='images/heading-pages-02.jpg')}});">
 		<h2 class="l-text2 t-center">
 			Women
 		</h2>
@@ -23,73 +23,48 @@
 
 						<ul class="p-b-54">
 							<li class="p-t-4">
-								<a href="{{ url_for('top_movies', category=0)}}" class="s-text13 active1">
+								<a href="{{ url_for('Shop')}}" class="s-text13">
 									All
 								</a>
 							</li>
 
 							<li class="p-t-4">
-								<a href="{{ url_for('top_movies', category=1)}}" class="s-text13">
+								<a href="{{ url_for('Shop', category=1)}}" class="s-text13">
 									Leather
 								</a>
 							</li>
 
 							<li class="p-t-4">
-								<a href="{{ url_for('top_movies', category=2)}}" class="s-text13">
+								<a href="{{ url_for('Shop', category=2)}}" class="s-text13">
 									Belt bags
 								</a>
 							</li>
 
 							<li class="p-t-4">
-								<a href="{{ url_for('top_movies', category=3)}}" class="s-text13">
+								<a href="{{ url_for('Shop', category=3)}}" class="s-text13">
 									Crossbody bags
 								</a>
 							</li>
 
 							<li class="p-t-4">
-								<a href="{{ url_for('top_movies', category=4)}}" class="s-text13">
+								<a href="{{ url_for('Shop', category=4)}}" class="s-text13">
 									Large bags 
 								</a>
 							</li>
 							<li class="p-t-4">
-								<a href="{{ url_for('top_movies', category=5)}}" class="s-text13">
+								<a href="{{ url_for('Shop', category=5)}}" class="s-text13">
 									Handbags 
 								</a>
 							</li>
 							<li class="p-t-4">
-								<a href="{{ url_for('top_movies', category=6)}}" class="s-text13">
+								<a href="{{ url_for('Shop', category=6)}}" class="s-text13">
 									Mini bags 
 								</a>
 							</li>
 						</ul>
 
 				
-						<h4 class="m-text14 p-b-32">
-							Filters
-						</h4>
-
-						<div class="filter-price p-t-22 p-b-50 bo3">
-							<div class="m-text15 p-b-17">
-								Price
-							</div>
-
-							<div class="wra-filter-bar">
-								<div id="filter-bar"></div>
-							</div>
-
-							<div class="flex-sb-m flex-w p-t-16">
-								<div class="w-size11">
-							
-									<button class="flex-c-m size4 bg7 bo-rad-15 hov1 s-text14 trans-0-4">
-										Filter
-									</button>
-								</div>
-
-								<div class="s-text3 p-t-10 p-b-10">
-									Range: $<span id="value-lower">610</span> - $<span id="value-upper">980</span>
-								</div>
-							</div>
-						</div>
+				
 <!-- 
 						<div class="filter-color p-t-22 p-b-50 bo3">
 							<div class="m-text15 p-b-12">
@@ -145,28 +120,15 @@
 							<div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
 								<select class="selection-2" name="sorting">
 									<option>Default Sorting</option>
-									<option>Popularity</option>
+						
 									<option>Price: low to high</option>
 									<option>Price: high to low</option>
 								</select>
 							</div>
 
-							<div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
-								<select class="selection-2" name="sorting">
-									<option>Price</option>
-									<option>$0.00 - $50.00</option>
-									<option>$50.00 - $100.00</option>
-									<option>$100.00 - $150.00</option>
-									<option>$150.00 - $200.00</option>
-									<option>$200.00+</option>
-
-								</select>
-							</div>
 						</div>
 
-						<span class="s-text8 p-t-5 p-b-5">
-							Showing 1–12 of 16 results
-						</span>
+		
 					</div>
 
 					<!-- Product -->
@@ -190,7 +152,7 @@
 
 										<div class="block2-btn-addcart w-size1 trans-0-4">
 											<!-- Button -->
-											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" onclick='addToCart({{product.id}})'>
 												Add to Cart
 											</button>
 										</div>
@@ -263,14 +225,14 @@
 
 
 <!--===============================================================================================-->
-	<script type="text/javascript" src="static/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="{{url_for('static', filename='vendor/jquery/jquery-3.2.1.min.js')}}"></script>
 <!--===============================================================================================-->
-	<script type="text/javascript" src="static/vendor/animsition/js/animsition.min.js"></script>
+	<script type="text/javascript" src="{{url_for('static', filename='vendor/animsition/js/animsition.min.js')}}"></script>
 <!--===============================================================================================-->
-	<script type="text/javascript" src="static/vendor/bootstrap/js/popper.js"></script>
-	<script type="text/javascript" src="static/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="{{url_for('static', filename='vendor/bootstrap/js/popper.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static', filename='vendor/bootstrap/js/bootstrap.min.js')}}"></script>
 <!--===============================================================================================-->
-	<script type="text/javascript" src="static/vendor/select2/select2.min.js"></script>
+	<script type="text/javascript" src="{{url_for('static', filename='vendor/select2/select2.min.js')}}"></script>
 	<script type="text/javascript">
 		$(".selection-1").select2({
 			minimumResultsForSearch: 20,
@@ -282,14 +244,15 @@
 			dropdownParent: $('#dropDownSelect2')
 		});
 	</script>
+	
 <!--===============================================================================================-->
-	<script type="text/javascript" src="static/vendor/daterangepicker/moment.min.js"></script>
-	<script type="text/javascript" src="static/vendor/daterangepicker/daterangepicker.js"></script>
+	<script type="text/javascript" src="{{url_for('static', filename='vendor/daterangepicker/moment.min.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static', filename='vendor/daterangepicker/daterangepicker.js')}}"></script>
 <!--===============================================================================================-->
-	<script type="text/javascript" src="static/vendor/slick/slick.min.js"></script>
-	<script type="text/javascript" src="static/js/slick-custom.js"></script>
+	<script type="text/javascript" src="{{url_for('static', filename='vendor/slick/slick.min.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static', filename='js/slick-custom.js')}}"></script>
 <!--===============================================================================================-->
-	<script type="text/javascript" src="static/vendor/sweetalert/sweetalert.min.js"></script>
+	<script type="text/javascript" src="{{url_for('static', filename='vendor/sweetalert/sweetalert.min.js')}}"></script>
 	<script type="text/javascript">
 		$('.block2-btn-addcart').each(function(){
 			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
@@ -307,7 +270,7 @@
 	</script>
 
 <!--===============================================================================================-->
-	<script type="text/javascript" src="static/vendor/noui/nouislider.min.js"></script>
+	<script type="text/javascript" src="{{url_for('static', filename='vendor/noui/nouislider.min.js')}}"></script>
 	<script type="text/javascript">
 		/*[ No ui ]
 	    ===========================================================*/
@@ -330,9 +293,30 @@
 	    filterBar.noUiSlider.on('update', function( values, handle ) {
 	        skipValues[handle].innerHTML = Math.round(values[handle]) ;
 	    });
+
+	
+	 function addToCart(id)
+	 {
+		var data=
+      {
+      pid : id
+    
+    
+    };
+    
+    
+    $.post("{{ url_for('addToCart')}}",data,function(data){
+    
+    
+    
+    
+    });
+	 }
+
+
 	</script>
 <!--===============================================================================================-->
-	<script src="static/js/main.js"></script>
+	<script src="{{url_for('static', filename='js/main.js')}}"></script>
 
 </body>
 </html>
