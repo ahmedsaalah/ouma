@@ -94,6 +94,19 @@
 			minimumResultsForSearch: 20,
 			dropdownParent: $('#dropDownSelect2')
 		});
+
+
+		(function($) {
+	$.get("{{ url_for('Cartvalue')}}",function(data){
+    
+	document.getElementById("cartvalue").textContent=data;
+
+
+});
+    })(jQuery);
+
+
+	
 	</script>
 <!--===============================================================================================-->
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKFWBqlKAGCeS1rMVoaNlwyayu0e0YRes"></script>

@@ -85,6 +85,19 @@
 			minimumResultsForSearch: 20,
 			dropdownParent: $('#dropDownSelect2')
 		});
+
+
+		(function($) {
+	$.get("{{ url_for('Cartvalue')}}",function(data){
+    
+	document.getElementById("cartvalue").textContent=data;
+
+
+});
+    })(jQuery);
+
+
+	
 	</script>
 <!--===============================================================================================-->
 	<script src="static/js/main.js"></script>

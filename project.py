@@ -7,7 +7,7 @@ UPLOAD_FOLDER = 'static/uploads'
 ALLOWED_EXTENSIONS = set([ 'png', 'jpg', 'jpeg'])
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 import datetime
-
+from collections import Counter
 
 # db.create_all()
 # product3 = product( name="Leather", price =200, oldPrice=200, picture="1.jpg", category="1",rate=3)
@@ -71,7 +71,7 @@ def DeleteProduct():
         db.session.delete(theProduct)
         db.session.commit()
 
-        return render_template('adminProducts.html',products=products)
+        
     else :
         return redirect(url_for('HomePage'))
 
@@ -82,21 +82,48 @@ def DeleteProduct():
 def addToCart():
 
     id =request.form["pid"]
+    
     if 'productid' in login_session :
 
         arrayPid = login_session["productid"]
-        arrayPid.append(id)
+        arrOccurances = login_session["productocc"]
+        if id in arrayPid :
+
+            index = arrayPid.index(id)
+            arrOccurances[index] = arrOccurances[index] +1
+        else :
+            arrayPid.append(id)
+            arrOccurances.append(1)
     else :
         arrayPid = []
+        arrOccurances =[]
         arrayPid.append(id)
+        arrOccurances.append(1)
     
     login_session["productid"] = arrayPid
+    login_session["productocc"] = arrOccurances
+    value =Cartvalue()
+    return value
 
-    print(login_session)
-    return "success"
 
 
+@app.route('/loginPage', methods=['POST','GET'])
 
+def loginpage():
+    if 'id' in login_session :
+        return redirect(url_for('adminProducts'))
+        
+
+    else:
+        return  render_template('login.html')
+    
+
+@app.route('/logout', methods=['POST','GET'])
+
+def logout():
+    login_session.clear()
+    return "ssss"
+    
 
 
 
@@ -113,7 +140,7 @@ def login():
             login_session['id'] = TheUser.id
             login_session['username'] = TheUser.username
 
-            return redirect(url_for('HomePage'))
+            return redirect(url_for('adminProducts'))
         else :
             return redirect(url_for('HomePage'))
 
@@ -177,20 +204,47 @@ def addProduct():
 
 def Shop(category=0):
     """ returns index page """
-    print(category)
+    
     if category == 0 :
         products = product.query.filter().all()
     else:
-        print(category)
+        
         products = product.query.filter_by(category=category).all()
 
-    return render_template('product.html',products=products)
+    return render_template('product.html',products=products,category=category)
 
 @app.route('/Cart')
 
 def Cart():
     """ returns index page """
-    return render_template('cart.html')
+    products =[]
+    price = 0
+    arrOccurances =[]
+    if 'productid' in login_session :
+        cart = login_session["productid"]
+        arrOccurances = login_session["productocc"]
+        
+        
+        
+        products = product.query.filter(product.id.in_(cart)).all()
+        price = calculatingMoney(products)
+        return render_template('cart.html',products=products,arrOccurances=arrOccurances,price=price)
+
+    else :
+        price = 0
+        
+        return render_template('cart.html',price =price)
+
+def calculatingMoney(products):
+    price = 0
+
+    for i in range(len(products)):
+        price = price + (products[i].price * login_session["productocc"][i])
+       
+
+    return price
+
+
 
 @app.route('/About')
 
@@ -205,6 +259,15 @@ def Contact():
     """ returns index page """
     return render_template('contact.html')
 
+@app.route('/Cartvalue', methods=['POST','GET'])
+def Cartvalue():
+    print("1")
+    if 'productocc' in login_session :
+        print("2")
+        return str(sum(login_session["productocc"]))
+    else :
+        print("3")
+        return "0"
 
 
 

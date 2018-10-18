@@ -217,6 +217,19 @@
 				swal(nameProduct, "is added to wishlist !", "success");
 			});
 		});
+
+
+		(function($) {
+	$.get("{{ url_for('Cartvalue')}}",function(data){
+    
+	document.getElementById("cartvalue").textContent=data;
+
+
+});
+    })(jQuery);
+
+
+	
 	</script>
 
 <!--===============================================================================================-->

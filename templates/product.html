@@ -20,47 +20,112 @@
 						<h4 class="m-text14 p-b-7">
 							Categories
 						</h4>
-
+					
 						<ul class="p-b-54">
+							
+							{%if category == 0 %}
 							<li class="p-t-4">
-								<a href="{{ url_for('Shop')}}" class="s-text13">
+								<a href="#" class="s-text13 active1">
 									All
 								</a>
 							</li>
+							{%else %}
+							<li class="p-t-4">
+									<a href="{{ url_for('Shop')}}" class="s-text13">
+										All
+									</a>
+								</li>
 
+							{%endif%}
+							{%if category == "1" %}
+						
 							<li class="p-t-4">
-								<a href="{{ url_for('Shop', category=1)}}" class="s-text13">
-									Leather
+								<a href="#" class="s-text13 active1">
+										Leather
 								</a>
 							</li>
+							{%else %}
+							
+							<li class="p-t-4">
+									<a href="{{ url_for('Shop', category=1)}}" class="s-text13 ">
+											Leather
+									</a>
+								</li>
 
+							{%endif%}
+							{%if category == "2" %}
 							<li class="p-t-4">
-								<a href="{{ url_for('Shop', category=2)}}" class="s-text13">
-									Belt bags
+								<a href="#" class="s-text13 active1">
+										Belt bags
 								</a>
 							</li>
+							{%else %}
+							<li class="p-t-4">
+									<a href="{{ url_for('Shop', category=2)}}" class="s-text13 ">
+											Belt bags
+									</a>
+								</li>
 
+							{%endif%}
+							{%if category == "3" %}
 							<li class="p-t-4">
-								<a href="{{ url_for('Shop', category=3)}}" class="s-text13">
-									Crossbody bags
+								<a href="#" class="s-text13 active1">
+										Crossbody bags
 								</a>
 							</li>
+							{%else %}
+							<li class="p-t-4">
+									<a href="{{ url_for('Shop', category=3)}}" class="s-text13 ">
+											Crossbody bags
+									</a>
+								</li>
 
+							{%endif%}
+							{%if category == "4" %}
 							<li class="p-t-4">
-								<a href="{{ url_for('Shop', category=4)}}" class="s-text13">
-									Large bags 
+								<a href="#" class="s-text13 active1">
+										Large bags 
 								</a>
 							</li>
+							{%else %}
 							<li class="p-t-4">
-								<a href="{{ url_for('Shop', category=5)}}" class="s-text13">
-									Handbags 
+									<a href="{{ url_for('Shop', category=4)}}" class="s-text13 ">
+											Large bags 
+									</a>
+								</li>
+
+							{%endif%}
+							{%if category == "5" %}
+							<li class="p-t-4">
+								<a href="#" class="s-text13 active1">
+										Handbags
 								</a>
 							</li>
+							{%else %}
 							<li class="p-t-4">
-								<a href="{{ url_for('Shop', category=6)}}" class="s-text13">
-									Mini bags 
+									<a href="{{ url_for('Shop', category=5)}}" class="s-text13 ">
+											Handbags
+									</a>
+								</li>
+
+							{%endif%}
+							{%if category == "6" %}
+							<li class="p-t-4">
+								<a href="#" class="s-text13 active1">
+										Mini bags 
 								</a>
 							</li>
+							{%else %}
+							<li class="p-t-4">
+									<a href="{{ url_for('Shop', category=6)}}" class="s-text13 ">
+											Mini bags 
+									</a>
+								</li>
+
+							{%endif%}
+
+
+
 						</ul>
 
 				
@@ -229,7 +294,7 @@
 <!--===============================================================================================-->
 	<script type="text/javascript" src="{{url_for('static', filename='vendor/animsition/js/animsition.min.js')}}"></script>
 <!--===============================================================================================-->
-	<script type="text/javascript" src="{{url_for('static', filename='vendor/bootstrap/js/popper.js')}}"></script>
+	<!-- <script type="text/javascript" src="{{url_for('static', filename='vendor/bootstrap/js/popper.js')}}"></script> -->
 	<script type="text/javascript" src="{{url_for('static', filename='vendor/bootstrap/js/bootstrap.min.js')}}"></script>
 <!--===============================================================================================-->
 	<script type="text/javascript" src="{{url_for('static', filename='vendor/select2/select2.min.js')}}"></script>
@@ -270,48 +335,58 @@
 	</script>
 
 <!--===============================================================================================-->
-	<script type="text/javascript" src="{{url_for('static', filename='vendor/noui/nouislider.min.js')}}"></script>
+	<!-- <script type="text/javascript" src="{{url_for('static', filename='vendor/noui/nouislider.min.js')}}"></script> -->
 	<script type="text/javascript">
 		/*[ No ui ]
 	    ===========================================================*/
-	    var filterBar = document.getElementById('filter-bar');
+	    // var filterBar = document.getElementById('filter-bar');
 
-	    noUiSlider.create(filterBar, {
-	        start: [ 50, 200 ],
-	        connect: true,
-	        range: {
-	            'min': 50,
-	            'max': 200
-	        }
-	    });
+	    // noUiSlider.create(filterBar, {
+	    //     start: [ 50, 200 ],
+	    //     connect: true,
+	    //     range: {
+	    //         'min': 50,
+	    //         'max': 200
+	    //     }
+	    // });
 
-	    var skipValues = [
-	    document.getElementById('value-lower'),
-	    document.getElementById('value-upper')
-	    ];
+	    // var skipValues = [
+	    // document.getElementById('value-lower'),
+	    // document.getElementById('value-upper')
+	    // ];
 
-	    filterBar.noUiSlider.on('update', function( values, handle ) {
-	        skipValues[handle].innerHTML = Math.round(values[handle]) ;
-	    });
+	    // filterBar.noUiSlider.on('update', function( values, handle ) {
+	    //     skipValues[handle].innerHTML = Math.round(values[handle]) ;
+	    // });
 
 	
 	 function addToCart(id)
-	 {
-		var data=
+	 {		var data=
       {
       pid : id
     
     
     };
+		
+	
     
     
     $.post("{{ url_for('addToCart')}}",data,function(data){
     
     
-    
+		document.getElementById("cartvalue").textContent=data;
     
     });
 	 }
+
+ (function($) {
+	$.get("{{ url_for('Cartvalue')}}",function(data){
+    
+	document.getElementById("cartvalue").textContent=data;
+
+
+});
+    })(jQuery);
 
 
 	</script>
