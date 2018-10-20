@@ -122,7 +122,7 @@ def loginpage():
 
 def logout():
     login_session.clear()
-    return "ssss"
+    return redirect(url_for('HomePage'))
     
 
 
@@ -199,19 +199,23 @@ def addProduct():
     """ returns index page """
     return render_template('addProduct.html')
 
+@app.route('/Shop/<string:category>/page/<int:page>/',)
 @app.route('/Shop/<string:category>',)
 @app.route('/Shop',)
 
-def Shop(category=0):
+def Shop(category=0,page =1):
     """ returns index page """
-    
-    if category == 0 :
-        products = product.query.filter().all()
+    per_page = 9
+    if category == 0 or category == "0":
+        products = product.query.filter().paginate(page,per_page,error_out=False)
     else:
         
-        products = product.query.filter_by(category=category).all()
+        products = product.query.filter_by(category=category).paginate(page,per_page,error_out=False)
 
-    return render_template('product.html',products=products,category=category)
+    print(str(products.total))
+    print("========================================")
+    print(str(products.items))
+    return render_template('product.html',products=products.items,category=category,page=page,pages=products.pages)
 
 @app.route('/Cart')
 
@@ -261,12 +265,12 @@ def Contact():
 
 @app.route('/Cartvalue', methods=['POST','GET'])
 def Cartvalue():
-    print("1")
+    
     if 'productocc' in login_session :
-        print("2")
+        
         return str(sum(login_session["productocc"]))
     else :
-        print("3")
+        
         return "0"
 
 

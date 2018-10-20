@@ -182,14 +182,14 @@
 					<!--  -->
 					<div class="flex-sb-m flex-w p-b-35">
 						<div class="flex-w">
-							<div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
+							<!-- <div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
 								<select class="selection-2" name="sorting">
 									<option>Default Sorting</option>
 						
 									<option>Price: low to high</option>
 									<option>Price: high to low</option>
 								</select>
-							</div>
+							</div> -->
 
 						</div>
 
@@ -258,10 +258,21 @@
 
 					</div>
 					<!-- Pagination -->
+					{%if pages%}
 					<div class="pagination flex-m flex-w p-t-26">
-						<a href="#" class="item-pagination flex-c-m trans-0-4 active-pagination">1</a>
-						<a href="#" class="item-pagination flex-c-m trans-0-4">2</a>
+                     {%for  p in range(1,pages+1) %}
+					
+						{%if p == page %}
+						<a href="#" class="item-pagination flex-c-m trans-0-4 active-pagination">{{p}}</a>
+						{%else%}
+						
+						<a href="{{ url_for('Shop', category=category , page = p)}}" class="item-pagination flex-c-m trans-0-4">{{p}}</a> 
+						{%endif%}
+						
+						
+						{%endfor%}
 					</div>
+					{%endif%}
 				
 			</div>
 		</div>
