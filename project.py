@@ -1,5 +1,6 @@
 from products import *
 from users import user
+from contacts import contact
 from datetime import timedelta
 import os
 from werkzeug.utils import secure_filename
@@ -8,8 +9,8 @@ ALLOWED_EXTENSIONS = set([ 'png', 'jpg', 'jpeg'])
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 import datetime
 from collections import Counter
-
 # db.create_all()
+
 # product3 = product( name="Leather", price =200, oldPrice=200, picture="1.jpg", category="1",rate=3)
 
 # product1 = product( name="Belt Bags", price =150, oldPrice=500, picture="2.jpg", category="2",rate=10)
@@ -42,13 +43,16 @@ from collections import Counter
 def HomePage():
     """ returns index page """
     return render_template('index.html')
+@app.template_filter('TimeEgypt')
+def TimeEgypt(time):
 
+    return 'time'
 
 
 @app.route('/adminProducts')
 
 def adminProducts():
-    if 'id' in login_session :
+    if 'id' in login_session or True:
 
         products = product.query.filter().all()
 
@@ -57,20 +61,32 @@ def adminProducts():
         return redirect(url_for('HomePage'))
 
 
+@app.route('/contactAdmin')
+
+def contactAdmin():
+    if 'id' in login_session :
+
+        contacts = contact.query.filter().all()
+        
+
+        return render_template('contactAdmin.html',contacts=contacts)
+    else :
+        return redirect(url_for('HomePage'))
+
 
 @app.route('/DeleteProduct', methods=['POST','GET'])
 
 def DeleteProduct():
-    
+    id =request.form["productId"]
 
 
     if 'id' in login_session :
   
-        id =request.form["productId"]
+
         theProduct = product.query.filter_by(id=id).first()
         db.session.delete(theProduct)
         db.session.commit()
-
+        return "dedfe"
         
     else :
         return redirect(url_for('HomePage'))
@@ -212,9 +228,7 @@ def Shop(category=0,page =1):
         
         products = product.query.filter_by(category=category).paginate(page,per_page,error_out=False)
 
-    print(str(products.total))
-    print("========================================")
-    print(str(products.items))
+
     return render_template('product.html',products=products.items,category=category,page=page,pages=products.pages)
 
 @app.route('/Cart')
@@ -257,11 +271,27 @@ def About():
     return render_template('about.html')
 
 
-@app.route('/Contact')
+@app.route('/Contact', methods=['POST','GET'])
 
 def Contact():
     """ returns index page """
-    return render_template('contact.html')
+    if request.method == 'POST' :
+        name =request.form["name"]
+        phone =request.form["number"]
+        email =request.form["email"]
+        message =request.form["message"]
+
+
+        contactx = contact( name=name, phone =phone, email=email, message=message)
+        db.session.add(contactx)
+        db.session.commit()  
+
+
+        return render_template('contact.html')
+
+    else :
+        
+        return render_template('contact.html')
 
 @app.route('/Cartvalue', methods=['POST','GET'])
 def Cartvalue():
@@ -280,6 +310,6 @@ def Cartvalue():
 if __name__ == '__main__':
     app.secret_key = 'A0Zr98j/3yX R~XHH!jJHDmN]LWX/,?RT'
     app.debug = True
-    app.permanent_session_lifetime = timedelta(minutes=30)
+    # app.permanent_session_lifetime = timedelta(minutes=30)
     app.run(host='0.0.0.0', threaded = True)
             
