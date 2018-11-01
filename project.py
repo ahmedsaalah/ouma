@@ -1,7 +1,10 @@
 from products import *
 from users import user
 from contacts import contact
+from orders import order
+from carts import cart
 from datetime import timedelta
+
 import os
 from werkzeug.utils import secure_filename
 UPLOAD_FOLDER = 'static/uploads'
@@ -29,13 +32,14 @@ from collections import Counter
 # db.session.add(product4)
 # db.session.add(product5)
 # db.session.add(product6)
-# db.session.commit()
 
 # admin = user( username="oumaAdmin", password="ouma111")
 
 # db.session.add(admin)
-# db.session.commit()
 
+# order1 = order(name ="salah", address="sidibeshr", phone="5556303", email="a7mad.sala7@live.com", cost=500)
+# db.session.add(order1)
+# db.session.commit()
 
 
 @app.route('/')
@@ -70,6 +74,20 @@ def contactAdmin():
         
 
         return render_template('contactAdmin.html',contacts=contacts)
+    else :
+        return redirect(url_for('HomePage'))
+
+
+
+@app.route('/ordersAdmin')
+
+def orderAdmin():
+    if 'id' in login_session :
+
+        orders = order.query.filter().all()
+        
+
+        return render_template('orders.html',orders=orders)
     else :
         return redirect(url_for('HomePage'))
 

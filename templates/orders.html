@@ -1,0 +1,205 @@
+{% extends "baseadmin.html" %} {% block content %}
+<style type="text/css">
+
+
+
+
+
+
+
+    body {
+  padding: 14px;
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  margin: 20px auto;
+  table-layout: auto;
+}
+
+.fixed {
+  table-layout: fixed;
+}
+
+table,
+td,
+th {
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px;
+  border: solid 1px;
+  text-align: center;
+}
+</style>
+
+
+
+
+</head>
+
+
+
+
+<div class="container-menu-header">
+    <!-- <div class="topbar">
+        <div class="topbar-social">
+            <a href="#" class="topbar-social-item fa fa-facebook"></a>
+            <a href="#" class="topbar-social-item fa fa-instagram"></a>
+            <a href="#" class="topbar-social-item fa fa-pinterest-p"></a>
+            <a href="#" class="topbar-social-item fa fa-snapchat-ghost"></a>
+            <a href="#" class="topbar-social-item fa fa-youtube-play"></a>
+        </div>
+
+        <span class="topbar-child1">
+            Free shipping for standard order over $100
+        </span>
+
+        <div class="topbar-child2">
+            <span class="topbar-email">
+                fashe@example.com
+            </span>
+
+            <div class="topbar-language rs1-select2">
+                <select class="selection-1" name="time">
+                    <option>USD</option>
+                    <option>EUR</option>
+                </select>
+            </div>
+        </div>
+    </div> -->
+
+  
+
+<body>
+    <div class="container">
+        <div class="table-wrapper">
+            <div class="table-title">
+        
+            </div>
+            <table class="table table-bordered">
+                <thead>
+
+
+                    
+                    <tr>
+                            <th>id</th>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th>Time</th>
+                        <th>Email</th>
+                        <th>Cost</th>
+                        
+                        
+                    </tr>
+                </thead>
+                <tbody>
+
+
+                        {% if orders %} {% for order in orders %}
+                        <tr>
+                                <td nowrap>{{order.id}}</td>
+                                 <td nowrap>{{order.name}}</td>
+                                 <td nowrap>{{order.phone}}</td>
+                                  <td nowrap>{{order.email }}</td>
+                            
+                                     <td nowrap>{{order.timestamp}}</td>
+                                     <td nowrap>{{order.email}}</td>
+                                     <td nowrap>{{order.cost}}</td>
+<td>
+                                     
+                                    
+                                   <a href='#' data-id='{{order.id}}'  class='EditEmpBtn'data-toggle='modal' title='shopping basket' >
+                                   <i class="material-icons">shopping_basket</i></a>
+                                </td>
+                                     
+                        </tr>
+                        {% endfor %} {% endif %}
+                       
+                </tbody>
+            </table>
+        </div>
+    </div>     
+
+</body>
+
+
+        <script>
+        
+        
+    
+    $(document).on("click",".EditEmpBtn",function () {
+    
+  
+    var id=$(this).data('id');
+
+    
+    
+    
+    
+alert(id)
+
+ 
+    $("#myModal").modal()
+    
+    });
+
+</script>
+        
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+            
+              <!-- Modal content-->
+              <div class="modal-content">
+                
+
+
+
+
+
+
+
+                <table class="table table-bordered">
+                    <thead>
+    
+    
+                        
+                        <tr>
+                            <th>id</th>
+                            <th>Name</th>
+                            <th>Quantity</th>
+                            <th>price</th>
+                            <th>photo</th>
+          
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+    
+    
+                            {% if products %} {% for product in products %}
+                            <tr>
+                                    <td nowrap>{{order.id}}</td>
+                                     <td nowrap>{{order.name}}</td>
+                                     <td nowrap>{{order.phone}}</td>
+                                      <td nowrap>{{order.email }}</td>
+                                
+                                         <td nowrap>{{order.timestamp}}</td>
+
+                                         
+                            </tr>
+                            {% endfor %} {% endif %}
+                           
+                    </tbody>
+                </table>
+
+
+     
+              </div>
+              </div>
+        </div>
+</html>                            {% endblock  %}
