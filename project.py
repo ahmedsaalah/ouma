@@ -4,7 +4,7 @@ from contacts import contact
 from orders import order
 from carts import cart
 from datetime import timedelta
-
+import json
 import os
 from werkzeug.utils import secure_filename
 UPLOAD_FOLDER = 'static/uploads'
@@ -41,6 +41,15 @@ from collections import Counter
 # db.session.add(order1)
 # db.session.commit()
 
+# cart1 = cart(order_id =1, product_id=1)
+# db.session.add(cart1)
+# cart1 = cart(order_id =1, product_id=2)
+# db.session.add(cart1)
+# cart1 = cart(order_id =1, product_id=3)
+# db.session.add(cart1)
+# cart1 = cart(order_id =1, product_id=4)
+# db.session.add(cart1)
+# db.session.commit()
 
 @app.route('/')
 
@@ -92,6 +101,36 @@ def orderAdmin():
         return redirect(url_for('HomePage'))
 
 
+
+
+@app.route('/orderProducts', methods=['POST','GET'])
+
+def orderProducts():
+
+    id =request.form["orderID"]
+
+    
+    
+
+    products = cart.query.join(product, cart.product_id==product.id).add_columns(cart.occur,product.price, product.name, product.picture).filter(cart.order_id == id).all()
+
+    return str(products[0][1])
+
+
+def makeITCallable(products):
+    names, prices,pictures,occ = [], [],[], []
+    for product in products:
+        occ.append(product[0][0])
+        prices.append(product[0][1])
+        names.append(product[0][2])
+        pictures.append(product[0][3])
+
+
+
+    products_arr = [{"Names": n, "Occur": o,"Price":p,"Picture":pic} for n,o,p,pic in zip(names, occ,prices,pictures)]
+    print products_arr
+    # Printing in JSON format
+    print json.dumps(products_arr)
 @app.route('/DeleteProduct', methods=['POST','GET'])
 
 def DeleteProduct():

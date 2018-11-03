@@ -137,11 +137,39 @@ td {
   
     var id=$(this).data('id');
 
+
+
+
+    $.ajax({
+                     type: 'POST', 
+                     url: "{{url_for('orderProducts')}}",
+                     data: {orderID : id},
+                     success: function (data) {
+           
+
+
+
+
+$('#thetable tr').not(':first').remove();
+var html = '';
+for(var i = 0; i < data.d.length; i++)
+            html += '<tr><td>' + data.d[i].FirstName + 
+                    '</td><td>' + data.d[i].Age + '</td></tr>';
+
+
+
+                    
+$('#thetable tr').first().after(html);
+
+
+
+            }
+                     
+             });
+}    
     
     
     
-    
-alert(id)
 
  
     $("#myModal").modal()
@@ -163,7 +191,7 @@ alert(id)
 
 
 
-                <table class="table table-bordered">
+                <table class="table table-bordered" >
                     <thead>
     
     
@@ -178,21 +206,10 @@ alert(id)
                             
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="thetable">
     
     
-                            {% if products %} {% for product in products %}
-                            <tr>
-                                    <td nowrap>{{order.id}}</td>
-                                     <td nowrap>{{order.name}}</td>
-                                     <td nowrap>{{order.phone}}</td>
-                                      <td nowrap>{{order.email }}</td>
-                                
-                                         <td nowrap>{{order.timestamp}}</td>
-
-                                         
-                            </tr>
-                            {% endfor %} {% endif %}
+                          
                            
                     </tbody>
                 </table>
