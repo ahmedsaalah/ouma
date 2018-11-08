@@ -105,7 +105,7 @@ td {
                                 <td nowrap>{{order.id}}</td>
                                  <td nowrap>{{order.name}}</td>
                                  <td nowrap>{{order.phone}}</td>
-                                  <td nowrap>{{order.email }}</td>
+                                  <td nowrap>{{order.address }}</td>
                             
                                      <td nowrap>{{order.timestamp}}</td>
                                      <td nowrap>{{order.email}}</td>
@@ -113,7 +113,7 @@ td {
 <td>
                                      
                                     
-                                   <a href='#' data-id='{{order.id}}'  class='EditEmpBtn'data-toggle='modal' title='shopping basket' >
+                                   <a href='#' data-id='{{order.id}}'  class='EditEmpBtn' data-toggle='modal' title='shopping basket' >
                                    <i class="material-icons">shopping_basket</i></a>
                                 </td>
                                      
@@ -137,36 +137,45 @@ td {
   
     var id=$(this).data('id');
 
-
-
+var html = '';
 
     $.ajax({
                      type: 'POST', 
                      url: "{{url_for('orderProducts')}}",
                      data: {orderID : id},
+                     dataType: "json",
                      success: function (data) {
            
 
 
 
 
-$('#thetable tr').not(':first').remove();
-var html = '';
-for(var i = 0; i < data.d.length; i++)
-            html += '<tr><td>' + data.d[i].FirstName + 
-                    '</td><td>' + data.d[i].Age + '</td></tr>';
 
 
+// $("#thetable tr :not(:first)").remove();
 
-                    
-$('#thetable tr').first().after(html);
+$("#thetable tr ").remove();
+for(var i = 0; i < data.length; i++)
+{
+   
+            html += '<tr><td>' + data[i]["Names"] + 
+                    '</td><td>' + data[i]["Occur"] +
+                        '</td><td>' + data[i]["Price"] +
+                            '</td><td><img src="/static/uploads/' + data[i]["Picture"]  +'" alt="" border=3 height=50 width=50></img></td></tr>';
+
+
+}    
+                                 
+
+             
+$('#thetable').append(html);
 
 
 
             }
                      
              });
-}    
+    
     
     
     
@@ -197,7 +206,7 @@ $('#thetable tr').first().after(html);
     
                         
                         <tr>
-                            <th>id</th>
+                            
                             <th>Name</th>
                             <th>Quantity</th>
                             <th>price</th>

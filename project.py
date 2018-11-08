@@ -3,6 +3,7 @@ from users import user
 from contacts import contact
 from orders import order
 from carts import cart
+from about import aboutdb
 from datetime import timedelta
 import json
 import os
@@ -12,7 +13,7 @@ ALLOWED_EXTENSIONS = set([ 'png', 'jpg', 'jpeg'])
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 import datetime
 from collections import Counter
-# db.create_all()
+db.create_all()
 
 # product3 = product( name="Leather", price =200, oldPrice=200, picture="1.jpg", category="1",rate=3)
 
@@ -50,22 +51,21 @@ from collections import Counter
 # cart1 = cart(order_id =1, product_id=4)
 # db.session.add(cart1)
 # db.session.commit()
-
+about1 = aboutdb(message ='To create and deploy a key with Linux or Mac OS X:Create a key on your local computer.Open a terminal session.Create ~/.ssh, if it does not already exist. Enter mkdir -p $HOME/.ssh. Switch to the ~/.ssh directory. Enter cd ~/.ssh and press Enter.press Enter.Secure the SSH keys. Enter chmod 600 ~/.ssh/authorized_keys and press Enter.Secure the SSH directory. Enter chmod 700 ~/.ssh and press Enter', img='')
+db.session.add(about1)
+db.session.commit()
 @app.route('/')
 
 def HomePage():
     """ returns index page """
     return render_template('index.html')
-@app.template_filter('TimeEgypt')
-def TimeEgypt(time):
 
-    return 'time'
 
 
 @app.route('/adminProducts')
 
 def adminProducts():
-    if 'id' in login_session or True:
+    if 'id' in login_session :
 
         products = product.query.filter().all()
 
@@ -108,29 +108,29 @@ def orderAdmin():
 def orderProducts():
 
     id =request.form["orderID"]
+    
 
     
     
 
     products = cart.query.join(product, cart.product_id==product.id).add_columns(cart.occur,product.price, product.name, product.picture).filter(cart.order_id == id).all()
 
-    return str(products[0][1])
+    return makeITCallable(products)
 
 
 def makeITCallable(products):
     names, prices,pictures,occ = [], [],[], []
     for product in products:
-        occ.append(product[0][0])
-        prices.append(product[0][1])
-        names.append(product[0][2])
-        pictures.append(product[0][3])
+        occ.append(product[1])
+        prices.append(product[2])
+        names.append(product[3])
+        pictures.append(product[4])
 
 
 
     products_arr = [{"Names": n, "Occur": o,"Price":p,"Picture":pic} for n,o,p,pic in zip(names, occ,prices,pictures)]
-    print products_arr
-    # Printing in JSON format
-    print json.dumps(products_arr)
+
+    return  json.dumps(products_arr)
 @app.route('/DeleteProduct', methods=['POST','GET'])
 
 def DeleteProduct():
@@ -318,6 +318,39 @@ def calculatingMoney(products):
        
 
     return price
+@app.route('/makeOrder', methods=['POST','GET'])
+def makeOrder():
+     
+    if request.method == 'POST' :
+        name =request.form["name"]
+        address =request.form["city"]
+        address +=request.form["address"]
+        phone =request.form["phone"]
+        email =request.form["email"]
+        cost =500
+
+
+        orderx = order( name=name, phone =phone, email=email, address=address ,cost=cost)
+        db.session.add(orderx)
+        
+        db.session.commit()
+  
+        
+        for i in range(len(login_session['productocc'])):
+            cartx = cart( product_id=login_session["productid"][i], order_id =orderx.id, occur=login_session["productocc"][i])
+            db.session.add(cartx)
+            
+            db.session.commit()
+
+          
+        del login_session["productid"]
+        del login_session["productocc"]
+
+        return redirect(url_for('Cart'))
+
+    else :
+        
+        return redirect(url_for('HomePage'))
 
 
 
@@ -325,7 +358,14 @@ def calculatingMoney(products):
 
 def About():
     """ returns index page """
-    return render_template('about.html')
+
+
+
+    abo = aboutdb.query.filter().all()
+    
+
+
+    return render_template('about.html',abouts=abo)
 
 
 @app.route('/Contact', methods=['POST','GET'])
