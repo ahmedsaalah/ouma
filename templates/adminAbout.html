@@ -1,0 +1,58 @@
+{% extends "baseadmin.html" %} {% block content %}
+	<!-- Title Page -->
+	<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url(static/images/heading-pages-06.jpg);">
+		<h2 class="l-text2 t-center">
+			Contact PRODUCTS
+		</h2>
+	</section>
+
+	<!-- content page -->
+
+	<form class="form-horizontal"   method="post" enctype="multipart/form-data">
+		<fieldset>
+		
+	
+		
+		<!-- Text input-->
+		<div class="form-group">
+		  <label class="col-md-4 control-label" for="product_id">About</label>  
+		  <div class="col-md-4">
+
+
+
+		  <textarea class="form-control input-md" type="text" name="msg" placeholder="About"></textarea>
+			
+		  </div>
+		</div>
+
+
+
+
+		
+		<!-- File Button --> 
+		<div class="form-group">
+		  <label class="col-md-4 control-label" for="filebutton">ABOUT image</label>
+		  <div class="col-md-4">
+			<input id="filebutton" name="img" class="input-file" type="file">
+		  </div>
+		</div>
+		
+
+		<!-- Button -->
+		<div class="form-group">
+		  <label class="col-md-4 control-label" for="singlebutton">Single Button</label>
+		  <div class="col-md-4">
+			<button id="singlebutton" name="singlebutton" class="btn btn-primary">Button</button>
+		  </div>
+		  </div>
+		
+		</fieldset>
+
+
+		</form>
+
+</body>
+</html>
+{% endblock  %}
+
+

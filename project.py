@@ -51,9 +51,10 @@ db.create_all()
 # cart1 = cart(order_id =1, product_id=4)
 # db.session.add(cart1)
 # db.session.commit()
-about1 = aboutdb(message ='To create and deploy a key with Linux or Mac OS X:Create a key on your local computer.Open a terminal session.Create ~/.ssh, if it does not already exist. Enter mkdir -p $HOME/.ssh. Switch to the ~/.ssh directory. Enter cd ~/.ssh and press Enter.press Enter.Secure the SSH keys. Enter chmod 600 ~/.ssh/authorized_keys and press Enter.Secure the SSH directory. Enter chmod 700 ~/.ssh and press Enter', img='')
-db.session.add(about1)
-db.session.commit()
+# about1 = aboutdb(message ='To create and deploy a key with Linux or Mac OS X:Create a key on your local computer.Open a terminal session.Create ~/.ssh, if it does not already exist. Enter mkdir -p $HOME/.ssh. Switch to the ~/.ssh directory. Enter cd ~/.ssh and press Enter.press Enter.Secure the SSH keys. Enter chmod 600 ~/.ssh/authorized_keys and press Enter.Secure the SSH directory. Enter chmod 700 ~/.ssh and press Enter'
+# , img='')
+# db.session.add(about1)
+# db.session.commit()
 @app.route('/')
 
 def HomePage():
@@ -100,6 +101,37 @@ def orderAdmin():
     else :
         return redirect(url_for('HomePage'))
 
+
+
+
+
+
+
+
+@app.route('/aboutAdmin', methods=['POST','GET'])
+
+def aboutAdmin():
+    if 'id' in login_session :
+        if  request.method == 'POST':
+
+
+
+            abo = aboutdb.query.filter().first()
+            if  'msg' in request.args:
+                abo.message =request.form["msg"]
+
+            if 'img' in request.files:
+
+                
+
+                file = request.files['img']
+                filename = secure_filename(file.filename)
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                abo.img = filename
+
+                
+            db.session.commit()
+        return render_template('adminAbout.html')
 
 
 
@@ -354,11 +386,11 @@ def makeOrder():
 
 
 
+
 @app.route('/About')
 
 def About():
     """ returns index page """
-
 
 
     abo = aboutdb.query.filter().all()
