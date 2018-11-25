@@ -15,51 +15,52 @@ import datetime
 from collections import Counter
 db.create_all()
 
-# product3 = product( name="Leather", price =200, oldPrice=200, picture="1.jpg", category="1",rate=3)
+product3 = product( name="Leather", price =200, oldPrice=200, picture="1.jpg", category="1",rate=3)
 
-# product1 = product( name="Belt Bags", price =150, oldPrice=500, picture="2.jpg", category="2",rate=10)
-
-
-# product2 = product( name="Crossbody", price =300, oldPrice=300, picture="3.jpg", category="3",rate=5)
-
-# product4 = product( name="Large Bags", price =150, oldPrice=500, picture="4.jpg", category="4",rate=10)
+product1 = product( name="Belt Bags", price =150, oldPrice=500, picture="2.jpg", category="2",rate=10)
 
 
-# product5 = product( name="Handbags", price =300, oldPrice=300, picture="5.jpg", category="5",rate=5)
-# product6 = product( name="mini bags", price =200, oldPrice=200, picture="6.jpg", category="6",rate=5)
-# db.session.add(product3)
-# db.session.add(product1)
-# db.session.add(product2)
-# db.session.add(product4)
-# db.session.add(product5)
-# db.session.add(product6)
+product2 = product( name="Crossbody", price =300, oldPrice=300, picture="3.jpg", category="3",rate=5)
 
-# admin = user( username="oumaAdmin", password="ouma111")
+product4 = product( name="Large Bags", price =150, oldPrice=500, picture="4.jpg", category="4",rate=10)
 
-# db.session.add(admin)
 
-# order1 = order(name ="salah", address="sidibeshr", phone="5556303", email="a7mad.sala7@live.com", cost=500)
-# db.session.add(order1)
-# db.session.commit()
+product5 = product( name="Handbags", price =300, oldPrice=300, picture="5.jpg", category="5",rate=5)
+product6 = product( name="mini bags", price =200, oldPrice=200, picture="6.jpg", category="6",rate=5)
+db.session.add(product3)
+db.session.add(product1)
+db.session.add(product2)
+db.session.add(product4)
+db.session.add(product5)
+db.session.add(product6)
 
-# cart1 = cart(order_id =1, product_id=1)
-# db.session.add(cart1)
-# cart1 = cart(order_id =1, product_id=2)
-# db.session.add(cart1)
-# cart1 = cart(order_id =1, product_id=3)
-# db.session.add(cart1)
-# cart1 = cart(order_id =1, product_id=4)
-# db.session.add(cart1)
-# db.session.commit()
-# about1 = aboutdb(message ='To create and deploy a key with Linux or Mac OS X:Create a key on your local computer.Open a terminal session.Create ~/.ssh, if it does not already exist. Enter mkdir -p $HOME/.ssh. Switch to the ~/.ssh directory. Enter cd ~/.ssh and press Enter.press Enter.Secure the SSH keys. Enter chmod 600 ~/.ssh/authorized_keys and press Enter.Secure the SSH directory. Enter chmod 700 ~/.ssh and press Enter'
-# , img='')
-# db.session.add(about1)
-# db.session.commit()
+admin = user( username="oumaAdmin", password="ouma111")
+
+db.session.add(admin)
+
+order1 = order(name ="salah", address="sidibeshr", phone="5556303", email="a7mad.sala7@live.com", cost=500)
+db.session.add(order1)
+db.session.commit()
+
+cart1 = cart(order_id =1, product_id=1)
+db.session.add(cart1)
+cart1 = cart(order_id =1, product_id=2)
+db.session.add(cart1)
+cart1 = cart(order_id =1, product_id=3)
+db.session.add(cart1)
+cart1 = cart(order_id =1, product_id=4)
+db.session.add(cart1)
+db.session.commit()
+about1 = aboutdb(message ='To create and deploy a key with Linux or Mac OS X:Create a key on your local computer.Open a terminal session.Create ~/.ssh, if it does not already exist. Enter mkdir -p $HOME/.ssh. Switch to the ~/.ssh directory. Enter cd ~/.ssh and press Enter.press Enter.Secure the SSH keys. Enter chmod 600 ~/.ssh/authorized_keys and press Enter.Secure the SSH directory. Enter chmod 700 ~/.ssh and press Enter'
+, img='')
+db.session.add(about1)
+db.session.commit()
 @app.route('/')
 
 def HomePage():
     """ returns index page """
-    return render_template('index.html')
+    products = product.query.filter().order_by(product.id.desc()).limit(5).all()
+    return render_template('index.html',products=products)
 
 
 
@@ -335,7 +336,9 @@ def Cart():
         
         products = product.query.filter(product.id.in_(cart)).all()
         price = calculatingMoney(products)
-        return render_template('cart.html',products=products,arrOccurances=arrOccurances,price=price)
+        total = price+ 50
+        login_session["total"] =total
+        return render_template('cart.html',total=total ,products=products,arrOccurances=arrOccurances,price=price)
 
     else :
         price = 0
@@ -359,10 +362,11 @@ def makeOrder():
         address +=request.form["address"]
         phone =request.form["phone"]
         email =request.form["email"]
-        cost =500
+        notes =request.form["notes"]
+        cost =login_session["total"]
 
 
-        orderx = order( name=name, phone =phone, email=email, address=address ,cost=cost)
+        orderx = order( name=name, phone =phone, email=email, address=address ,cost=cost,notes=notes)
         db.session.add(orderx)
         
         db.session.commit()
@@ -377,6 +381,7 @@ def makeOrder():
           
         del login_session["productid"]
         del login_session["productocc"]
+        del login_session["total"]"]
 
         return redirect(url_for('Cart'))
 
