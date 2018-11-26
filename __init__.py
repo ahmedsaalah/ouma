@@ -381,7 +381,7 @@ def makeOrder():
           
         del login_session["productid"]
         del login_session["productocc"]
-        del login_session["total"]"]
+        del login_session["total"]
 
         return redirect(url_for('Cart'))
 
