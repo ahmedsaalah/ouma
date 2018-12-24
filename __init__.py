@@ -62,6 +62,12 @@ def HomePage():
     products = product.query.filter().order_by(product.id.desc()).limit(5).all()
     return render_template('index.html',products=products)
 
+@app.route('/yassi')
+
+def yassi():
+    """ returns index page """
+    
+    return render_template('count.html',)
 
 
 @app.route('/adminProducts')
