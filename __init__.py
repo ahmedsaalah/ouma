@@ -13,7 +13,7 @@ ALLOWED_EXTENSIONS = set([ 'png', 'jpg', 'jpeg'])
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 import datetime
 from collections import Counter
-# db.create_all()
+db.create_all()
 
 # product3 = product( name="Leather", price =200, oldPrice=200, picture="1.jpg", category="1",rate=3)
 
@@ -38,23 +38,23 @@ from collections import Counter
 
 # db.session.add(admin)
 
-# order1 = order(name ="salah", address="sidibeshr", phone="5556303", email="a7mad.sala7@live.com", cost=500)
-# db.session.add(order1)
-# db.session.commit()
+order1 = order(name ="salah", address="sidibeshr", phone="5556303", email="a7mad.sala7@live.com", cost=500,notes ="Edwededdddddddddddddd")
+db.session.add(order1)
+db.session.commit()
 
-# cart1 = cart(order_id =1, product_id=1)
-# db.session.add(cart1)
-# cart1 = cart(order_id =1, product_id=2)
-# db.session.add(cart1)
-# cart1 = cart(order_id =1, product_id=3)
-# db.session.add(cart1)
-# cart1 = cart(order_id =1, product_id=4)
-# db.session.add(cart1)
-# db.session.commit()
-# about1 = aboutdb(message ='To create and deploy a key with Linux or Mac OS X:Create a key on your local computer.Open a terminal session.Create ~/.ssh, if it does not already exist. Enter mkdir -p $HOME/.ssh. Switch to the ~/.ssh directory. Enter cd ~/.ssh and press Enter.press Enter.Secure the SSH keys. Enter chmod 600 ~/.ssh/authorized_keys and press Enter.Secure the SSH directory. Enter chmod 700 ~/.ssh and press Enter'
-# , img='')
-# db.session.add(about1)
-# db.session.commit()
+cart1 = cart(order_id =1, product_id=1)
+db.session.add(cart1)
+cart1 = cart(order_id =1, product_id=2)
+db.session.add(cart1)
+cart1 = cart(order_id =1, product_id=3)
+db.session.add(cart1)
+cart1 = cart(order_id =1, product_id=4)
+db.session.add(cart1)
+db.session.commit()
+about1 = aboutdb(message ='To create and deploy a key with Linux or Mac OS X:Create a key on your local computer.Open a terminal session.Create ~/.ssh, if it does not already exist. Enter mkdir -p $HOME/.ssh. Switch to the ~/.ssh directory. Enter cd ~/.ssh and press Enter.press Enter.Secure the SSH keys. Enter chmod 600 ~/.ssh/authorized_keys and press Enter.Secure the SSH directory. Enter chmod 700 ~/.ssh and press Enter'
+, img='')
+db.session.add(about1)
+db.session.commit()
 @app.route('/')
 
 def HomePage():
