@@ -9,6 +9,6 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import sessionmaker
 from datetime import datetime
 app =Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:root@localhost/ouma'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:123@localhost/ouma'
 
 db = SQLAlchemy(app)
