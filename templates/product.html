@@ -196,7 +196,7 @@
 							<!-- Block2 -->
 							<div class="block2">
 									{% if product.price == product.oldPrice %}
-									<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
+									<div class="block2-img wrap-pic-w of-hidden pos-relative ">
 								{% else %}
 								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
 								{% endif %}
@@ -357,24 +357,7 @@
 	    // filterBar.noUiSlider.on('update', function( values, handle ) {
 	    //     skipValues[handle].innerHTML = Math.round(values[handle]) ;
 	    // });
-		function ClearCart()
-	 {		var data=
-      {
-      pid : 0
-    
-    
-    };
-		
-	
-    
-    alert("Ededeeeeee");
-    $.post("{{ url_for('ClearCart')}}",data,function(data){
-    
-    
-		document.getElementById("cartvalue").textContent=data;
-    
-    });
-	 }
+
 
 
 	 function addToCart(id)
