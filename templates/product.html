@@ -358,6 +358,25 @@
 	    //     skipValues[handle].innerHTML = Math.round(values[handle]) ;
 	    // });
 
+		function ClearCart()
+	 {		var data=
+      {
+      pid : 0
+    
+    
+    };
+		
+	
+    
+    alert("Ededeeeeee");
+    $.post("{{ url_for('ClearCart')}}",data,function(data){
+    
+    
+		document.getElementById("cartvalue").textContent=data;
+    
+    });
+	 }
+
 
 
 	 function addToCart(id)

@@ -340,24 +340,6 @@
     {% block footer %}
 
 <script>
-		function ClearCart()
-	 {		var data=
-      {
-      pid : 0
-    
-    
-    };
-		
-	
-    
-    alert("Ededeeeeee");
-    $.post("{{ url_for('ClearCart')}}",data,function(data){
-    
-    
-		document.getElementById("cartvalue").textContent=data;
-    
-    });
-	 }
 
 </script>
 
