@@ -357,7 +357,26 @@
 	    // filterBar.noUiSlider.on('update', function( values, handle ) {
 	    //     skipValues[handle].innerHTML = Math.round(values[handle]) ;
 	    // });
+		function ClearCart()
+	 {		var data=
+      {
+      pid : 0
+    
+    
+    };
+		
 	
+    
+    
+    $.post("{{ url_for('ClearCart')}}",data,function(data){
+    
+    
+		document.getElementById("cartvalue").textContent=data;
+    
+    });
+	 }
+
+
 	 function addToCart(id)
 	 {		var data=
       {

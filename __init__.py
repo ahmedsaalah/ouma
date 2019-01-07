@@ -187,7 +187,7 @@ def ClearCart():
 
         del login_session["productid"]
         del login_session["productocc"]
-        return 0
+        return "0"
 
 @app.route('/addToCart', methods=['POST','GET'])
 
