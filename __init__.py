@@ -334,9 +334,7 @@ def Cart():
     products =[]
     price = 0
     arrOccurances =[]
-    print("====================session1=================")
-    for key in login_session.keys():
-        print "str(key)" + login_session[key]
+
     if 'productid' in login_session :
         print("====================products=================")
         print(login_session["productid"])
@@ -353,7 +351,7 @@ def Cart():
         price = 0
         print("====================session=================")
         for key in login_session.keys():
-            print "str(key)"  + login_session[key]
+            print "key:=>" + login_session[key]
         return render_template('cart.html',price =price)
 
 def calculatingMoney(products):
