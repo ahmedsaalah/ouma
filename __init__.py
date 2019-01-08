@@ -186,7 +186,8 @@ def ClearCart():
     if 'productid' in login_session :
 
         login_session.clear()
-        return "0"
+    return 0
+    
 
 @app.route('/addToCart', methods=['POST','GET'])
 
