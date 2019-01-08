@@ -213,6 +213,8 @@ def addToCart():
     
     login_session["productid"] = arrayPid
     login_session["productocc"] = arrOccurances
+    print("====================products=================")
+    print(login_session["productid"])
     value =Cartvalue()
     return value
 
@@ -334,11 +336,11 @@ def Cart():
     price = 0
     arrOccurances =[]
     if 'productid' in login_session :
+        print("====================products=================")
+        print(login_session["productid"])
         cart = login_session["productid"]
         arrOccurances = login_session["productocc"]
-        
-        
-        
+
         products = product.query.filter(product.id.in_(cart)).all()
         price = calculatingMoney(products)
         total = price+ 50
@@ -347,7 +349,9 @@ def Cart():
 
     else :
         price = 0
-        
+        print("====================session=================")
+        for key in login_session.keys():
+            print "key:=>" + login_session[key]
         return render_template('cart.html',price =price)
 
 def calculatingMoney(products):
