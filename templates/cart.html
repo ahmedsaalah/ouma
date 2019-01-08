@@ -224,13 +224,12 @@
     };
 		
 	
-    
-    alert("Ededeeeeee");
+
     $.post("{{ url_for('ClearCart')}}",data,function(data){
     
     
 		document.getElementById("cartvalue").textContent=data;
-		window.location.reload(true)
+		window.location.reload(true);
     });
 	 }
 
