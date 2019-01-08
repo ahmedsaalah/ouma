@@ -213,8 +213,7 @@ def addToCart():
     
     login_session["productid"] = arrayPid
     login_session["productocc"] = arrOccurances
-    print("====================products=================")
-    print(login_session["productid"])
+
     value =Cartvalue()
     return value
 
