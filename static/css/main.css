@@ -1107,7 +1107,6 @@ li.sale-noti > a {
 
 .side-menu .sub-menu > li {
   padding-left: 12px;
-  padding-top: 
 }
 
 .side-menu .sub-menu a:hover {
@@ -2330,6 +2329,12 @@ body {padding-right: 0px !important;}
   opacity: 1;
 }
 
+
+.clear-cart {
+  color: #dc3545;
+  background: none;
+  margin-left: 15px;
+}
 
 /*[ Input NumProduct ]
 ///////////////////////////////////////////////////////////
