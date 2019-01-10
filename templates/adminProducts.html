@@ -218,7 +218,7 @@ function DeleteFunction(productId)
                 <tbody>
 
 
-                        {% if products %} {% for product in products %}
+                        <!-- {% if products %} {% for product in products %}
                         <tr>
                                  <td>{{product.name}}</td>
                                  <td>{{product.price}}</td>
@@ -229,7 +229,7 @@ function DeleteFunction(productId)
                                
                                      <td>
                                             <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                                            <!-- <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a> -->
+    
                                           <a href='#' data-id='{{product.id}}' data-price='{{product.price}}' data-oprice='{{product.oldPrice}}' 
                                           data-category='{{product.category}}' class='EditEmpBtn'data-toggle='modal' title='edit' >
                                           <i class="material-icons">&#xE254;</i></a>
@@ -240,7 +240,7 @@ function DeleteFunction(productId)
                                      
                         </tr>
                         {% endfor %} {% endif %}
-                       
+                        -->
                 </tbody>
             </table>
         </div>
