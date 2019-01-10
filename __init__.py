@@ -70,7 +70,8 @@ def adminProducts():
     if 'id' in login_session :
         from pprint import pprint
         products = product.query.filter().all()
-        from pprint import pprint
+        print("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww+++++++++++++++++++++++++++++++++++++++++++++")
+        print(products)
         repr(products)
         print("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww+++++++++++++++++++++++++++++++++++++++++++++")
         print(login_session['id'])
