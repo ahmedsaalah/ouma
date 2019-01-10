@@ -137,6 +137,18 @@
 
 
 
+
+                  </div>
+
+
+
+                  
+                  <div class="form-group">
+                      <label for="eaddress"></label>
+                         <p>rate</p>
+                       <input type="text" class="form-control" id="erate" name="rate" placeholder="">
+                    </div>
+                     
                   
                   
                      <button type="submit" class="btn btn-default" >Done</button>
@@ -149,13 +161,10 @@
           </div>
     </div>
 <script type="text/javascript">
-
 	$(document).on("click", ".delete", function(){
         $(this).parents("tr").remove();
 		$(".add-new").removeAttr("disabled");
     });
-
-
 function DeleteFunction(productId)
 {
   
@@ -166,9 +175,6 @@ function DeleteFunction(productId)
                      
              });
 }
-
-
-
     
     $(document).on("click",".EditEmpBtn",function () {
     
@@ -176,24 +182,23 @@ function DeleteFunction(productId)
     var id=$(this).data('id');
     var price=$(this).data('price');
     var oldPrice=$(this).data('oprice');
-
     var category=$(this).data('category');
- 
+    var rate=$(this).data('rate');
+    
+    
     
     
     
     $("#eid").val(id);
     $("#eprice").val(price);
-
     $("#eoprice").val(oldPrice);
     $("#ecategory").val(category);
-   
+    $("#erate").val(rate);
     
  
     $("#myModal").modal()
     
     });
-
 </script>
 </head>
 <body>
@@ -212,13 +217,13 @@ function DeleteFunction(productId)
                         <th>Old Price</th>
                         <th>Picture</th>
                         <th>category</th>
-                        
+                        <th>Rate</th>
                     </tr>
                 </thead>
                 <tbody>
 
 
-                        <!-- {% if products %} {% for product in products %}
+                        {% if products %} {% for product in products %}
                         <tr>
                                  <td>{{product.name}}</td>
                                  <td>{{product.price}}</td>
@@ -226,12 +231,12 @@ function DeleteFunction(productId)
                                   <td><img src="/static/uploads/{{product.picture}}" alt="" border=3 height=50 width=50></img></th>
                                  
                                      <td>{{product.category}}</td>
-                               
+                                     <td>{{product.rate}}</td>
                                      <td>
                                             <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-    
+                                            <!-- <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a> -->
                                           <a href='#' data-id='{{product.id}}' data-price='{{product.price}}' data-oprice='{{product.oldPrice}}' 
-                                          data-category='{{product.category}}' class='EditEmpBtn'data-toggle='modal' title='edit' >
+                                          data-category='{{product.category}}'data-rate='{{product.rate}}' class='EditEmpBtn'data-toggle='modal' title='edit' >
                                           <i class="material-icons">&#xE254;</i></a>
                                                   
                                             <a class="delete" title="Delete" onClick='DeleteFunction({{ product.id}})' data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
@@ -240,7 +245,7 @@ function DeleteFunction(productId)
                                      
                         </tr>
                         {% endfor %} {% endif %}
-                        -->
+                       
                 </tbody>
             </table>
         </div>
@@ -252,4 +257,4 @@ function DeleteFunction(productId)
         
 </html>                            
 
- {% endblock %}
+{% endblock %}
