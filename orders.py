@@ -8,12 +8,13 @@ class order(db.Model):
    email = db.Column(db.String(100))
    cost = db.Column( db.Integer)
    timestamp = db.Column(db.DateTime, index=True, default=datetime.now)
+   checkDone = db.Column(db.Integer)
    notes=  db.Column(db.String(3024))  
 
    
 
 
-def __init__(self, name, address, phone, email, cost,timestamp,notes):
+def __init__(self, name, address, phone, email, cost,timestamp,notes,checkDone):
    self.name = name
    self.address = address
    self.phone = phone
@@ -21,5 +22,5 @@ def __init__(self, name, address, phone, email, cost,timestamp,notes):
    self.cost = cost
    self.timestamp = timestamp
    self.notes = notes
-
+   self.checkDone=checkDone 
 
