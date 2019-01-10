@@ -70,7 +70,9 @@ def adminProducts():
     if 'id' in login_session :
 
         products = product.query.filter().all()
-
+        for key in products.keys():
+            print "key:=>" + products[key]
+        
         return render_template('adminProducts.html',products=products)
     else :
         return redirect(url_for('HomePage'))
@@ -338,8 +340,7 @@ def Cart():
     arrOccurances =[]
 
     if 'productid' in login_session :
-        print("====================products=================")
-        print(login_session["productid"])
+        
         cart = login_session["productid"]
         arrOccurances = login_session["productocc"]
 
@@ -351,9 +352,8 @@ def Cart():
 
     else :
         price = 0
-        print("====================session=================")
-        for key in login_session.keys():
-            print "key:=>" + login_session[key]
+        
+        
         return render_template('cart.html',price =price)
 
 def calculatingMoney(products):
