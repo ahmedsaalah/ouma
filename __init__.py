@@ -68,10 +68,9 @@ def HomePage():
 
 def adminProducts():
     if 'id' in login_session :
-
+        from pprint import pprint
         products = product.query.filter().all()
-        for key in products.keys():
-            print "key:=>" + products[key]
+        pprint(vars(products))
         
         return render_template('adminProducts.html',products=products)
     else :
