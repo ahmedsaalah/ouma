@@ -27,8 +27,10 @@
 							<th class="column-4 p-l-70">Quantity</th>
 							<th class="column-5">Total</th>
 						</tr>
-
-						{% if products %} {% for product in products %}
+						
+						{% if products %} 
+						<tbody id="tbodyid">
+						{% for product in products %}
 						<tr class="table-row">
 							<td class="column-1">
 								<div class="cart-img-product b-rad-4 o-f-hidden">
@@ -55,6 +57,7 @@
 							<td class="column-5">{{product.price}} EGP</td>
 						</tr>
 						{% endfor  %}
+					</tbody>
 						{% endif  %} 
 					</table>
 				</div>
@@ -229,6 +232,7 @@
     
     
 		document.getElementById("cartvalue").textContent=data;
+		$("#tbodyid").empty();
 		
     });
 	 }

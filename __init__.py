@@ -133,7 +133,8 @@ def aboutAdmin():
                 
             db.session.commit()
         return render_template('adminAbout.html')
-
+    else :
+        return redirect(url_for('HomePage'))
 
 
 @app.route('/orderProducts', methods=['POST','GET'])
@@ -454,6 +455,6 @@ def Cartvalue():
 if __name__ == '__main__':
     app.secret_key = 'A0Zr98j/3yX R~XHH!jJHDmN]LWX/,?RT'
     app.debug = True
-    # app.permanent_session_lifetime = timedelta(minutes=30)
+    app.permanent_session_lifetime = timedelta(minutes=30)
     app.run(host='0.0.0.0', threaded = True)
             
