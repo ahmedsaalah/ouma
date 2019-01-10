@@ -70,7 +70,7 @@ def adminProducts():
     if 'id' in login_session :
         from pprint import pprint
         products = product.query.filter().all()
-        pprint(vars(products))
+        repr(products)
         
         return render_template('adminProducts.html',products=products)
     else :
