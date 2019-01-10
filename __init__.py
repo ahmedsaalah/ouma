@@ -70,8 +70,10 @@ def adminProducts():
     if 'id' in login_session :
         from pprint import pprint
         products = product.query.filter().all()
+        from pprint import pprint
         repr(products)
-        
+        print("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww+++++++++++++++++++++++++++++++++++++++++++++")
+        print(login_session['id'])
         return render_template('adminProducts.html',products=products)
     else :
         return redirect(url_for('HomePage'))
