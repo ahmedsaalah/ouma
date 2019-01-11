@@ -114,7 +114,7 @@ td {
                                      <td nowrap>{{order.timestamp}}</td>
                                      <td nowrap>{{order.email}}</td>
                                      <td nowrap>{{order.cost}}</td>
-                                     <td nowrap><input type="checkbox" name="vehicle" value="Bike"> <br></td>
+                                     <td nowrap><input  data-id='{{order.id}}'  class='DoneBtn' type="checkbox" > <br></td>
 <td>
                                      
                                     
@@ -135,7 +135,14 @@ td {
 
         <script>
         
-        
+    
+        $(document).on("click",".DoneBtn",function () {
+    
+  
+    var id=$(this).data('id');
+alert(id);
+        }
+
     
     $(document).on("click",".EditEmpBtn",function () {
     
