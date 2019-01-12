@@ -141,7 +141,24 @@ td {
   
     var id=$(this).data('id');
 alert(id);
-        }
+
+  
+$.ajax({
+                     type: 'POST', 
+                     url: "{{url_for('DeleteOrder')}}",
+                     data: {orderID : id},
+                     success: function (data) {
+
+                        location.reload();
+                     }
+                     
+             });
+
+
+
+
+
+        });
 
     
     $(document).on("click",".EditEmpBtn",function () {

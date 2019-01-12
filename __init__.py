@@ -70,11 +70,7 @@ def adminProducts():
     if 'id' in login_session :
         from pprint import pprint
         products = product.query.filter().all()
-        print("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww+++++++++++++++++++++++++++++++++++++++++++++")
-        print(products)
-        repr(products)
-        print("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww+++++++++++++++++++++++++++++++++++++++++++++")
-        print(login_session['id'])
+
         return render_template('adminProducts.html',products=products)
     else :
         return redirect(url_for('HomePage'))
@@ -107,6 +103,19 @@ def orderAdmin():
         return redirect(url_for('HomePage'))
 
 
+
+
+
+
+@app.route('/DeleteOrder', methods=['POST','GET'])
+
+def DeleteOrder():
+    orderID =request.form["orderID"]
+
+    orders = order.query.filter_by(id=orderID).first()
+    orders.checkDone = 1
+    db.session.commit()
+    return "DONE"    
 
 
 
