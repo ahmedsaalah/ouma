@@ -8,7 +8,7 @@ class order(db.Model):
    email = db.Column(db.String(100))
    cost = db.Column( db.Integer)
    timestamp = db.Column(db.DateTime, index=True, default=datetime.now)
-   checkDone = db.Column(db.Integer)
+   checkDone = db.Column(db.Integer,default =0)
    notes=  db.Column(db.String(3024))  
 
    
