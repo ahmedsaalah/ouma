@@ -95,7 +95,7 @@ def contactAdmin():
 def orderAdmin():
     if 'id' in login_session :
 
-        orders = order.query.filter_by(checkDone=0).all()
+        orders = order.query.filter_by(checkDone=1).all()
         
 
         return render_template('orders.html',orders=orders)
