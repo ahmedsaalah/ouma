@@ -8,7 +8,7 @@ from datetime import timedelta
 import json
 import os
 from werkzeug.utils import secure_filename
-UPLOAD_FOLDER = 'static/uploads'
+UPLOAD_FOLDER = '/var/www/ouma/ouma/static/uploads'
 ALLOWED_EXTENSIONS = set([ 'png', 'jpg', 'jpeg'])
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 import datetime
