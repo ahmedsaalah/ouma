@@ -221,6 +221,8 @@ def removeFromCart():
             print("++++++++++++++++")
 
             index = arrayPid.index(id)
+            print(index)
+            print("++++++++++++++++")
             del arrayPid[index]
             del arrOccurances[index]
             
