@@ -26,8 +26,9 @@
 							<th class="column-3 p-l-70">Price</th>
 							<th class="column-4 p-l-70">Quantity</th>
 							<th class="column-5">Total</th>
+							<th class="column-5">Delete</th>
 						</tr>
-						
+				
 						{% if products %} 
 						<tbody id="tbodyid">
 						{% for product in products %}
@@ -55,7 +56,12 @@
 					
 							</td>
 							<td class="column-5">{{product.price}} EGP</td>
-							<td class="column-5"></td><a class="delete" title="Delete" onClick='DeletefromCart({{ product.id}})' data-toggle="tooltip">delete</a>
+							<td class="column-5"><a class="delete" title="Delete" onClick='DeletefromCart({{ product.id}})' data-toggle="tooltip"><i class="fa fa-trash"></i></a></td>
+							
+							
+							
+							
+							
 						</td>
 						</tr>
 						{% endfor  %}
