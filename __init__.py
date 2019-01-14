@@ -214,21 +214,17 @@ def removeFromCart():
         arrayPid = login_session["productid"]
         arrOccurances = login_session["productocc"]
         if id in arrayPid :
-            print("=================")
-            print(id)
-            print("=================")
-            print(arrayPid)
-            print("++++++++++++++++")
+
 
             index = arrayPid.index(id)
-            print(index)
-            print("++++++++++++++++")
+
             arrayPid.remove(index)
             arrOccurances.remove(index)
-            print(arrayPid)
+
             
     
-
+    login_session["productid"] = arrayPid
+    login_session["productocc"] = arrOccurances
     value =Cartvalue()
     return value
 
