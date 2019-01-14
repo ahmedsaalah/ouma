@@ -55,7 +55,7 @@
 									</button> -->
 					
 							</td>
-							<td class="column-5">{{product.price}} EGP</td>
+							<td class="column-5">{{product.price*arrOccurances[loop.index-1]}} EGP</td>
 							<td class="column-5"><a class="delete" title="Delete" onClick='DeletefromCart({{ product.id}})' data-toggle="tooltip"><i class="fa fa-trash"></i></a></td>
 							
 							

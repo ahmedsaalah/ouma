@@ -209,6 +209,9 @@ def removeFromCart():
     id =request.form["pid"]
     
     if 'productid' in login_session :
+        print("=================")
+        print(id)
+        print("=================")
 
         arrayPid = login_session["productid"]
         arrOccurances = login_session["productocc"]
