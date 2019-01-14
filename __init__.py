@@ -202,6 +202,26 @@ def ClearCart():
         login_session.clear()
     return "0"
     
+@app.route('/removeFromCart', methods=['POST','GET'])
+
+def removeFromCart():
+
+    id =request.form["pid"]
+    
+    if 'productid' in login_session :
+
+        arrayPid = login_session["productid"]
+        arrOccurances = login_session["productocc"]
+        if id in arrayPid :
+
+            index = arrayPid.index(id)
+            del arrayPid[index]
+            del arrOccurances[index]
+            
+    
+
+    value =Cartvalue()
+    return value
 
 @app.route('/addToCart', methods=['POST','GET'])
 

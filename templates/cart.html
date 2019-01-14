@@ -33,7 +33,7 @@
 						{% for product in products %}
 						<tr class="table-row">
 							<td class="column-1">
-								<div class="cart-img-product b-rad-4 ">
+								<div class="cart-img-product b-rad-4 o-f-hidden">
 									<img src="/static/uploads/{{product.picture}}" alt="IMG-PRODUCT">
 								</div>
 							</td>
@@ -55,6 +55,8 @@
 					
 							</td>
 							<td class="column-5">{{product.price}} EGP</td>
+							<td class="column-5"></td><a class="delete" title="Delete" onClick='DeletefromCart({{ product.id}})' data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+						</td>
 						</tr>
 						{% endfor  %}
 					</tbody>
@@ -217,6 +219,32 @@
 			minimumResultsForSearch: 20,
 			dropdownParent: $('#dropDownSelect2')
 		});
+
+
+
+
+
+
+		function DeletefromCart(id)
+	 {		var data=
+      {
+      pid : id
+    
+    
+    };
+		
+	
+
+    $.post("{{ url_for('removeFromCart')}}",data,function(data){
+    
+    
+		document.getElementById("cartvalue").textContent=data;
+		location.reload();
+    });
+	 }
+
+
+
 
 		function ClearCart()
 	 {		var data=
