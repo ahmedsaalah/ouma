@@ -218,8 +218,8 @@ def removeFromCart():
 
             index = arrayPid.index(id)
 
-            arrayPid.remove(index)
-            arrOccurances.remove(index)
+            del arrayPid[index]
+            del arrOccurances[index]
 
             
     
