@@ -448,11 +448,9 @@ def About():
 
 
     abo = aboutdb.query.filter().first()
-    print("==================")
-    print(abo.message)
-    print("==================")
 
-    return render_template('about.html',abouts=abo)
+
+    return render_template('about.html',about=abo)
 
 
 @app.route('/Contact', methods=['POST','GET'])
