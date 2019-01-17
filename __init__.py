@@ -452,8 +452,8 @@ def About():
     print(abo.message)
     print("==================")
 
-    return render_template('about.html',abouts=abo)
-
+    # return render_template('about.html',abouts=abo)
+    return str(abo.message)
 
 @app.route('/Contact', methods=['POST','GET'])
 
