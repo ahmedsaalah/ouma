@@ -131,7 +131,7 @@ def aboutAdmin():
 
 
             abo = aboutdb.query.filter().first()
-            if  'msg' in request.args:
+            if  'msg' in request.form:
                 abo.message =request.form["msg"]
                 print("msg")
                 print(request.form["msg"])
