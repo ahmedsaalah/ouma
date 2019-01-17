@@ -133,6 +133,8 @@ def aboutAdmin():
             abo = aboutdb.query.filter().first()
             if  'msg' in request.args:
                 abo.message =request.form["msg"]
+                print("msg")
+                print(request.form["msg"])
 
             if 'img' in request.files:
 
@@ -142,6 +144,8 @@ def aboutAdmin():
                 filename = secure_filename(file.filename)
                 file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
                 abo.img = filename
+                print("image")
+                print(filename)
 
                 
             db.session.commit()
@@ -445,7 +449,7 @@ def About():
     """ returns index page """
 
 
-    abo = aboutdb.query.filter().all()
+    abo = aboutdb.query.filter().all()[0]
     
 
 

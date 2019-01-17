@@ -1,4 +1,6 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %}
+{% block title %}Product{% endblock %}
+{% block content %}
 	<!-- Title Page -->
 	<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url({{ url_for('static',filename='images/heading-pages-02.jpg')}});">
 		<h2 class="l-text2 t-center">
@@ -195,7 +197,7 @@
 						<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
 							<!-- Block2 -->
 							<div class="block2">
-									{% if product.price == product.oldPrice %}
+									{% if product.oldPrice > product.price %}
 									<div class="block2-img wrap-pic-w of-hidden pos-relative ">
 								{% else %}
 								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
@@ -224,7 +226,7 @@
 
 
 
-									{% if product.price == product.oldPrice %}
+									{% if product.price > product.oldPrice %}
 									<span class="block2-price m-text6 p-r-5">
 											{{product.price}}  EGP
 									</span>

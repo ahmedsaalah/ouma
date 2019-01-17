@@ -1,0 +1,11 @@
+1-el title bta3t pages el shop w about w contact kolaha m3mola "Home"                                                            -Done
+2-bos 3mlt order w b3at msg w ktbt fesa fel phone wel mail w byb3at brdo
+3-single button w fe fel about zyaha                                                                                             -Done
+4-fo2 el name fe "Calculate shipping" de bthay2ly ttshal b2a tlama msh hy-calcualte 7aga                                         -Done
+5-ana kda 7awelt a3mel order wel cart fadya
+6-el text boxes de m7taga padding kda
+7-ma grbt a-add product w 7tet fesa msh integer aw kda edany server error
+8-lw el 2 prices mtl3osh ad b3d yb2a sale 3la tol
+9- sort aw filter lel messages wel orders fel panel fel messages wel orders
+10-ana grbt a-add to cart w amsa7 el item mn gowa el cart w b3den a3ml checkout ,, 3amal el order 3ady
+11-ana kont grbt a-add sora y3ny m3 el klam elly ana katbo da w 3mlt submit ,, el sora et3mlha add bs el text ra7 fel gazama
