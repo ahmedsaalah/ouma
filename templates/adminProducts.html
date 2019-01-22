@@ -94,71 +94,72 @@
 
 
 <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
+            <div class="modal-dialog">
         
           <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Edit product</h4>
-            </div>
-            <form action="{{url_for('editProduct')}}" method="post" >
-                  
-                  
-                  <div class="form-group formLayout" id="formlayout"> 
-                  
-                  <input type="hidden" name="productId" id="eid"  readonly="true"/>
-                  </div>
-                  <div class="form-group">
-                  <label for="eaddress"></label>
-                     <p>price</p>
-                   <input type="text" class="form-control" id="eprice" name="price" placeholder="">
-                  </div>
-                  
-                  
-                  <div class="form-group">
-                  <label for="ename"></label> 
-                  <p>old Price</p>
-                  <input type="text" class="form-control" id="eoprice" name="oldPrice" placeholder="">
-                  </div>
+                 <div class="modal-content">
+                            <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Edit product</h4>
+                            </div>
+                                    <form action="{{url_for('editProduct')}}" method="post" >
+                                        
+                                        
+                                        <div class="form-group " id="formlayout"> 
+                                        
+                                        <input type="hidden" name="productId" id="eid"  readonly="true"/>
+                                        </div>
+                                        <div class="form-group">
+                                        <label for="eaddress"></label>
+                                            <p>price</p>
+                                        <input type="text" class="form-control" id="eprice" name="price" placeholder="">
+                                        </div>
+                                        
+                                        
+                                        <div class="form-group">
+                                        <label for="ename"></label> 
+                                        <p>old Price</p>
+                                        <input type="text"  id="eoprice" name="oldPrice" placeholder="">
+                                        </div>
 
 
-                  
-                  <div class="form-group">
-                  <label for="eaddress"></label>
-                    <p>category</p>
+                                        
+                                        <div class="form-group">
+                                                <label for="eaddress"></label>
+                                                    <p>category</p>
 
-                    
-                    <select  id="mymultiselect" id="ecategory" name="category">         
-                            <option value="1">Leather</option>       
-                            <option value="2">Belt Bags</option>       
-                            <option value="3">Crossbody</option>
-                            <option value="4">Large Bags</option>
-                            <option value="5">Handbags</option>
-                            <option value="6">min bags</option>
-                    </select>
-
-
-
-
-                  </div>
+                                                    
+                                                    <select  id="mymultiselect" id="ecategory" name="category">         
+                                                            <option value="1">Leather</option>       
+                                                            <option value="2">Belt Bags</option>       
+                                                            <option value="3">Crossbody</option>
+                                                            <option value="4">Large Bags</option>
+                                                            <option value="5">Handbags</option>
+                                                            <option value="6">min bags</option>
+                                                    </select>
 
 
 
-                  
 
-                     
-                  
-                  
-                     <button type="submit" class="btn btn-default" >Done</button>
-             
-              
-                  </form>
+                                        </div>
+
+
+
+                                        
+
+                                            
+                                        
+                                        
+                                            <button type="submit" class="btn btn-default" >Done</button>
+                                    
+                                    
+                                    </form>
 
  
-          </div>
+                 </div>
           </div>
     </div>
+    
 <script type="text/javascript">
 	$(document).on("click", ".delete", function(){
         $(this).parents("tr").remove();
