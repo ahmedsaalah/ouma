@@ -101,7 +101,11 @@ function isInt(value) {
 						return false;
 				}
 
-				
+								var cat = document.forms["form"]["cat"].value;
+				if (cat == "") {
+					alert("you must choose the category");
+					return false;
+				}
 
 
 
