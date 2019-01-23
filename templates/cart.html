@@ -97,7 +97,7 @@
 			</div> -->
 
 			<!-- Total -->
-		<form action="{{url_for('makeOrder')}}" method="POST">
+		<form action="{{url_for('makeOrder')}}" onsubmit="return validateForm()" name ="form" method="POST">
 			<div class="bo9 w-size18 p-l-40 p-r-40 p-t-30 p-b-38 m-t-30 m-r-0 m-l-auto p-lr-15-sm">
 				<h5 class="m-text20 p-b-24">
 					Cart Totals
@@ -133,22 +133,22 @@
 
 			
 						<div class="size13 bo4 m-b-22">
-							<input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="name" placeholder="Name" required>
+							<input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="name" minlength ="3" placeholder="Name" required>
 						</div>
 						<div class="size13 bo4 m-b-22">
-							<input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="city" placeholder="City" required>
+							<input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="city" minlength ="3" placeholder="City" required>
 						</div>
 						<div class="size13 bo4 m-b-22">
-							<input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="address" placeholder="Address" required>
+							<input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="address"  minlength ="5" placeholder="Address" required>
 						</div>
 						<div class="size13 bo4 m-b-22">
 							<input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="phone" placeholder="Phone" required>
 						</div>
 						<div class="size13 bo4 m-b-22">
-							<input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="email" placeholder="Email">
+							<input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="email" placeholder="Email" >
 						</div>
 						<div class="size25 bo4 m-b-40">
-							<textarea class="sizefull s-text7 p-l-15 p-r-15" type="text" name="notes" placeholder="Notes"></textarea>
+							<textarea class="sizefull s-text7 p-l-15 p-r-15" type="text" name="notes" placeholder="Notes About address landmark "></textarea>
 						</div>
 
 
@@ -284,6 +284,100 @@
     })(jQuery);
 
 
+
+
+			function validateForm() {
+				var name = document.forms["form"]["name"].value;
+				if (name == "") {
+					alert("Name must be filled out");
+					return false;
+				}
+
+				var city = document.forms["form"]["city"].value;
+				if (city == "") {
+					alert("city must be filled out");
+					return false;
+				}
+
+				var phone = document.forms["form"]["phone"].value;
+				var phoneno = /^\d{11}$/;
+					if((phone.value.match(phoneno)))
+							{
+						return true;
+							}
+						else
+							{
+							alert("message");
+							return false;
+							}
+
+
+
+
+
+
+				if (phone == "")
+
+				{
+						alert("price is not an integer");
+						return false;
+				}
+				
+
+
+
+
+				var mob = /^[1-9]{1}[0-9]{9}$/;
+				if (phone.length != 11) 
+				{ 
+					
+					alert("Invalid mobile number must be eleven digits")
+						return false;
+
+				 }
+				var txtMobile = phone 
+				if (mob.test(txtMobile.value) == false) {
+					alert("Please enter valid mobile number.");
+					
+					return false;
+
+
+				}
+
+
+								var address = document.forms["form"]["address"].value;
+		
+				if (address == "") {
+					alert("you must enter the address");
+					return false;
+				}
+				
+				var email = document.forms["form"]["email"].value;
+
+				var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+   				
+				   if (!re.test(String(email).toLowerCase()))
+				   {alert("you must enter your email");
+					   return false;
+				   }
+				   
+				var notes = document.forms["form"]["notes"].value;
+				if (notes == "") {
+					alert("you must enter the notes in order to reach you quickly ");
+					return false;
+				}
+				
+
+
+			}
+
+
+
+
+		
+						
+						
+						
 
 
 	</script>

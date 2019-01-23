@@ -5,18 +5,14 @@
 11-ana kont grbt a-add sora y3ny m3 el klam elly ana katbo da w 3mlt submit ,, el sora et3mlha add bs el text ra7 fel gazama      -Done
 7-ma grbt a-add product w 7tet fesa msh integer aw kda edany server error                                                        -Done
 
+6-el text boxes de m7taga padding kda                                                                                             -Done
+
 
 --order 
 2-bos 3mlt order w b3at msg w ktbt fesa fel phone wel mail w byb3at brdo
 
 5-ana kda 7awelt a3mel order wel cart fadya
 10-ana grbt a-add to cart w amsa7 el item mn gowa el cart w b3den a3ml checkout ,, 3amal el order 3ady
-
-
-
-overall
-6-el text boxes de m7taga padding kda
-
 
 orders 
 9- sort aw filter lel messages wel orders fel panel fel messages wel orders
