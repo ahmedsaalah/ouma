@@ -284,6 +284,12 @@
     })(jQuery);
 
 
+	function isInt(value) {
+  return !isNaN(value) && 
+         parseInt(Number(value)) == value && 
+         !isNaN(parseInt(value, 10));
+}
+
 
 
 			function validateForm() {
@@ -334,24 +340,25 @@
 					alert("Invalid mobile number must be eleven digits")
 						return false;
 
-				 }
-				var txtMobile = phone 
-				if (mob.test(txtMobile.value) == false) {
-					alert("Please enter valid mobile number.");
-					
-					return false;
+				 
+
+
 
 
 				}
+				if (!isInt(phone))
+
+{
+		alert("phone must be digits ");
+		return false;
+}
+
+
 
 
 								var address = document.forms["form"]["address"].value;
 		
-				if (address == "") {
-					alert("you must enter the address");
-					return false;
-				}
-				
+	
 				var email = document.forms["form"]["email"].value;
 
 				var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

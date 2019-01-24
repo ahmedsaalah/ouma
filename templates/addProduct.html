@@ -109,6 +109,14 @@ function isInt(value) {
 				}
 
 
+				$.get("{{ url_for('Cartvalue')}}",function(data){
+    
+				if(data == "0")
+				{
+					
+					alert("Cart is empty ,Cannot make order with cart empty");
+					return false;
+				}
 
 
 			}
