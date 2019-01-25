@@ -345,7 +345,7 @@
 
 
 							
-		
+console.log(phone);
 	
 				var email = document.forms["form"]["email"].value;
 				
@@ -355,13 +355,13 @@
 				   {alert("you must enter your email");
 					   return false;
 				   }
-				   
+				   console.log(email);
 				var notes = document.forms["form"]["notes"].value;
 				if (notes == "") {
 					alert("you must enter the notes in order to reach you quickly ");
 					return false;
 				}
-				
+				console.log(notes);
 				$.get("{{ url_for('Cartvalue')}}",function(data){
     
 				if (data =="0")
@@ -372,7 +372,7 @@
 				}
 
 
-			}
+			});
 
 
 
