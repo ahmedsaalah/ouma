@@ -336,16 +336,15 @@
 				}
 				if (!isInt(phone))
 
-{
-		alert("phone must be digits ");
-		return false;
-}
+				{
+						alert("phone must be digits ");
+						return false;
+				}
 
 
 
 
-							
-console.log(phone);
+
 	
 				var email = document.forms["form"]["email"].value;
 				
@@ -355,15 +354,15 @@ console.log(phone);
 				   {alert("you must enter your email");
 					   return false;
 				   }
-				   console.log(email);
+				 
 				var notes = document.forms["form"]["notes"].value;
 				if (notes == "") {
 					alert("you must enter the notes in order to reach you quickly ");
 					return false;
 				}
-				console.log(notes);
+				
 				$.get("{{ url_for('Cartvalue')}}",function(data){
-    alert(data)
+    
 				if (data =="0")
 				{
 					alert("you can't make order with empty cart!! ");
@@ -374,7 +373,7 @@ console.log(phone);
 
 			});
 
-
+				return false;
 
 
 		
