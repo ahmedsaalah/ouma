@@ -306,19 +306,7 @@
 				}
 
 				var phone = document.forms["form"]["phone"].value;
-				var phoneno = /^\d{11}$/;
-					if((phone.value.match(phoneno)))
-							{
-						return true;
-							}
-						else
-							{
-							alert("message");
-							return false;
-							}
-
-
-
+	
 
 
 
@@ -356,11 +344,11 @@
 
 
 
-								var address = document.forms["form"]["address"].value;
+							
 		
 	
 				var email = document.forms["form"]["email"].value;
-
+				
 				var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
    				
 				   if (!re.test(String(email).toLowerCase()))
@@ -374,6 +362,14 @@
 					return false;
 				}
 				
+				$.get("{{ url_for('Cartvalue')}}",function(data){
+    
+				if (data =="0")
+				{
+					alert("you can't make order with empty cart!! ");
+					return false;
+
+				}
 
 
 			}
