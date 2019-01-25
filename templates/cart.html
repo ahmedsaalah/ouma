@@ -363,7 +363,7 @@ console.log(phone);
 				}
 				console.log(notes);
 				$.get("{{ url_for('Cartvalue')}}",function(data){
-    
+    alert(data)
 				if (data =="0")
 				{
 					alert("you can't make order with empty cart!! ");
