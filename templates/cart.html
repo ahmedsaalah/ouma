@@ -360,20 +360,25 @@
 					alert("you must enter the notes in order to reach you quickly ");
 					return false;
 				}
-				
+				var da=null;
 				$.get("{{ url_for('Cartvalue')}}",function(data){
-    
-				if (data =="0")
+					da =data;
+					alert(data)
+
+
+			});
+			alert(data)
+			if (da=="0")
 				{
+
 					alert("you can't make order with empty cart!! ");
 					return false;
 
 				}
 
 
-			});
 
-				return false;
+				
 
 
 		
