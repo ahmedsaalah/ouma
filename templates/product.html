@@ -199,7 +199,7 @@
 							<div class="block2">
 									{% if product.oldPrice > product.price %}
 									<div class="block2-img wrap-pic-w of-hidden pos-relative ">
-								{% else %}
+										{% elif product.oldPrice > product.price %}
 								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
 								{% endif %}
 									<img src= "/static/uploads/{{product.picture}}"alt="IMG-PRODUCT">
