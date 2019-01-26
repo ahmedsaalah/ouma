@@ -231,6 +231,12 @@
 											{{product.price}}  EGP
 									</span>
 
+									{% elif product.price == product.oldPrice %}
+									<span class="block2-price m-text6 p-r-5">
+											{{product.price}}  EGP
+									</span>
+
+
 
 								    {% elif product.oldPrice > product.price %}
 									<span class="block2-oldprice m-text7 p-r-5">
