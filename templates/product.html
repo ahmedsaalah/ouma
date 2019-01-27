@@ -199,7 +199,7 @@
 							<div class="block2">
 									{% if product.oldPrice > product.price %}
 									<div class="block2-img wrap-pic-w of-hidden pos-relative ">
-										{% elif product.oldPrice > product.price %}
+								{% else %}
 								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
 								{% endif %}
 									<img src= "/static/uploads/{{product.picture}}"alt="IMG-PRODUCT">
@@ -230,12 +230,6 @@
 									<span class="block2-price m-text6 p-r-5">
 											{{product.price}}  EGP
 									</span>
-
-									{% elif product.price == product.oldPrice %}
-									<span class="block2-price m-text6 p-r-5">
-											{{product.price}}  EGP
-									</span>
-
 
 
 								    {% elif product.oldPrice > product.price %}
@@ -365,7 +359,6 @@
 	    // filterBar.noUiSlider.on('update', function( values, handle ) {
 	    //     skipValues[handle].innerHTML = Math.round(values[handle]) ;
 	    // });
-
 		function ClearCart()
 	 {		var data=
       {
@@ -381,12 +374,8 @@
     
     
 		document.getElementById("cartvalue").textContent=data;
-
     });
 	 }
-
-
-
 	 function addToCart(id)
 	 {		var data=
       {
