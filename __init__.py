@@ -81,7 +81,7 @@ def adminProducts():
 def contactAdmin():
     if 'id' in login_session :
 
-        contacts = contact.query.filter(checkDone=0).all()
+        contacts = contact.query.filter_by(checkDone=0).all()
         
 
         return render_template('contactAdmin.html',contacts=contacts)
