@@ -82,10 +82,10 @@ def contactAdmin():
     if 'id' in login_session :
 
         contacts = contact.query.filter_by(checkDone=0).all()
-        for contact in contacts:
-            print(contact.checkDone)
+        for co in contacts:
+            print(co.checkDone)
             print("====================================")
-            print(contact.message)
+            print(co.message)
         
 
         return render_template('contactAdmin.html',contacts=contacts)
