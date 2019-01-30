@@ -82,6 +82,10 @@ def contactAdmin():
     if 'id' in login_session :
 
         contacts = contact.query.filter_by(checkDone=0).all()
+        for contact in contacts:
+            print(contact.checkDone)
+            print("====================================")
+            print(contact.message)
         
 
         return render_template('contactAdmin.html',contacts=contacts)
@@ -96,6 +100,7 @@ def orderAdmin():
     if 'id' in login_session :
 
         orders = order.query.filter_by(checkDone=0).all()
+
         
 
         return render_template('orders.html',orders=orders)
