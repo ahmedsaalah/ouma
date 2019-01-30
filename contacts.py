@@ -6,14 +6,16 @@ class contact(db.Model):
    message = db.Column(db.String(1024)) 
    phone = db.Column(db.String(100))
    email = db.Column(db.String(100))
+   checkDone = db.Column(db.Integer,default =0)
    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
 
 
-def __init__(self, name, message, phone, email, timestamp):
+def __init__(self, name, message, phone, email, checkDone,timestamp):
    self.name = name
    self.message = message
    self.phone = phone
    self.email = email
+   self.checkDone=checkDone
    self.timestamp = timestamp
 
 

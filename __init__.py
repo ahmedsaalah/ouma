@@ -81,7 +81,7 @@ def adminProducts():
 def contactAdmin():
     if 'id' in login_session :
 
-        contacts = contact.query.filter().all()
+        contacts = contact.query.filter(checkDone=0).all()
         
 
         return render_template('contactAdmin.html',contacts=contacts)
@@ -114,6 +114,17 @@ def DeleteOrder():
 
     orders = order.query.filter_by(id=orderID).first()
     orders.checkDone = 1
+    db.session.commit()
+    return "DONE"    
+
+
+@app.route('/DeleteMsg', methods=['POST','GET'])
+
+def DeleteMsg():
+    msgID =request.form["msgID"]
+
+    contacts = contact.query.filter_by(id=msgID).first()
+    contact.checkDone = 1
     db.session.commit()
     return "DONE"    
 

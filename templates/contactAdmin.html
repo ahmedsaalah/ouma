@@ -110,7 +110,7 @@ td {
                             
                                      <td nowrap>{{contact.timestamp}}</td>
                                      <td nowrap>{{contact.message}}</td>
-
+                                     <td nowrap><input  data-id='{{contact.id}}'  class='DoneBtn' type="checkbox" > <br></td>
 
                                      
                         </tr>
@@ -122,7 +122,33 @@ td {
     </div>     
 
 </body>
+<script>
+        
+    
+    $(document).on("click",".DoneBtn",function () {
 
+
+var id=$(this).data('id');
+
+
+
+$.ajax({
+                 type: 'POST', 
+                 url: "{{url_for('DeleteMsg')}}",
+                 data: {msgID : id},
+                 success: function (data) {
+
+                    location.reload();
+                 }
+                 
+         });
+
+
+
+
+
+    });
+</script>
 
         
 </html>                            {% endblock  %}
