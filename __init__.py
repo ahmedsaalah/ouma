@@ -81,7 +81,8 @@ def adminProducts():
 def contactAdmin():
     if 'id' in login_session :
 
-        contacts = contact.query.filter_by(checkDone=0).all()
+        #contacts = contact.query.filter_by(checkDone=0).all()
+        contacts = contact.query.filter().all()
         for co in contacts:
             print(co.checkDone)
             print("====================================")
