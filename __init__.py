@@ -129,7 +129,7 @@ def DeleteMsg():
     msgID =request.form["msgID"]
 
     contacts = contact.query.filter_by(id=msgID).first()
-    contact.checkDone = 1
+    contacts.checkDone = 1
     db.session.commit()
     return "DONE"    
 
