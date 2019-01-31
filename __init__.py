@@ -92,6 +92,15 @@ def contactAdmin():
     else :
         return redirect(url_for('HomePage'))
 
+@app.route('/DeleteMsg', methods=['POST','GET'])
+
+def DeleteMsg():
+    msgID =request.form["msgID"]
+
+    contacts = contact.query.filter_by(id=msgID).first()
+    contacts.checkDone = 1
+    db.session.commit()
+    return "DONE"    
 
 
 @app.route('/ordersAdmin')
@@ -123,15 +132,6 @@ def DeleteOrder():
     return "DONE"    
 
 
-@app.route('/DeleteMsg', methods=['POST','GET'])
-
-def DeleteMsg():
-    msgID =request.form["msgID"]
-
-    contacts = contact.query.filter_by(id=msgID).first()
-    contacts.checkDone = 1
-    db.session.commit()
-    return "DONE"    
 
 
 
