@@ -22,9 +22,7 @@
 						<h4 class="m-text14 p-b-7">
 							Categories
 						</h4>
-					
 						<ul class="p-b-54">
-							
 							{%if category == 0 %}
 							<li class="p-t-4">
 								<a href="#" class="s-text13 active1">
@@ -32,28 +30,24 @@
 								</a>
 							</li>
 							{%else %}
-							<li class="p-t-4">
+								<li class="p-t-4">
 									<a href="{{ url_for('Shop')}}" class="s-text13">
 										All
 									</a>
 								</li>
-
 							{%endif%}
 							{%if category == "1" %}
-						
-							<li class="p-t-4">
-								<a href="#" class="s-text13 active1">
-										Leather
-								</a>
-							</li>
+								<li class="p-t-4">
+									<a href="#" class="s-text13 active1">
+											Leather
+									</a>
+								</li>
 							{%else %}
-							
-							<li class="p-t-4">
+								<li class="p-t-4">
 									<a href="{{ url_for('Shop', category=1)}}" class="s-text13 ">
 											Leather
 									</a>
 								</li>
-
 							{%endif%}
 							{%if category == "2" %}
 							<li class="p-t-4">
@@ -76,21 +70,20 @@
 								</a>
 							</li>
 							{%else %}
-							<li class="p-t-4">
+								<li class="p-t-4">
 									<a href="{{ url_for('Shop', category=3)}}" class="s-text13 ">
 											Crossbody bags
 									</a>
 								</li>
-
 							{%endif%}
 							{%if category == "4" %}
-							<li class="p-t-4">
+								<li class="p-t-4">
 								<a href="#" class="s-text13 active1">
 										Large bags 
 								</a>
 							</li>
 							{%else %}
-							<li class="p-t-4">
+								<li class="p-t-4">
 									<a href="{{ url_for('Shop', category=4)}}" class="s-text13 ">
 											Large bags 
 									</a>
@@ -98,18 +91,17 @@
 
 							{%endif%}
 							{%if category == "5" %}
-							<li class="p-t-4">
+								<li class="p-t-4">
 								<a href="#" class="s-text13 active1">
 										Handbags
 								</a>
 							</li>
 							{%else %}
-							<li class="p-t-4">
+								<li class="p-t-4">
 									<a href="{{ url_for('Shop', category=5)}}" class="s-text13 ">
 											Handbags
 									</a>
 								</li>
-
 							{%endif%}
 							{%if category == "6" %}
 							<li class="p-t-4">
@@ -118,84 +110,22 @@
 								</a>
 							</li>
 							{%else %}
-							<li class="p-t-4">
+								<li class="p-t-4">
 									<a href="{{ url_for('Shop', category=6)}}" class="s-text13 ">
 											Mini bags 
 									</a>
 								</li>
-
 							{%endif%}
-
-
-
 						</ul>
-
-				
-				
-<!-- 
-						<div class="filter-color p-t-22 p-b-50 bo3">
-							<div class="m-text15 p-b-12">
-								Color
-							</div>
-							<ul class="flex-w">
-								<li class="m-r-10">
-									<input class="checkbox-color-filter" id="color-filter1" type="checkbox" name="color-filter1">
-									<label class="color-filter color-filter1" for="color-filter1"></label>
-								</li>
-								<li class="m-r-10">
-									<input class="checkbox-color-filter" id="color-filter2" type="checkbox" name="color-filter2">
-									<label class="color-filter color-filter2" for="color-filter2"></label>
-								</li>
-								<li class="m-r-10">
-									<input class="checkbox-color-filter" id="color-filter3" type="checkbox" name="color-filter3">
-									<label class="color-filter color-filter3" for="color-filter3"></label>
-								</li>
-								<li class="m-r-10">
-									<input class="checkbox-color-filter" id="color-filter4" type="checkbox" name="color-filter4">
-									<label class="color-filter color-filter4" for="color-filter4"></label>
-								</li>
-								<li class="m-r-10">
-									<input class="checkbox-color-filter" id="color-filter5" type="checkbox" name="color-filter5">
-									<label class="color-filter color-filter5" for="color-filter5"></label>
-								</li>
-								<li class="m-r-10">
-									<input class="checkbox-color-filter" id="color-filter6" type="checkbox" name="color-filter6">
-									<label class="color-filter color-filter6" for="color-filter6"></label>
-								</li>
-								<li class="m-r-10">
-									<input class="checkbox-color-filter" id="color-filter7" type="checkbox" name="color-filter7">
-									<label class="color-filter color-filter7" for="color-filter7"></label>
-								</li>
-							</ul>
-						</div> -->
-
-						
 					</div>
 				</div>
 
-				<div class="col-sm-6 col-md-4 col-lg-9 p-b-50">
-					<!--  -->
-					<div class="flex-sb-m flex-w p-b-35">
-						<div class="flex-w">
-							<!-- <div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
-								<select class="selection-2" name="sorting">
-									<option>Default Sorting</option>
-						
-									<option>Price: low to high</option>
-									<option>Price: high to low</option>
-								</select>
-							</div> -->
-
-						</div>
-
-		
-					</div>
-
+				<div class="col-sm-6 col-md-8 col-lg-9 p-b-50">
 					<!-- Product -->
 					<div class="row">
 							{% if products %} {% for product in products %}
-							hiii
-						<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
+
+						<div class="col-sm-12 col-md-6 col-lg-3 p-b-50">
 							<!-- Block2 -->
 							<div class="block2">
 								{% if (product.price > product.oldPrice) or (product.price == product.oldPrice) %}
@@ -273,13 +203,7 @@
 			</div>
 		</div>
 	</section>
-
-
-
 	{% endblock %}
-
-
-
 
 	{% block footer %}
 
@@ -293,8 +217,6 @@
 	<!-- Container Selection -->
 	<div id="dropDownSelect1"></div>
 	<div id="dropDownSelect2"></div>
-
-
 
 <!--===============================================================================================-->
 	<script type="text/javascript" src="{{url_for('static', filename='vendor/jquery/jquery-3.2.1.min.js')}}"></script>

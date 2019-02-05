@@ -23,15 +23,24 @@
 			<div class="container-table-cart pos-relative">
 				<div class="wrap-table-shopping-cart bgwhite">
 					<table class="table-shopping-cart">
-						<tr class="table-head">
-							<th class="column-1"></th>
-							<th class="column-2">Product</th>
-							<th class="column-3 p-l-70">Price</th>
-							<th class="column-4 p-l-70">Quantity</th>
-							<th class="column-5">Total</th>
-							<th class="column-5">Delete</th>
-						</tr>
-				
+						<colgroup>
+							<col width="20%">
+							<col width="20%">
+							<col width="15%">
+							<col width="15%">
+							<col width="20%">
+						<col width="10%">
+						</colgroup>
+						<thead>
+							<tr class="table-head">
+								<th style="text-align:center;"></th>
+								<th style="text-align:center;">Product</th>
+								<th style="text-align:center;">Price</th>
+								<th style="text-align:center;">Quantity</th>
+								<th style="text-align:center;">Total</th>
+								<th style="text-align:center;">Delete</th>
+							</tr>
+						</thead>
 						{% if products %} 
 						<tbody id="tbodyid">
 						{% for product in products %}
@@ -41,30 +50,12 @@
 									<img src="/static/uploads/{{product.picture}}" class="img-responsive" alt="IMG-PRODUCT">
 								</div>
 							</td>
-							<td class="column-2">{{product.name}}</td>
-							<td class="column-3 p-l-70">{{product.price}}</td>
-							<td class="column-4 p-l-70">
-								
-								
-										{{arrOccurances[loop.index-1]}}
-									<!-- <button class="btn-num-product-down color1 flex-c-m size7 bg8 eff2">
-										<i class="fs-12 fa fa-minus" aria-hidden="true"></i>
-									</button>
-
-									<input class="size8 m-text18 t-center num-product" type="number" name="num-product1" value="1">
-
-									<button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2">
-										<i class="fs-12 fa fa-plus" aria-hidden="true"></i>
-									</button> -->
+							<td style="text-align:center;">{{product.name}}</td>
+							<td style="text-align:center;">{{product.price}}</td>
+							<td style="text-align:center;">{{arrOccurances[loop.index-1]}}</td>
+							<td style="text-align:center;">{{product.price*arrOccurances[loop.index-1]}} EGP</td>
+							<td style="text-align:center;"><a class="delete" title="Delete" onClick='DeletefromCart({{ product.id}})' data-toggle="tooltip"><i class="fa fa-trash"></i></a></td>
 					
-							</td>
-							<td class="column-5">{{product.price*arrOccurances[loop.index-1]}} EGP</td>
-							<td class="column-5"><a class="delete" title="Delete" onClick='DeletefromCart({{ product.id}})' data-toggle="tooltip"><i class="fa fa-trash"></i></a></td>
-							
-							
-							
-							
-							
 						</td>
 						</tr>
 						{% endfor  %}
