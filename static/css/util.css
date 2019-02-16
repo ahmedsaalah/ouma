@@ -2361,6 +2361,8 @@
 .wrap-pic-h img {height: 100%;}
 .wrap-pic-max-h img {max-height: 100%;}
 
+.block2-img {max-height: 320px;}
+
 /* ------------------------------------ */
 .wrap-pic-cir {
 	border-radius: 50%;
