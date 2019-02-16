@@ -59,13 +59,13 @@ table {
 
                         {% if contacts %} {% for contact in contacts %}
                         <tr>
-                                 <td style="text-align:center;" nowrap>{{contact.name}}</td>
-                                 <td style="text-align:center;" nowrap>{{contact.phone}}</td>
-                                  <td style="text-align:center;" nowrap>{{contact.email }}</td>
+                                 <td style="text-align:center;" >{{contact.name}}</td>
+                                 <td style="text-align:center;" >{{contact.phone}}</td>
+                                  <td style="text-align:center;" >{{contact.email }}</td>
                             
-                                     <td style="text-align:center;" nowrap>{{contact.timestamp}}</td>
-                                     <td style="text-align:center;" nowrap>{{contact.message}}</td>
-                                     <td style="text-align:center;" nowrap><input  data-id='{{contact.id}}'  class='DoneBtn' type="checkbox" > <br></td>
+                                     <td style="text-align:center;" >{{contact.timestamp}}</td>
+                                     <td style="text-align:center;" >{{contact.message}}</td>
+                                     <td style="text-align:center;" ><input  data-id='{{contact.id}}'  class='DoneBtn' type="checkbox" > <br></td>
 
                                      
                         </tr>
