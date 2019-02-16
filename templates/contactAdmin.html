@@ -30,34 +30,6 @@ table {
 
 
 <div class="container-menu-header">
-    <!-- <div class="topbar">
-        <div class="topbar-social">
-            <a href="#" class="topbar-social-item fa fa-facebook"></a>
-            <a href="#" class="topbar-social-item fa fa-instagram"></a>
-            <a href="#" class="topbar-social-item fa fa-pinterest-p"></a>
-            <a href="#" class="topbar-social-item fa fa-snapchat-ghost"></a>
-            <a href="#" class="topbar-social-item fa fa-youtube-play"></a>
-        </div>
-
-        <span class="topbar-child1">
-            Free shipping for standard order over $100
-        </span>
-
-        <div class="topbar-child2">
-            <span class="topbar-email">
-                fashe@example.com
-            </span>
-
-            <div class="topbar-language rs1-select2">
-                <select class="selection-1" name="time">
-                    <option>USD</option>
-                    <option>EUR</option>
-                </select>
-            </div>
-        </div>
-    </div> -->
-
-  
 
 <body>
     <div class="container">
@@ -66,18 +38,20 @@ table {
         
             </div>
             <table class="table table-bordered">
+                <colgroup>
+                    <col width="25%">
+                    <col width="15%">
+                    <col width="15%">
+                    <col width="15%">
+                    <col width="30%">
+                </colgroup>
                 <thead>
-
-
-                    
                     <tr>
-                        <th>Name</th>
-                        <th>Phone</th>
-                        <th>Email</th>
-                        <th>Time</th>
-                        <th>Message</th>
-                        
-                        
+                        <th style="text-align:center;">Name</th>
+                        <th style="text-align:center;">Phone</th>
+                        <th style="text-align:center;">Email</th>
+                        <th style="text-align:center;">Time</th>
+                        <th style="text-align:center;">Message</th>                        
                     </tr>
                 </thead>
                 <tbody>
@@ -85,13 +59,13 @@ table {
 
                         {% if contacts %} {% for contact in contacts %}
                         <tr>
-                                 <td nowrap>{{contact.name}}</td>
-                                 <td nowrap>{{contact.phone}}</td>
-                                  <td nowrap>{{contact.email }}</td>
+                                 <td style="text-align:center;" nowrap>{{contact.name}}</td>
+                                 <td style="text-align:center;" nowrap>{{contact.phone}}</td>
+                                  <td style="text-align:center;" nowrap>{{contact.email }}</td>
                             
-                                     <td nowrap>{{contact.timestamp}}</td>
-                                     <td nowrap>{{contact.message}}</td>
-                                     <td nowrap><input  data-id='{{contact.id}}'  class='DoneBtn' type="checkbox" > <br></td>
+                                     <td style="text-align:center;" nowrap>{{contact.timestamp}}</td>
+                                     <td style="text-align:center;" nowrap>{{contact.message}}</td>
+                                     <td style="text-align:center;" nowrap><input  data-id='{{contact.id}}'  class='DoneBtn' type="checkbox" > <br></td>
 
                                      
                         </tr>
