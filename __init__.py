@@ -494,14 +494,17 @@ def Contact():
 
 @app.route('/Cartvalue', methods=['POST','GET'])
 def Cartvalue():
-    
-    if 'productocc' in login_session :
-        
-        return str(sum(login_session["productocc"]))
-    else :
-        
-        return "0"
 
+    try:
+
+        if 'productocc' in login_session :
+            print(str(sum(login_session["productocc"])))
+            return str(sum(login_session["productocc"]))
+        else :
+            
+            return "0"
+    except KeyError:
+        return "0"
 
 
 
