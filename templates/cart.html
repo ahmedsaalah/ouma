@@ -352,8 +352,18 @@
 					return false;
 				}
 
-				$.get("{{ url_for('Cartvalue')}}",function(data )
-				{
+var da = 0;
+				$.ajax({
+    url : "{{ url_for('Cartvalue')}}",
+    type : "get",
+    async: false,
+    success : function(data) {
+       da =data;
+       }
+    });
+
+
+
 					if (data=="0" || data == null)
 				{
 
@@ -365,7 +375,6 @@
 
 					
 
-			});
 		
 
 
