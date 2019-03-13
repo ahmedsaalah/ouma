@@ -1408,10 +1408,10 @@ var Dropdown = function ($) {
 
   /**
    * Check for Popper dependency
-   * Popper - https://popper.js.org
+   * Popper - https://popper.min.js.org
    */
   if (typeof Popper === 'undefined') {
-    throw new Error('Bootstrap dropdown require Popper.js (https://popper.js.org)');
+    throw new Error('Bootstrap dropdown require popper.min.js (https://popper.min.js.org)');
   }
 
   /**
@@ -1635,7 +1635,7 @@ var Dropdown = function ($) {
           }
         }
 
-        // Disable Popper.js for Dropdown in Navbar
+        // Disable popper.min.js for Dropdown in Navbar
       };if (this._inNavbar) {
         popperConfig.modifiers.applyStyle = {
           enabled: !this._inNavbar
@@ -2970,10 +2970,10 @@ var Tooltip = function ($) {
 
   /**
    * Check for Popper dependency
-   * Popper - https://popper.js.org
+   * Popper - https://popper.min.js.org
    */
   if (typeof Popper === 'undefined') {
-    throw new Error('Bootstrap tooltips require Popper.js (https://popper.js.org)');
+    throw new Error('Bootstrap tooltips require popper.min.js (https://popper.min.js.org)');
   }
 
   /**

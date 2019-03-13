@@ -23,8 +23,8 @@
  * SOFTWARE.
  */
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('popper.js')) :
-	typeof define === 'function' && define.amd ? define(['popper.js'], factory) :
+	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('popper.min.js')) :
+	typeof define === 'function' && define.amd ? define(['popper.min.js'], factory) :
 	(global.Tooltip = factory(global.Popper));
 }(this, (function (Popper) { 'use strict';
 
@@ -123,12 +123,12 @@ var Tooltip = function () {
    *      How tooltip is triggered - click, hover, focus, manual.
    *      You may pass multiple triggers; separate them with a space. `manual` cannot be combined with any other trigger.
    * @param {HTMLElement} options.boundariesElement
-   *      The element used as boundaries for the tooltip. For more information refer to Popper.js'
-   *      [boundariesElement docs](https://popper.js.org/popper-documentation.html)
-   * @param {Number|String} options.offset=0 - Offset of the tooltip relative to its reference. For more information refer to Popper.js'
-   *      [offset docs](https://popper.js.org/popper-documentation.html)
-   * @param {Object} options.popperOptions={} - Popper options, will be passed directly to popper instance. For more information refer to Popper.js'
-   *      [options docs](https://popper.js.org/popper-documentation.html)
+   *      The element used as boundaries for the tooltip. For more information refer to popper.min.js'
+   *      [boundariesElement docs](https://popper.min.js.org/popper-documentation.html)
+   * @param {Number|String} options.offset=0 - Offset of the tooltip relative to its reference. For more information refer to popper.min.js'
+   *      [offset docs](https://popper.min.js.org/popper-documentation.html)
+   * @param {Object} options.popperOptions={} - Popper options, will be passed directly to popper instance. For more information refer to popper.min.js'
+   *      [options docs](https://popper.min.js.org/popper-documentation.html)
    * @return {Object} instance - The generated tooltip instance
    */
   function Tooltip(reference, options) {
