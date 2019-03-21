@@ -238,17 +238,7 @@
 			dropdownParent: $('#dropDownSelect2')
 		});
 	</script>
-	<style>
 
-
-.zoom:hover {
-  -ms-transform: scale(5); /* IE 9 */
-  -webkit-transform: scale(5); /* Safari 3-8 */
-  transform: scale(5); 
-}
-
-	
-	</style>
 <!--===============================================================================================-->
 	<script type="text/javascript" src="{{url_for('static', filename='vendor/daterangepicker/moment.min.js')}}"></script>
 	<script type="text/javascript" src="{{url_for('static', filename='vendor/daterangepicker/daterangepicker.js')}}"></script>
@@ -275,6 +265,26 @@
 <!--===============================================================================================-->
 	<!-- <script type="text/javascript" src="{{url_for('static', filename='vendor/noui/nouislider.min.js')}}"></script> -->
 	<script type="text/javascript">
+
+
+
+$(document).ready(function(){
+    $("img").toggle("scale",{
+      percent: "80%"
+    },0);
+$('img').hover(function() {
+    $(this).css("cursor", "pointer");
+    $(this).toggle("scale",{
+      percent: "90%"
+    },200);
+
+}, function() {
+    $(this).toggle("scale",{
+      percent: "80%"
+    },200);
+
+});
+});
 		/*[ No ui ]
 	    ===========================================================*/
 	    // var filterBar = document.getElementById('filter-bar');
