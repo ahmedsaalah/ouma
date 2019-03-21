@@ -11,7 +11,7 @@
                     this.t = this.title,
                         this.title = "";
                     var c = (this.t != "") ? "<br/>" + this.t : "";
-                    $("body").append("<p id='preview'><img src='" + this.href + "' alt='Image preview' />" + c + "</p>");
+                    // $("body").append("<p id='preview'><img src='" + this.href + "' alt='Image preview' />" + c + "</p>");
                     $("#preview").css({
                         "top": (e.pageY - defaults.xOffset) + "px",
                         "left": (e.pageX + defaults.yOffset) + "px"
