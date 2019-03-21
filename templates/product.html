@@ -3,15 +3,71 @@
 {% block content %}
 <style>
 
-
-.thumb:hover {
-	border:0; /* IE6 needs this to show large image */
-	z-index:1;
+body {
+	margin:0;
+	padding:40px;
+	background:#fff;
+	font:80% Arial, Helvetica, sans-serif;
+	color:#555;
+	line-height:180%;
 }
 
-.thumb:hover span { 
-	visibility:visible;
-	top:37px; left:37px; 
+h1{
+	font-size:180%;
+	font-weight:normal;
+	color:#555;
+}
+h2{
+	clear:both;
+	font-size:160%;
+	font-weight:normal;
+	color:#555;
+	margin:0;
+	padding:.5em 0;
+}
+a{
+	text-decoration:none;
+	color:#f30;	
+}
+p{
+	clear:both;
+	margin:0;
+	padding:.5em 0;
+}
+pre{
+	display:block;
+	font:100% "Courier New", Courier, monospace;
+	padding:10px;
+	border:1px solid #bae2f0;
+	background:#e3f4f9;	
+	margin:.5em 0;
+	overflow:auto;
+	width:800px;
+}
+
+img{border:none;}
+ul,li{
+	margin:0;
+	padding:0;
+}
+li{
+	list-style:none;
+	float:left;
+	display:inline;
+	margin-right:10px;
+}
+
+
+
+/*  */
+
+.preview{
+	position:absolute;
+	border:1px solid #ccc;
+	background:#333;
+	padding:5px;
+	display:none;
+	color:#fff;
 }
 		
 		
@@ -149,12 +205,9 @@
 								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
 								{% endif %}
 
-								<a class="thumb" href="#">
-									<a class="thumb" href="#"><img src="/static/uploads/{{product.picture}}" alt=""><span>
+								<a href="/static/uploads/{{product.picture}}" class="preview"><img src="/static/uploads/{{product.picture}}" style="max-height: -webkit-fill-available;" alt="gallery thumbnail" /></a>
 
 
-									<img src= "/static/uploads/{{product.picture}}"alt="IMG-PRODUCT"  style="max-height: -webkit-fill-available;">
-								</span></a>
 									<div class="block2-overlay trans-0-4">
 										<!-- <a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
 											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
@@ -266,7 +319,64 @@
 	<script type="text/javascript" src="{{url_for('static', filename='js/slick-custom.min.js')}}"></script>
 <!--===============================================================================================-->
 	<script type="text/javascript" src="{{url_for('static', filename='vendor/sweetalert/sweetalert.min.js')}}"></script>
+
 	<script type="text/javascript">
+(function($) {
+    "use strict";
+    $.fn.anarchytip = function(options) {
+        var defaults = $.extend({
+            xOffset: 10,
+            yOffset: 30
+        }, options);
+        return this.each(function() {
+            var a = $(this);
+            a.each(function(e) {
+                    this.t = this.title,
+                        this.title = "";
+                    var c = (this.t != "") ? "<br/>" + this.t : "";
+                    $("body").append("<p id='preview'><img src='" + this.href + "' alt='Image preview' />" + c + "</p>");
+                    $("#preview").css({
+                        "top": (e.pageY - defaults.xOffset) + "px",
+                        "left": (e.pageX + defaults.yOffset) + "px"
+                    }).fadeIn();
+                },
+                function() {
+                    this.title = this.t;
+                    $("#preview").remove();
+                });
+            a.mousemove(function(e) {
+                $("#preview")
+                    .css("top", (e.pageY - defaults.xOffset) + "px")
+                    .css("left", (e.pageX + defaults.yOffset) + "px");
+            })
+        })
+    }
+})(jQuery);
+
+
+
+
+		$('.preview').anarchytip();
+	</script>
+	<script type="text/javascript">
+
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-36251023-1']);
+_gaq.push(['_setDomainName', 'jqueryscript.net']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+</script>
+
+
+
+
+<script type="text/javascript">
 		$('.block2-btn-addcart').each(function(){
 			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
 			$(this).on('click', function(){
