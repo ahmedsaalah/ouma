@@ -1,77 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Shop{% endblock %}
 {% block content %}
-<style>
 
-body {
-	margin:0;
-	padding:40px;
-	background:#fff;
-	font:80% Arial, Helvetica, sans-serif;
-	color:#555;
-	line-height:180%;
-}
-
-h1{
-	font-size:180%;
-	font-weight:normal;
-	color:#555;
-}
-h2{
-	clear:both;
-	font-size:160%;
-	font-weight:normal;
-	color:#555;
-	margin:0;
-	padding:.5em 0;
-}
-a{
-	text-decoration:none;
-	color:#f30;	
-}
-p{
-	clear:both;
-	margin:0;
-	padding:.5em 0;
-}
-pre{
-	display:block;
-	font:100% "Courier New", Courier, monospace;
-	padding:10px;
-	border:1px solid #bae2f0;
-	background:#e3f4f9;	
-	margin:.5em 0;
-	overflow:auto;
-	width:800px;
-}
-
-img{border:none;}
-ul,li{
-	margin:0;
-	padding:0;
-}
-li{
-	list-style:none;
-	float:left;
-	display:inline;
-	margin-right:10px;
-}
-
-
-
-/*  */
-
-.preview{
-	position:absolute;
-	border:1px solid #ccc;
-	background:#333;
-	padding:5px;
-	display:none;
-	color:#fff;
-}
-		
-		
-</style>
 	<!-- Title Page -->
 	<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url({{ url_for('static',filename='images/heading-pages-02.jpg')}});">
 		<h2 class="l-text2 t-center">
@@ -319,28 +249,6 @@ li{
 	<script type="text/javascript" src="{{url_for('static', filename='js/slick-custom.min.js')}}"></script>
 <!--===============================================================================================-->
 	<script type="text/javascript" src="{{url_for('static', filename='vendor/sweetalert/sweetalert.min.js')}}"></script>
-
-	<script type="text/javascript" src="{{url_for('static', filename='i.js')}}"></script>
-	<script type="text/javascript">
-
-
-
-		$('.preview').anarchytip();
-	</script>
-	<script type="text/javascript">
-
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-36251023-1']);
-_gaq.push(['_setDomainName', 'jqueryscript.net']);
-_gaq.push(['_trackPageview']);
-
-(function() {
-	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-})();
-
-</script>
 
 
 
