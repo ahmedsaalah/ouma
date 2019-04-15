@@ -3,6 +3,7 @@ from users import user
 from contacts import contact
 from orders import order
 from carts import cart
+from categories import categoryobject
 from about import aboutdb
 from datetime import timedelta
 import json
@@ -13,7 +14,13 @@ ALLOWED_EXTENSIONS = set([ 'png', 'jpg', 'jpeg'])
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 import datetime
 from collections import Counter
-# db.create_all()
+db.create_all()
+
+category1 = categoryobject( name="belt bag")
+category2 = categoryobject( name="back bag")
+db.session.add(category1)
+db.session.add(category2)
+db.session.commit()
 
 # product3 = product( name="Leather", price =200, oldPrice=200, picture="1.jpg", category="1",rate=3)
 
@@ -70,8 +77,9 @@ def adminProducts():
     if 'id' in login_session :
         from pprint import pprint
         products = product.query.filter().all()
+        cats =categoryobject.query.filter().all()
 
-        return render_template('adminProducts.html',products=products)
+        return render_template('adminProducts.html',products=products,categories=cats)
     else :
         return redirect(url_for('HomePage'))
 
@@ -83,10 +91,10 @@ def contactAdmin():
 
         contacts = contact.query.filter_by(checkDone=0).all()
         #contacts = contact.query.filter().all()
-        for co in contacts:
-            print(co.checkDone)
-            print("====================================")
-            print(co.message)
+        # for co in contacts:
+        #     print(co.checkDone)
+        #     print("====================================")
+        #     print(co.message)
         
 
         return render_template('contactAdmin.html',contacts=contacts)

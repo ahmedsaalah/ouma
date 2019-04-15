@@ -141,13 +141,18 @@
                                                     <p>category</p>
 
                                                     
-                                                    <select  id="mymultiselect" id="ecategory" name="category">         
-                                                            <option value="1">Leather</option>       
+                                                    <select  id="mymultiselect" id="ecategory" name="category">  
+                                                            {% if categories %} {% for category in categories %}
+                                                            <option value="{{category.id}}">{{category.name}}</option>    
+                                                            
+                                                            {% endfor %}
+
+                                                            <!-- <option value="1">Leather</option>       
                                                             <option value="2">Belt Bags</option>       
                                                             <option value="3">Crossbody</option>
                                                             <option value="4">Large Bags</option>
                                                             <option value="5">Handbags</option>
-                                                            <option value="6">min bags</option>
+                                                            <option value="6">min bags</option> -->
                                                     </select>
 
 
