@@ -3,7 +3,7 @@ from users import user
 from contacts import contact
 from orders import order
 from carts import cart
-from categories import categoryobject
+from categories import category as  categoryobject
 from about import aboutdb
 from datetime import timedelta
 import json
