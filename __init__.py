@@ -373,10 +373,10 @@ def addProduct():
                 
                         
                         
-
+    cats =categoryobject.query.filter().all()
     
     """ returns index page """
-    return render_template('addProduct.html')
+    return render_template('addProduct.html',categories=cats )
 
 @app.route('/Shop/<string:category>/page/<int:page>/',)
 @app.route('/Shop/<string:category>',)
