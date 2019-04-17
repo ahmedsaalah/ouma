@@ -16,11 +16,11 @@ import datetime
 from collections import Counter
 db.create_all()
 
-category1 = categoryobject( name="belt bag")
-category2 = categoryobject( name="back bag")
-db.session.add(category1)
-db.session.add(category2)
-db.session.commit()
+# category1 = categoryobject( name="belt bag")
+# category2 = categoryobject( name="back bag")
+# db.session.add(category1)
+# db.session.add(category2)
+# db.session.commit()
 
 # product3 = product( name="Leather", price =200, oldPrice=200, picture="1.jpg", category="1",rate=3)
 
