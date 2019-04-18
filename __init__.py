@@ -83,6 +83,17 @@ def adminProducts():
     else :
         return redirect(url_for('HomePage'))
 
+@app.route('/categoriespage')
+
+def categoriespage():
+    if 'id' in login_session :
+
+        cats =categoryobject.query.filter().all()
+
+        return render_template('adminCats.html',categories=cats)
+    else :
+        return redirect(url_for('HomePage'))
+
 
 @app.route('/contactAdmin')
 
@@ -327,6 +338,26 @@ def login():
 
 
 
+@app.route('/editCat', methods=['POST','GET'])
+
+def editCat():
+    if 'id' in login_session :
+        id =request.form["catID"]
+        name =request.form["name"]
+
+        
+
+
+        thecat = categoryobject.query.filter_by(id=id).first()
+        thecat.name = name
+  
+        db.session.commit()
+        
+        return redirect(url_for('categoriespage'))
+    else :
+        return redirect(url_for('HomePage'))
+
+    
 
 @app.route('/editProduct', methods=['POST','GET'])
 
@@ -350,6 +381,20 @@ def editProduct():
         return redirect(url_for('HomePage'))
 
     
+
+
+@app.route('/AddCat', methods=['POST'])
+def AddCat():
+
+    if request.method == 'POST' :
+                
+        name =request.form["name"]
+        c1 = categoryobject(name =name)
+        db.session.add(c1)
+        db.session.commit()
+        return redirect(url_for('categoriespage'))
+
+
 
 
 @app.route('/addProduct', methods=['POST','GET'])
