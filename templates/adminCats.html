@@ -102,7 +102,7 @@
 
 </style>
 
-<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModalAdd">Open Modal</button>
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModalAdd">Add Category</button>
 
 <div class="modal fade" id="myModalAdd" role="dialog">
     <div class="modal-dialog">
@@ -195,13 +195,13 @@
         $(this).parents("tr").remove();
 		$(".add-new").removeAttr("disabled");
     });
-function DeleteFunction(productId)
+function DeleteFunction(catID)
 {
   
     $.ajax({
                      type: 'POST', 
-                     url: "{{url_for('DeleteProduct')}}",
-                     data: {productId : productId}
+                     url: "{{url_for('DeleteCat')}}",
+                     data: {catID : catID}
                      
              });
 }
@@ -257,7 +257,7 @@ function DeleteFunction(productId)
                         <th>ID</th>
                         <th>Name</th>
             
-                        
+                        <th>    </th>
                     </tr>
                 </thead>
                 <tbody>

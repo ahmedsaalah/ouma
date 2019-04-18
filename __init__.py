@@ -123,6 +123,20 @@ def DeleteMsg():
     return "DONE"    
 
 
+
+
+@app.route('/DeleteCat', methods=['POST','GET'])
+
+def DeleteCat():
+    msgID =request.form["catID"]
+
+    cat = categoryobject.query.filter_by(id=msgID).first()
+  
+    db.session.delete(cat)
+    db.session.commit()
+    return "DONE"    
+
+
 @app.route('/ordersAdmin')
 
 def orderAdmin():
