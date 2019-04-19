@@ -37,7 +37,7 @@
 							{% for category in categories %}
 
 							<li class="p-t-4">
-								<a href="{{cat.id == category ? '#' ,{{ url_for('Shop', category=cat.id)}} '" class="s-text13 {{'active1' if cat.id == category }}">
+								<a href="{{cat.id == category ? '#' ,{{ url_for('Shop', category=cat.id)}} " class="s-text13 {{'active1' if cat.id == category }}">
 										{{cat.name}}
 								</a>
 							</li>
