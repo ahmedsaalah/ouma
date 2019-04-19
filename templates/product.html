@@ -26,7 +26,7 @@
 						<ul class="p-b-54">
 						
 							<li class="p-t-4">
-								<a href="{%if 0 == category ? %} '#' {%else%}{{ url_for('Shop', category=0)}}{%endif%} " class="s-text13 {{'active1' if category == 0 }}">
+								<a href="{%if 0 == category %} '#' {%else%}{{ url_for('Shop', category=0)}}{%endif%} " class="s-text13 {{'active1' if category == 0 }}">
 									All
 								</a>
 							</li>
