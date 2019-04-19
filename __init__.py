@@ -449,7 +449,7 @@ def Shop(category=0,page =1):
     else:
         
         products = product.query.filter_by(category=category).paginate(page,per_page,error_out=False)
-    categories = categoryobject.filter().all()
+    categories = categoryobject.query.filter().all()
 
 
     return render_template('product.html',categories = categories ,products=products.items,category=category,page=page,pages=products.pages)
