@@ -24,14 +24,27 @@
 							Categories
 						</h4>
 						<ul class="p-b-54">
-							{%if category == 0 %}
+						
 							<li class="p-t-4">
-								<a href="#" class="s-text13 active1">
+								<a href="#" class="s-text13 {{'active1' if category = 0 }}">
 									All
 								</a>
 							</li>
-							{%else %}
-								<li class="p-t-4">
+
+							
+
+							{% if categories %} 
+							{% for category in categories %}
+
+							<li class="p-t-4">
+								<a href="{{cat.id == category ? '#' ,{{ url_for('Shop', category=cat.id)}} '" class="s-text13 {{'active1' if cat.id = category }}">
+										{{cat.name}}
+								</a>
+							</li>
+
+							{%endfor%}
+							{%endif%}
+								<!-- <li class="p-t-4">
 									<a href="{{ url_for('Shop')}}" class="s-text13">
 										All
 									</a>
@@ -39,8 +52,9 @@
 							{%endif%}
 							{%if category == "1" %}
 								<li class="p-t-4">
-									<a href="#" class="s-text13 active1">
-											Leather
+									<a href="#" class="s-text13 {{'active1' if cat == category }}
+									">
+											{{cat.name}}
 									</a>
 								</li>
 							{%else %}
@@ -116,7 +130,7 @@
 											Mini bags 
 									</a>
 								</li>
-							{%endif%}
+							{%endif%} -->
 						</ul>
 					</div>
 				</div>
@@ -338,6 +352,27 @@
 	</script>
 <!--===============================================================================================-->
 	<script src="{{url_for('static', filename='js/main.min.js')}}"></script>
+
+	<script>
+	
+	var hoverSize = [500, 900];
+            
+$('img').hover(function() {
+    $(this).css({
+        height: hoverSize[0],
+        width: hoverSize[1]
+    });
+}, function() {
+     $(this).css({
+        height: "",
+        width: ""
+    });
+});
+
+
+
+	
+	</script>
 
 </body>
 </html>
