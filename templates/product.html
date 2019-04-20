@@ -39,7 +39,7 @@
 							<li class="p-t-4">
 								{{cat.id}}
 								{{category}}
-								<a href="{%if cat.id == category  %} # {%else%}{{ url_for('Shop', category=cat.id)}}{%endif%} " class="s-text13 {%if cat.id == category %}'active1'{%endif%}}">
+								<a href="{%if str(cat.id) == str(category)  %} # {%else%}{{ url_for('Shop', category=cat.id)}}{%endif%} " class="s-text13 {%if cat.id == category %}'active1'{%endif%}}">
 										{{cat.name}}
 								</a>
 							</li>
@@ -64,7 +64,7 @@
 								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
 								{% endif %}
 
-								<a href="/static/uploads/{{product.picture}}" class="preview"><img src="/static/uploads/{{product.picture}}" style="max-height: -webkit-fill-available;" alt="gallery thumbnail" /></a>
+								<a href="/static/uploads/{{product.picture}}" class="preview"><img  id="pic" src="/static/uploads/{{product.picture}}" style="max-height: -webkit-fill-available;" alt="gallery thumbnail" /></a>
 
 
 									<div class="block2-overlay trans-0-4">
@@ -272,7 +272,7 @@
 	
 	var hoverSize = [500, 900];
             
-$('img').hover(function() {
+$('#pic').hover(function() {
 	alert("heeeeh");
     $(this).css({
         height: hoverSize[0],
