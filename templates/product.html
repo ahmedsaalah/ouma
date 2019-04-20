@@ -26,7 +26,7 @@
 						<ul class="p-b-54">
 						
 							<li class="p-t-4">
-								<a href="{%if 0|string == category|string %} # {%else%}{{ url_for('Shop', category=0)}}{%endif%} " class="s-text13 {{ active1 if category|string == '0' }}">
+								<a href="{%if 0|string == category|string %} # {%else%}{{ url_for('Shop', category=0)}}{%endif%} " class="s-text13 {%if '0' == category|string %} active1 {%endif%}">
 									All
 								</a>
 							</li>
@@ -271,9 +271,9 @@
 	
 
             
-$('#pic').hover(function() {
+$('img').hover(function() {
 	var hoverSize = [500, 900];
-	alert("heeeeh");
+
     $(this).css({
         height: hoverSize[0],
         width: hoverSize[1]
