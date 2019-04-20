@@ -26,7 +26,7 @@
 						<ul class="p-b-54">
 						
 							<li class="p-t-4">
-								<a href="{%if 0 == category %} '#' {%else%}{{ url_for('Shop', category=0)}}{%endif%} " class="s-text13 {{'active1' if category == 0 }}">
+								<a href="{%if 0 == category %} # {%else%}{{ url_for('Shop', category=0)}}{%endif%} " class="s-text13 {{'active1' if category == 0 }}">
 									All
 								</a>
 							</li>
@@ -37,7 +37,7 @@
 							{% for cat in categories %}
 
 							<li class="p-t-4">
-								<a href="{%if cat.id == category  %} '#' {%else%}{{ url_for('Shop', category=cat.id)}}{%endif%} " class="s-text13 {%if cat.id == category %}'active1'{%endif%}}">
+								<a href="{%if cat.id == category  %} # {%else%}{{ url_for('Shop', category=cat.id)}}{%endif%} " class="s-text13 {%if cat.id == category %}'active1'{%endif%}}">
 										{{cat.name}}
 								</a>
 							</li>
@@ -271,6 +271,7 @@
 	var hoverSize = [500, 900];
             
 $('img').hover(function() {
+	alert("heeeeh");
     $(this).css({
         height: hoverSize[0],
         width: hoverSize[1]
