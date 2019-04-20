@@ -60,7 +60,7 @@
 								{% if (product.price > product.oldPrice) or (product.price == product.oldPrice) %}
 									<div class="block2-img wrap-pic-w of-hidden pos-relative ">
 								{% else %}
-								<div id="pic" class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
+								<div  class="pic block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
 								{% endif %}
 
 								<a href="/static/uploads/{{product.picture}}" class="preview"><img   src="/static/uploads/{{product.picture}}" style="max-height: -webkit-fill-available;" alt="gallery thumbnail" /></a>
@@ -279,7 +279,7 @@
 	
 
             
-		$('#pic').hover(function() {
+		$('.pic').hover(function() {
 			var hoverSize = [500, 900];
 	
 				$(this).css({
