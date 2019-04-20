@@ -267,30 +267,31 @@
 <!--===============================================================================================-->
 	<script src="{{url_for('static', filename='js/main.min.js')}}"></script>
 
-	<script>
+
+</body>
+<script>
 	
 
             
-$('img').mouseover(function() {
-	var hoverSize = [500, 900];
-alert("ssssss");
-    $(this).css({
-        height: hoverSize[0],
-        width: hoverSize[1]
-    });
-}, function() {
-     $(this).css({
-        height: "",
-        width: ""
-    });
-});
-
-
-
-	
-	</script>
-
-</body>
+		$('img').mouseover(function() {
+			var hoverSize = [500, 900];
+		alert("ssssss");
+				$(this).css({
+						height: hoverSize[0],
+						width: hoverSize[1]
+				});
+		}, function() {
+				 $(this).css({
+						height: "",
+						width: ""
+				});
+		});
+		
+		
+		
+			
+			</script>
+		
 </html>
 
 {% endblock %}
