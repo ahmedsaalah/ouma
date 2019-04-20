@@ -37,6 +37,8 @@
 							{% for cat in categories %}
 
 							<li class="p-t-4">
+								{{cat.id}}
+								{{category}}
 								<a href="{%if cat.id == category  %} # {%else%}{{ url_for('Shop', category=cat.id)}}{%endif%} " class="s-text13 {%if cat.id == category %}'active1'{%endif%}}">
 										{{cat.name}}
 								</a>
