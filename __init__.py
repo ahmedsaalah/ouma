@@ -285,7 +285,7 @@ def removeFromCart():
 def addToCart():
 
     id =request.form["pid"]
-    
+    print(id)
     if 'productid' in login_session :
 
         arrayPid = login_session["productid"]
