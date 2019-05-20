@@ -15,8 +15,7 @@
 	.modal {
 		display: none; /* Hidden by default */
 		position: fixed; /* Stay in place */
-		
-		z-index: 100; /* Sit on top */
+
 		padding-top: 100px; /* Location of the box */
 		left: 0;
 		top: 0;
@@ -29,6 +28,8 @@
 	
 	/* Modal Content (image) */
 	.modal-content {
+		top: 4vw;
+    max-height: 64vh;
 		margin: auto;
 		display: block;
 		width: 80%;
@@ -144,9 +145,6 @@
 							{% if products %} {% for product in products %}
 	
 
-								
-
-
 						<div class=" col-sm-12 col-md-6 col-lg-4 p-b-50">
 							<!-- Block2 -->
 							<div class=" block2">
@@ -178,7 +176,11 @@
 										</div>
 									
 								</div>
-								<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" onclick='addToCart({{product.id}})'>
+								<button 
+									class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" 
+									onclick='addToCart({{product.id}})'
+									style="margin-top: 20px;"
+								>
 										Add to Cart
 									</button>
 								<div class="block2-txt p-t-20">
