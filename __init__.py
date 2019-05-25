@@ -349,6 +349,30 @@ def login():
             return redirect(url_for('HomePage'))
 
 
+@app.route('/changePassword', methods=['POST','GET'])
+
+def changePassword():
+    if 'id' in login_session :
+        if request.method == 'POST' :
+
+            newPassword =request.form["newPassword"]
+        
+            
+            TheUser = user.query.filter_by(id=login_session['id'] ).first()
+            if TheUser is not None:
+
+                TheUser.password = newPassword
+
+                return redirect(url_for('adminProducts'))
+            else :
+                return redirect(url_for('HomePage'))
+        else:
+            return render_template('changepassword.html')
+
+
+    else:
+        return redirect(url_for('HomePage'))
+
 
 
 
