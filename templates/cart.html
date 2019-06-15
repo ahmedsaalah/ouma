@@ -15,11 +15,13 @@
 		</h2>
 
 	</section>
-	{% if price != 0 %} 
+
 	<!-- Cart -->
 	<section class="cart bgwhite p-t-70 p-b-100">
+
 		<div class="container">
 			<!-- Cart item -->
+			{% if price != 0 %} 
 			<div class="container-table-cart pos-relative">
 				<div class="wrap-table-shopping-cart bgwhite">
 					<table class="table-shopping-cart">
@@ -64,7 +66,7 @@
 					</table>
 				</div>
 			</div>
-
+			{% endif %}
 			<!-- <div class="flex-w flex-sb-m p-t-25 p-b-25 bo8 p-l-35 p-r-60 p-lr-15-sm">
 				<div class="flex-w flex-m w-full-sm">
 					<div class="size11 bo4 m-r-10">
@@ -173,7 +175,7 @@
 	</section>
 
 
-{% endif %}
+
 
 	{% endblock %}
 
