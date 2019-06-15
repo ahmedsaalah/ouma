@@ -76,6 +76,9 @@
 	<script type="text/javascript" src="static/vendor/bootstrap/js/popper.min.js"></script>
 	<script type="text/javascript" src="static/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
+
+
+	
 	
 	<script type="text/javascript">
 		$(".selection-1").select2({
@@ -88,15 +91,15 @@
 			dropdownParent: $('#dropDownSelect2')
 		});
 
-
-		(function($) {
-	$.get("{{ url_for('Cartvalue')}}",function(data){
+		(function () {
+			$.get("{{ url_for('Cartvalue')}}",function(data){
     
 	document.getElementById("cartvalue").textContent=data;
 
 
-});
-    })(jQuery);
+})});
+
+
 
 
 	

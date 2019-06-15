@@ -77,6 +77,7 @@
 
 
 
+
 <!--===============================================================================================-->
 	<script type="text/javascript" src="static/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
@@ -98,14 +99,22 @@
 		});
 
 
-		(function($) {
-	$.get("{{ url_for('Cartvalue')}}",function(data){
+// 		(function($) {
+// 	$.get("{{ url_for('Cartvalue')}}",function(data){
+    
+// 	document.getElementById("cartvalue").textContent=data;
+
+
+// });
+//     })(jQuery);
+
+		(function () {
+			$.get("{{ url_for('Cartvalue')}}",function(data){
     
 	document.getElementById("cartvalue").textContent=data;
 
 
-});
-    })(jQuery);
+})});
 
 
 	
