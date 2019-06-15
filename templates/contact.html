@@ -109,12 +109,16 @@
 //     })(jQuery);
 
 		(function () {
-			$.get("{{ url_for('Cartvalue')}}",function(data){
-    
-	document.getElementById("cartvalue").textContent=data;
+
+			var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", "{{ url_for('Cartvalue')}}", false ); // false for synchronous request
+    xmlHttp.send( null );
+    document.getElementById("cartvalue").textContent= xmlHttp.responseText;
 
 
-})});
+
+
+});
 
 
 	
