@@ -93,7 +93,7 @@ function isInt(value) {
 			function validateForm() {
 				var name = document.forms["form"]["name"].value;
 				if (name == "") {
-					alert("Name must be filled out");
+					Swal.fire("Name must be filled out");
 					return false;
 				}
 
@@ -101,7 +101,7 @@ function isInt(value) {
 				if (!isInt(price))
 
 				{
-						alert("price is not an integer");
+						Swal.fire("price is not an integer");
 						return false;
 				}
 
@@ -109,7 +109,7 @@ function isInt(value) {
 								var cat = document.forms["form"]["cat"].value;
 		
 				if (cat == "") {
-					alert("you must choose the category");
+					Swal.fire("you must choose the category");
 					return false;
 				}
 
@@ -119,7 +119,7 @@ function isInt(value) {
 				if(data == "0")
 				{
 					
-					alert("Cart is empty ,Cannot make order with cart empty");
+					Swal.fire("Cart is empty ,Cannot make order with cart empty");
 					return false;
 				}
 

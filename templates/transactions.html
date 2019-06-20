@@ -321,7 +321,7 @@
 
 <script type="text/javascript">
     $(document).on("click",".DeleteBtn",function () {
-    //alert('ok');
+    //Swal.fire('ok');
     var id=$(this).data('id');
     $("#id").val(id);
     
@@ -757,7 +757,7 @@
         }
         //-------------------------- ValueNewPage : Get Result Depend on input Change Value ----------
         function ValueNewPage (inputsValues, Controller, FunctionName){
-        // alert('ok');
+        // Swal.fire('ok');
             var inputData = inputsValues;
             var dataSend = JSON.stringify(inputData);
             $.ajax({
