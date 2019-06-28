@@ -261,6 +261,8 @@
 		$("#tbodyid").empty();
 		
     });
+
+		
 	 }
 
 
@@ -353,6 +355,17 @@
 					Swal.fire("you must enter the notes in order to reach you quickly ");
 					return false;
 				}
+
+				(function($) {
+	$.get("{{ url_for('Cartvalue')}}",function(data){
+    
+	document.getElementById("cartvalue").textContent=data;
+
+
+});
+    })(jQuery);
+
+
 
 var da = 0;
 				$.ajax({

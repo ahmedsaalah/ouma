@@ -99,6 +99,32 @@
 		// });
 
 
+
+		function ClearCart()
+	 {		var data=
+      {
+      pid : 0
+    
+    
+    };
+		
+	
+
+    $.post("{{ url_for('ClearCart')}}",data,function(data){
+    
+    
+		document.getElementById("cartvalue").textContent=data;
+
+		
+    });
+
+		
+	 }
+
+
+
+
+
 		(function($) {
 	$.get("{{ url_for('Cartvalue')}}",function(data){
     
